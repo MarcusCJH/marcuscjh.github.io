@@ -1,0 +1,22 @@
+{
+  "name": "marcuscjh.github.io",
+  "version": "1.0.0",
+  "description": "marcuscjh.github.io portfolio",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w scss/ -o dist/css/ --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcusCJH/marcuscjh.github.io.git"
+  },
+  "author": "MarcusCJH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcusCJH/marcuscjh.github.io/issues"
+  },
+  "homepage": "https://github.com/MarcusCJH/marcuscjh.github.io#readme",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  }
+}
