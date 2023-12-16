@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --text-color: #78d685; /* A lighter green for text */
+    --background-dark: #1e1e1e; /* Darker background color */
+    --background-light: #292929; /* Slightly lighter background color */
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--background-dark);
+    color: var(--text-color);
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+h1 {
+    color: var(--text-color);
+    font-size: 50px;
+    letter-spacing: -5px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: var(--text-color);
+}
+
+h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+p {
+    margin: 20px 0;
+}
+
+nav {
+    width: 30%;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul li {
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wb-body {
+    background: var(--background-light);
+    padding: 20px;
+    border-radius: 10px; /* Add a slight border-radius for a softer look */
+}
+
+.hidden {
+    display: none;
+}
+
+.cursor {
+    font-weight: 700;
+    animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+    from,
+    to {
+        color: transparent;
+    }
+
+    50% {
+        color: var(--text-color);
+    }
+}
