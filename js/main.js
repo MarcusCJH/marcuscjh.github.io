@@ -6,7 +6,7 @@ const cv = document.querySelector('#cv');
 const cvContent = document.querySelector('#cv-content');
 
 
-function openWinBox(title, mountContent,width = '400px',height='400px', top = 'center', right = 'center', bottom = 'center', left = 'center') {
+function openWinBox(title, mountContent,width = '50%',height='50%', top = 'center', right = 'center', bottom = 'center', left = 'center') {
     return new WinBox({
         title: title,
         width: width,
@@ -34,7 +34,7 @@ contact.addEventListener('click', () => {
 });
 
 cv.addEventListener('click', () => {
-    openWinBox('Curriculum Vitae', cvContent,'800px','1000px');
+    openWinBox('Curriculum Vitae', cvContent);
 
     // Replace 'YOUR_GOOGLE_DRIVE_FILE_ID' with the actual ID of your PDF file on Google Drive
     const pdfDriveFileId = '123';
