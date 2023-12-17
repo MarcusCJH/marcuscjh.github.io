@@ -116,3 +116,20 @@ nav ul li {
         color: var(--text-color);
     }
 }
+
+/* For UwU*/
+.pop-out {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 300px;
+    color: #ff69b4; /* Hot pink, you can change this color */
+    animation: popOutAnimation 0.5s ease-out;
+}
+
+@keyframes popOutAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}

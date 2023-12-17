@@ -50,3 +50,18 @@ cv.addEventListener('click', () => {
     document.getElementById('cv-pdf-container').innerHTML = '';
     document.getElementById('cv-pdf-container').appendChild(pdfIframe);
 });
+
+
+function popOut(text) {
+    // UWU UWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWU
+    const uwuSpan = document.createElement('span');
+    uwuSpan.innerText = text;
+    uwuSpan.classList.add('pop-out');
+
+    // Append uwu span to the body
+    document.body.appendChild(uwuSpan);
+
+    setTimeout(() => {
+        uwuSpan.remove();
+    }, 500);
+}
