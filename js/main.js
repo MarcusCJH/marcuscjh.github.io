@@ -1,7 +1,8 @@
-const about = document.querySelector('#about');
-const contact = document.querySelector('#contact');
-const aboutContent = document.querySelector('#about-content');
-const contactContent = document.querySelector('#contact-content');
+
+// const contact = document.querySelector('#contact');
+// const contactContent = document.querySelector('#contact-content');
+const project = document.querySelector('#project');
+const projectContent = document.querySelector('#project-content');
 const cv = document.querySelector('#cv');
 const cvContent = document.querySelector('#cv-content');
 
@@ -25,13 +26,13 @@ function openWinBox(title, mountContent,width = '50%',height='50%', top = 'cente
     });
 }
 
-about.addEventListener('click', () => {
-    openWinBox('About Me', aboutContent);
+project.addEventListener('click', () => {
+    openWinBox('Project', projectContent);
 });
 
-contact.addEventListener('click', () => {
-    openWinBox('Contact Me', contactContent);
-});
+// contact.addEventListener('click', () => {
+//     openWinBox('Contact Me', contactContent);
+// });
 
 cv.addEventListener('click', () => {
     openWinBox('Curriculum Vitae', cvContent);
