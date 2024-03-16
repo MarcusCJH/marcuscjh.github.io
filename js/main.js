@@ -37,7 +37,7 @@ cv.addEventListener('click', () => {
     openWinBox('Curriculum Vitae', cvContent);
 
     // Replace 'YOUR_GOOGLE_DRIVE_FILE_ID' with the actual ID of your PDF file on Google Drive
-    const pdfDriveFileId = '123';
+    const pdfDriveFileId = '16eXxJWLCsUib7gZKX48jhT85myOxqh0_';
 
     // Create an <iframe> tag for the PDF hosted on Google Drive
     const pdfIframe = document.createElement('iframe');
@@ -51,17 +51,3 @@ cv.addEventListener('click', () => {
     document.getElementById('cv-pdf-container').appendChild(pdfIframe);
 });
 
-
-function popOut(text) {
-    // UWU UWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWUUWU
-    const uwuSpan = document.createElement('span');
-    uwuSpan.innerText = text;
-    uwuSpan.classList.add('pop-out');
-
-    // Append uwu span to the body
-    document.body.appendChild(uwuSpan);
-
-    setTimeout(() => {
-        uwuSpan.remove();
-    }, 500);
-}
