@@ -7,7 +7,7 @@ const cv = document.querySelector('#cv');
 const cvContent = document.querySelector('#cv-content');
 
 
-function openWinBox(title, mountContent,width = '50%',height='50%', top = 'center', right = 'center', bottom = 'center', left = 'center') {
+function openWinBox(title, mountContent,width = '100%',height='100%', top = 'center', right = 'center', bottom = 'center', left = 'center') {
     return new WinBox({
         title: title,
         width: width,
@@ -17,6 +17,7 @@ function openWinBox(title, mountContent,width = '50%',height='50%', top = 'cente
         bottom: bottom,
         left: left,
         mount: mountContent,
+        modal: true,
         onfocus: function () {
             this.setBackground('#00aa00');
         },
