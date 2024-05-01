@@ -159,7 +159,6 @@ table,tr,th,td {
     margin-bottom: 40px;
     width: 100%;
     position: relative;
-    display: none;
 }
 .timeline-item:last-child{
     margin-bottom: 0;

@@ -15,6 +15,7 @@
     <nav>
         <ul>
             <li id="cv">/cv</li>
+            <li id="timeline">/timeline</li>
             <li id="project">/project</li>
         </ul>
     </nav>
@@ -50,8 +51,13 @@
 <!--    </div>-->
 
     <div id="cv-content">
-        <h2>curriculumVitae:$ <span class="cursor">|</span></h2>
+        <h2>curriculumVitae:$<span class="cursor">|</span></h2>
+        <!-- This div will be replaced with the PDF viewer when the "CV" link is clicked -->
+<!--        <div id="cv-pdf-container"></div>-->
+    </div>
 
+    <div id="timeline-content">
+        <h2>timeline:$<span class="cursor">|</span></h2>
         <section class="timeline-section">
             <nav>
                 <button class="filter-btn nav-btn" data-filter="all">All</button>
@@ -131,9 +137,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- This div will be replaced with the PDF viewer when the "CV" link is clicked -->
-        <!--<div id="cv-pdf-container"></div>-->
     </div>
 
     <div id="project-content">
