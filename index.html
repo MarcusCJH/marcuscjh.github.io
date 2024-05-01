@@ -51,81 +51,87 @@
 
     <div id="cv-content">
         <h2>curriculumVitae:$ <span class="cursor">|</span></h2>
+
         <section class="timeline-section">
-            <div style="text-align: center;"><h1>Experience</h1></div>
+            <nav>
+                <button class="filter-btn nav-btn" data-filter="all">All</button>
+                <button class="filter-btn nav-btn" data-filter="work">Work</button>
+                <button class="filter-btn nav-btn" data-filter="education">Education</button>
+            </nav>
+            <br>
             <div class="timeline-items">
-                <div class="timeline-item">
+                <!--work : 5 education: 3-->
+                <div class="timeline-item" data-category="work" data-order="4">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date ">Apr 21 - Present</div>
                     <div class="timeline-content">
+                        <div class="timeline-date">Apr 21 - Present</div>
                         <h3>Accenture</h3>
                         <p></p>
                     </div>
                 </div>
-                <div class="timeline-item">
+
+                <!-- Whale Cloud -->
+                <div class="timeline-item" data-category="work" data-order="3">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">Apr 19 - Mar 21</div>
                     <div class="timeline-content">
+                        <div class="timeline-date">Apr 19 - Mar 21</div>
                         <h3>Whale Cloud</h3>
                         <p></p>
                     </div>
                 </div>
-                <div class="timeline-item">
+
+                <!-- Veev Interactive -->
+                <div class="timeline-item" data-category="work" data-order="2">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">Jul 17 - Jan 18</div>
                     <div class="timeline-content">
+                        <div class="timeline-date">Jul 17 - Jan 18</div>
                         <h3>Veev Interactive</h3>
                         <p></p>
                     </div>
                 </div>
-                <div class="timeline-item">
+
+                <!-- Singapore Police Force -->
+                <div class="timeline-item" data-category="work" data-order="1">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">Sep 14 - Sep 16</div>
                     <div class="timeline-content">
+                        <div class="timeline-date">Sep 14 - Sep 16</div>
                         <h3>Singapore Police Force</h3>
                         <p></p>
                     </div>
                 </div>
-                <div class="timeline-item">
+
+                <!-- Hitachi Asia -->
+                <div class="timeline-item" data-category="work" data-order="0">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">Jul 13 - Dec 13</div>
                     <div class="timeline-content">
+                        <div class="timeline-date">Jul 13 - Dec 13</div>
                         <h3>Hitachi Asia</h3>
                         <p></p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="timeline-section">
-            <div style="text-align: center;"><h1>Education</h1></div>
-            <div class="timeline-items">
-                <div class="timeline-item">
+                <!-- The University of Queensland -->
+                <div class="timeline-item" data-category="education" data-order="3">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">2018</div>
                     <div class="timeline-content">
-                        <h3>The University of Queensland</h3>
+                        <div class="timeline-date">2018</div>
+                        <h3>Graduated from The University of Queensland</h3>
                         <p>Bachelor of Information Technology with a Major in Software Information System</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+
+                <!-- Temasek Polytechnic -->
+                <div class="timeline-item" data-category="education" data-order="1">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">2016-2017</div>
                     <div class="timeline-content">
-                        <h3>Singapore Management University</h3>
-                        <p>Bachelor of Science (Information System) - Incomplete</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2011 - 2014</div>
-                    <div class="timeline-content">
-                        <h3>Temasek Polytechnic</h3>
+                        <div class="timeline-date">2014</div>
+                        <h3>Gradated from Temasek Polytechnic</h3>
                         <p>Diploma in Information Technology (Business Analytics Specialization)</p>
                     </div>
                 </div>
             </div>
         </section>
+
         <!-- This div will be replaced with the PDF viewer when the "CV" link is clicked -->
         <!--<div id="cv-pdf-container"></div>-->
     </div>

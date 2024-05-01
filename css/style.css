@@ -50,13 +50,20 @@ p {
 }
 
 nav {
-    text-align: center; /* Center the links horizontally */
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 nav ul {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.nav-btn {
+    margin: 0 10px; /* Adjust the margin to control the spacing between buttons */
+    display: inline-block; /* Ensure buttons are displayed in a row */
 }
 
 nav ul li {
@@ -124,6 +131,9 @@ table,tr,th,td {
     border:1px solid black;
 }
 
+.timeline-item.active {
+    display: block; /* Only display items that match the filter */
+}
 
 .timeline-section{
     background-color: #24292d;
@@ -149,6 +159,7 @@ table,tr,th,td {
     margin-bottom: 40px;
     width: 100%;
     position: relative;
+    display: none;
 }
 .timeline-item:last-child{
     margin-bottom: 0;
@@ -210,4 +221,23 @@ table,tr,th,td {
     .timeline-dot{
         left:0;
     }
+}
+
+.filter-btn {
+    background-color: #4CAF50; /* Green background */
+    border: none;
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 4px; /* Rounded corners */
+    transition-duration: 0.4s; /* Animation speed */
+}
+
+.filter-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
 }

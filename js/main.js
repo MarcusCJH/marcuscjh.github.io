@@ -53,3 +53,43 @@ cv.addEventListener('click', () => {
     document.getElementById('cv-pdf-container').appendChild(pdfIframe);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const timelineItemsContainer = document.querySelector('.timeline-items');
+    const timelineItems = Array.from(document.querySelectorAll('.timeline-item'));
+
+    // Function to handle sorting and displaying of timeline items
+    function displayFilteredItems(filteredItems) {
+        // Sort items based on the data-order attribute, in descending order (newest first)
+        filteredItems.sort((a, b) => parseInt(b.getAttribute('data-order')) - parseInt(a.getAttribute('data-order')));
+
+        // Clear the container and append sorted and filtered items
+        timelineItemsContainer.innerHTML = '';
+        filteredItems.forEach(item => {
+            timelineItemsContainer.appendChild(item);
+        });
+    }
+
+    // Event listener for filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            let filteredItems = [];
+
+            timelineItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.classList.add('active');  // Add 'active' to class list for CSS visibility
+                    filteredItems.push(item);     // Add to the array to be sorted and displayed
+                } else {
+                    item.classList.remove('active');  // Remove 'active' from class list if not matched
+                }
+            });
+
+            // Display sorted and filtered items
+            displayFilteredItems(filteredItems);
+        });
+    });
+
+    // Initial display and sort on page load
+    displayFilteredItems(timelineItems);  // This line will sort and display items when the page is loaded
+});
