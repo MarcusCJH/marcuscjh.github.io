@@ -109,6 +109,7 @@ function openModal(id) {
         width: '80%',
         height: '80%',
         mount: content,
+        class: ["winbox-content"],
         onfocus: function () {
             this.setBackground('#00aa00');
         },

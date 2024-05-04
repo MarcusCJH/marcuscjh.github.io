@@ -88,6 +88,12 @@ nav ul li {
     cursor: pointer;
 }
 
+.winbox-content img {
+    max-width: 100%; /* Ensures the image is never larger than the modal width */
+
+}
+
+
 .container {
     max-width: 600px;
     margin: auto;
@@ -288,6 +294,14 @@ table,tr,th,td {
 
     .project-grid {
         grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+    }
+
+    .winbox-content h1 {
+        font-size: 34px;
+    }
+
+    .winbox-content p {
+        font-size: 14px;
     }
 }
 
