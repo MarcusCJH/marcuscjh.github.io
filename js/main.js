@@ -100,12 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
     displayFilteredItems(timelineItems);  // This line will sort and display items when the page is loaded
 });
 
-function openModal(title) {
-    const content = document.getElementById('content');
+function openModal(id) {
+    const content = document.getElementById(id);
     content.style.display = "block"; // Make the content visible
 
     new WinBox({
-        title: title,
+        title: id,
         width: '80%',
         height: '80%',
         mount: content,

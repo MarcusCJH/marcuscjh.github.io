@@ -263,7 +263,7 @@ table,tr,th,td {
 }
 
 .project-box h4, .project-box p {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.85); /* Semi-transparent black background */
     padding: 5px 10px; /* Padding around the text */
     border-radius: 5px; /* Optionally round corners */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Shadow approach */
