@@ -99,3 +99,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial display and sort on page load
     displayFilteredItems(timelineItems);  // This line will sort and display items when the page is loaded
 });
+
+function openModal(title) {
+    const content = document.getElementById('content');
+    content.style.display = "block"; // Make the content visible
+
+    new WinBox({
+        title: title,
+        width: '80%',
+        height: '80%',
+        mount: content,
+        onfocus: function () {
+            this.setBackground('#00aa00');
+        },
+        onblur: function () {
+            this.setBackground('#777');
+        },
+        modal: true,
+        onclose: function () {
+            content.style.display = "none"; // Hide the content again when the WinBox is closed
+        }
+    });
+}

@@ -204,23 +204,8 @@ table,tr,th,td {
     line-height: 22px;
 }
 
-/* responsive */
-@media(max-width: 767px){
-    .timeline-items::before{
-        left: 7px;
-    }
-    .timeline-item:nth-child(odd){
-        padding-right: 0;
-        text-align: left;
-    }
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even){
-        padding-left: 37px;
-    }
-    .timeline-dot{
-        left:0;
-    }
-}
+
+
 
 .filter-btn {
     background-color: #4CAF50; /* Green background */
@@ -239,4 +224,75 @@ table,tr,th,td {
 
 .filter-btn:hover {
     background-color: #45a049; /* Darker green on hover */
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three columns */
+    gap: 20px; /* Space between boxes */
+    padding: 20px;
+    max-width: 960px; /* Adjust the maximum width as needed */
+    margin: auto; /* Centers the grid horizontally */
+}
+
+.project-box {
+    background-color: #2f363e;
+    background-size: cover;  /* Ensures the image covers the box */
+    background-position: center;  /* Centers the image in the box */
+    background-repeat: no-repeat;  /* Prevents the image from repeating */
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+}
+
+.project-box img {
+    width: 100%; /* Ensure the image covers the width */
+    height: auto;
+    object-fit: cover;
+}
+
+.project-box h4, .project-box p {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    padding: 5px 10px; /* Padding around the text */
+    border-radius: 5px; /* Optionally round corners */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Shadow approach */
+}
+
+/* responsive */
+@media(max-width: 768px){
+    .timeline-items::before{
+        left: 7px;
+    }
+    .timeline-item:nth-child(odd){
+        padding-right: 0;
+        text-align: left;
+    }
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even){
+        padding-left: 37px;
+    }
+    .timeline-dot{
+        left:0;
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .project-grid {
+        grid-template-columns: 1fr; /* One column for small screens */
+    }
 }
