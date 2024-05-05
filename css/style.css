@@ -141,6 +141,10 @@ table,tr,th,td {
     display: block; /* Only display items that match the filter */
 }
 
+.timeline-item:hover {
+    transform: translateY(-5px);
+}
+
 .timeline-section{
     background-color: #24292d;
     min-height: 100vh;
@@ -232,7 +236,7 @@ table,tr,th,td {
     background-color: #45a049; /* Darker green on hover */
 }
 
-.project-grid {
+.showcase-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Creates three columns */
     gap: 20px; /* Space between boxes */
@@ -241,7 +245,7 @@ table,tr,th,td {
     margin: auto; /* Centers the grid horizontally */
 }
 
-.project-box {
+.showcase-box {
     background-color: #2f363e;
     background-size: cover;  /* Ensures the image covers the box */
     background-position: center;  /* Centers the image in the box */
@@ -258,17 +262,17 @@ table,tr,th,td {
     cursor: pointer;
 }
 
-.project-box:hover {
+.showcase-box:hover {
     transform: translateY(-5px);
 }
 
-.project-box img {
+.showcase-box img {
     width: 100%; /* Ensure the image covers the width */
     height: auto;
     object-fit: cover;
 }
 
-.project-box h4, .project-box p {
+.showcase-box h4, .showcase-box p {
     background-color: rgba(0, 0, 0, 0.85); /* Semi-transparent black background */
     padding: 5px 10px; /* Padding around the text */
     border-radius: 5px; /* Optionally round corners */
@@ -292,7 +296,7 @@ table,tr,th,td {
         left:0;
     }
 
-    .project-grid {
+    .showcase-grid {
         grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
     }
 
@@ -306,7 +310,7 @@ table,tr,th,td {
 }
 
 @media (max-width: 480px) {
-    .project-grid {
+    .showcase-grid {
         grid-template-columns: 1fr; /* One column for small screens */
     }
 }

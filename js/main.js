@@ -1,8 +1,8 @@
 
 // const contact = document.querySelector('#contact');
 // const contactContent = document.querySelector('#contact-content');
-const project = document.querySelector('#project');
-const projectContent = document.querySelector('#project-content');
+const showcase = document.querySelector('#showcase');
+const showcaseContent = document.querySelector('#showcase-content');
 const cv = document.querySelector('#cv');
 const cvContent = document.querySelector('#cv-content');
 const timeline = document.querySelector('#timeline');
@@ -29,8 +29,8 @@ function openWinBox(title, mountContent,width = '100%',height='100%', top = 'cen
     });
 }
 
-project.addEventListener('click', () => {
-    openWinBox('Project', projectContent);
+showcase.addEventListener('click', () => {
+    openWinBox('showcase', showcaseContent);
 });
 
 timeline.addEventListener('click', () => {

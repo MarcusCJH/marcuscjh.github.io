@@ -14,9 +14,9 @@
 <div class="container">
     <nav>
         <ul>
-            <li id="cv">/cv</li>
+            <li id="cv" style="display:none;">/cv</li>
             <li id="timeline">/timeline</li>
-            <li id="project">/project</li>
+            <li id="showcase">/showcase</li>
         </ul>
     </nav>
 
@@ -45,6 +45,7 @@
 
     <div id="cv-content">
         <h2>curriculumVitae:$<span class="cursor">|</span></h2>
+        <h1>WIP</h1>
         <!-- This div will be replaced with the PDF viewer when the "CV" link is clicked -->
         <!--        <div id="cv-pdf-container"></div>-->
     </div>
@@ -60,11 +61,14 @@
             <br>
             <div class="timeline-items">
                 <!--work : 5 education: 3-->
-                <div class="timeline-item" data-category="work" data-order="4">
+                <div class="timeline-item" data-category="work" data-order="4" onclick="openModal('Accenture')">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">Apr 21 - Present</div>
                         <h3>Accenture</h3>
+                        <div id="Accenture" style="display: none;">
+                            <h1>Accenture</h1>
+                        </div>
                         <p></p>
                     </div>
                 </div>
@@ -132,31 +136,42 @@
         </section>
     </div>
 
-    <div id="project-content">
-        <h2>project:$<span class="cursor">|</span></h2>
-        <div class="project-grid">
-            <div class="project-box" style="background-image: url('assets/project/marcuscjh/marcuscjh-bg.PNG');" onclick="openModal('marcuscjh')">
+    <div id="showcase-content">
+        <h2>showcase:$<span class="cursor">|</span></h2>
+        <div class="showcase-grid">
+            <div class="showcase-box" style="background-image: url('assets/showcase/marcuscjh/marcuscjh-bg.PNG');" onclick="openModal('marcuscjh')">
                 <h4>Portfolio</h4>
                 <div id="marcuscjh" style="display: none;">
                     <h1>marcuscjh.github.io</h1>
                     <p>Basically this, my portfolio</p>
                 </div>
             </div>
-            <div class="project-box" style="background-image: url('assets/project/webcamtest/webcamTest.png');" onclick="openModal('WebcamTest')">
+            <div class="showcase-box" style="background-image: url('assets/showcase/webcamtest/webcamTest-bg.png');" onclick="openModal('WebcamTest')">
                 <h4>Webcam Test</h4>
                 <div id="WebcamTest" style="display: none;">
                     <h1>Webcam Test</h1>
-                    <img src="assets/project/webcamtest/webcamDemo.PNG">
+                    <img src="assets/showcase/webcamtest/webcamDemo.PNG">
                     <p>This static webpage is designed for testing your webcam before you go live, ensuring you look great before presenting yourself to the world.</p>
                     <a href="https://marcuscjh.github.io/WebcamTest/"><b>Click here to try</b></a><br>
                     <a href="https://github.com/MarcusCJH/WebcamTest"><b>View Source Code</b></a>
                 </div>
             </div>
-            <div class="project-box" style="background-image: url('assets/project/slackbot/slackbot.png');" onclick="openModal('SlackBot')">
+            <div class="showcase-box" style="background-image: url('assets/showcase/slackbot/slackbot-bg.png');" onclick="openModal('SlackBot')">
                 <h4>Slack Bot</h4>
                 <div id="SlackBot" style="display: none;">
                     <h1>Slack Bot</h1>
                     <p>To be updated....</p>
+                </div>
+            </div>
+            <div class="showcase-box" style="background-image: url('assets/showcase/webinar/DataV-bg.PNG');" onclick="openModal('ApsaraChat Live: Real-time monitoring of COVID-19 with DataV #fightcoronavirus')">
+                <h4>Alibaba Cloud: DataV Webinar</h4>
+                <div id="ApsaraChat Live: Real-time monitoring of COVID-19 with DataV #fightcoronavirus" style="display: none;">
+                    <h1>ApsaraChat Live: Real-time monitoring of COVID-19 with DataV #fightcoronavirus</h1>
+                    <video width="100%" controls>
+                        <source src="https://alicloud-common.oss-ap-southeast-1.aliyuncs.com/video/DataV%20COMPLETE.mp4" type="video/mp4">
+                    </video>
+                    <p>A webinar that I was invited to speak regarding the use of Alibaba Cloud product : DataV</p>
+                    <a href="https://resource.alibabacloud.com/webinar/detail.html?id=1441"><b>Watch it here</b></a><br>
                 </div>
             </div>
         </div>
