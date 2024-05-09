@@ -8,8 +8,11 @@ const timeline = document.querySelector('#timeline');
 const timelineContent = document.querySelector('#timeline-content');
 
 
+// Global variable to store the currently active WinBox instance
+let winBoxStack = [];
+
 function openWinBox(title, mountContent, width = '100%', height = '100%', top = 'center', right = 'center', bottom = 'center', left = 'center') {
-    return new WinBox({
+    let newWinBox = new WinBox({
         title: title,
         width: width,
         height: height,
@@ -25,8 +28,19 @@ function openWinBox(title, mountContent, width = '100%', height = '100%', top = 
         onblur: function () {
             this.setBackground('#777');
         },
+        onclose: function () {
+            // Remove this WinBox from the stack
+            winBoxStack = winBoxStack.filter(wb => wb !== newWinBox);
+            if (winBoxStack.length > 0) {
+                // Focus the last WinBox in the stack
+                winBoxStack[winBoxStack.length - 1].focus();
+            }
+        }
     });
+    winBoxStack.push(newWinBox); // Add new WinBox to the stack
+    return newWinBox;
 }
+
 
 showcase.addEventListener('click', () => {
     openWinBox('showcase', showcaseContent);
@@ -103,7 +117,7 @@ function openModal(id) {
     const content = document.getElementById(id);
     content.style.display = "block"; // Make the content visible
 
-    new WinBox({
+    let modalWinBox = new WinBox({
         title: id,
         width: '80%',
         height: '80%',
@@ -117,7 +131,20 @@ function openModal(id) {
         },
         modal: true,
         onclose: function () {
-            content.style.display = "none"; // Hide the content again when the WinBox is closed
+            content.style.display = "none"; // Hide the content when the WinBox is closed
+            // Remove this WinBox from the stack
+            winBoxStack = winBoxStack.filter(wb => wb !== modalWinBox);
+            if (winBoxStack.length > 0) {
+                // Focus the last WinBox in the stack
+                winBoxStack[winBoxStack.length - 1].focus();
+            }
         }
     });
+    winBoxStack.push(modalWinBox); // Add new WinBox to the stack
 }
+
+document.addEventListener('keydown', function (event) {
+    if (event.keyCode === 27 && winBoxStack.length > 0) {
+        winBoxStack[winBoxStack.length - 1].close(); // Close the topmost WinBox
+    }
+});
