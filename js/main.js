@@ -1,4 +1,3 @@
-
 // const contact = document.querySelector('#contact');
 // const contactContent = document.querySelector('#contact-content');
 const showcase = document.querySelector('#showcase');
@@ -9,7 +8,7 @@ const timeline = document.querySelector('#timeline');
 const timelineContent = document.querySelector('#timeline-content');
 
 
-function openWinBox(title, mountContent,width = '100%',height='100%', top = 'center', right = 'center', bottom = 'center', left = 'center') {
+function openWinBox(title, mountContent, width = '100%', height = '100%', top = 'center', right = 'center', bottom = 'center', left = 'center') {
     return new WinBox({
         title: title,
         width: width,
@@ -59,7 +58,7 @@ cv.addEventListener('click', () => {
     document.getElementById('cv-pdf-container').appendChild(pdfIframe);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const timelineItemsContainer = document.querySelector('.timeline-items');
     const timelineItems = Array.from(document.querySelectorAll('.timeline-item'));
@@ -78,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listener for filter buttons
     filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const filter = this.getAttribute('data-filter');
             let filteredItems = [];
 

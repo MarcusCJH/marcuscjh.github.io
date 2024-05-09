@@ -1,3 +1,5 @@
 # Portfolio
-A simple portfolio static page hosted on github pages.
-Using HTML, CSS, JS
+This repository contains a basic static portfolio webpage, deployed using GitHub Pages. It is built with HTML, CSS, and JavaScript.
+
+# Preview
+![Preview](./assets/showcase/marcuscjh/marcuscjh-bg.PNG)
