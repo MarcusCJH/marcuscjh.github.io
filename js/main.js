@@ -1,3 +1,4 @@
+// DOM Elements
 // const contact = document.querySelector('#contact');
 // const contactContent = document.querySelector('#contact-content');
 const showcase = document.querySelector('#showcase');
@@ -7,115 +8,98 @@ const cvContent = document.querySelector('#cv-content');
 const timeline = document.querySelector('#timeline');
 const timelineContent = document.querySelector('#timeline-content');
 
-// Global variables to store the currently active WinBox instance
-let winBoxStack = [];
+// Configuration
+const CV_DRIVE_ID = '16eXxJWLCsUib7gZKX48jhT85myOxqh0_';
+const WINBOX_COLORS = {
+    active: '#00aa00',
+    inactive: '#777'
+};
 
-// Global variables to store timeline data and current filter
+// State Management
+let winBoxStack = [];
 let globalTimelineData = [];
 let currentFilter = 'all';
 
+// WinBox Management
 function openWinBox(title, mountContent, width = '100%', height = '100%', top = 'center', right = 'center', bottom = 'center', left = 'center') {
     let newWinBox = new WinBox({
-        title: title,
-        width: width,
-        height: height,
-        top: top,
-        right: right,
-        bottom: bottom,
-        left: left,
+        title,
+        width,
+        height,
+        top,
+        right,
+        bottom,
+        left,
         mount: mountContent,
         modal: true,
-        onfocus: function () {
-            this.setBackground('#00aa00');
+        onfocus: function() {
+            this.setBackground(WINBOX_COLORS.active);
         },
-        onblur: function () {
-            this.setBackground('#777');
+        onblur: function() {
+            this.setBackground(WINBOX_COLORS.inactive);
         },
-        onclose: function () {
-            // Remove this WinBox from the stack
+        onclose: function() {
             winBoxStack = winBoxStack.filter(wb => wb !== newWinBox);
             if (winBoxStack.length > 0) {
-                // Focus the last WinBox in the stack
                 winBoxStack[winBoxStack.length - 1].focus();
             }
         }
     });
-    winBoxStack.push(newWinBox); // Add new WinBox to the stack
+    winBoxStack.push(newWinBox);
     return newWinBox;
 }
 
-showcase.addEventListener('click', () => {
-    openWinBox('showcase', showcaseContent);
-});
-
-timeline.addEventListener('click', () => {
-    openWinBox('Timeline', timelineContent);
-});
-
+// Event Listeners
+showcase.addEventListener('click', () => openWinBox('Showcase', showcaseContent));
+timeline.addEventListener('click', () => openWinBox('Timeline', timelineContent));
 // contact.addEventListener('click', () => {
 //     openWinBox('Contact Me', contactContent);
 // });
-
 cv.addEventListener('click', () => {
     openWinBox('Curriculum Vitae', cvContent);
-
-    // Replace 'YOUR_GOOGLE_DRIVE_FILE_ID' with the actual ID of your PDF file on Google Drive
-    const pdfDriveFileId = '16eXxJWLCsUib7gZKX48jhT85myOxqh0_';
-
-    // Create an <iframe> tag for the PDF hosted on Google Drive
     const pdfIframe = document.createElement('iframe');
-    pdfIframe.src = `https://drive.google.com/file/d/${pdfDriveFileId}/preview`;
-    pdfIframe.style.width = '100%';
-    pdfIframe.style.height = '90%';
-    pdfIframe.style.border = 'none';
-
-    // Replace the existing content in the cv-pdf-container with the PDF viewer
-    document.getElementById('cv-pdf-container').innerHTML = '';
-    document.getElementById('cv-pdf-container').appendChild(pdfIframe);
+    pdfIframe.src = `https://drive.google.com/file/d/${CV_DRIVE_ID}/preview`;
+    Object.assign(pdfIframe.style, {
+        width: '100%',
+        height: '90%',
+        border: 'none'
+    });
+    
+    const container = document.getElementById('cv-pdf-container');
+    container.innerHTML = '';
+    container.appendChild(pdfIframe);
 });
 
-// Load and initialize data
+// Data Loading and Initialization
 async function loadPortfolioData() {
     try {
-        console.log('Fetching data from ./data/data.json');
         const response = await fetch('./data/data.json');
-        console.log('Fetch response:', response);
-        
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`Failed to load portfolio data (Status: ${response.status})`);
         }
         
         const data = await response.json();
-        console.log('Loaded data:', data);
-        
-        // Store timeline data globally
-        globalTimelineData = data.timeline;
-        
-        // Initialize social links
-        console.log('Initializing social links');
-        initializeSocialLinks(data.social);
-        
-        // Initialize timeline with all items
-        console.log('Initializing timeline');
-        filterAndDisplayTimeline('all');
-        
-        // Initialize navigation
-        console.log('Initializing navigation');
-        initializeNavigation(data.navigation);
-
-        // Initialize showcase
-        if (data.showcase) {
-            console.log('Initializing showcase');
-            initializeShowcase(data.showcase);
-        }
-        
-        // Set up filter buttons
-        setupFilterButtons();
+        initializePortfolio(data);
     } catch (error) {
-        console.error('Detailed error:', error);
-        console.error('Error stack:', error.stack);
-        document.querySelector('.social-icons').innerHTML = '<li>Error loading data. Please check console for details.</li>';
+        handleError('Failed to load portfolio data', error);
     }
+}
+
+function initializePortfolio(data) {
+    globalTimelineData = data.timeline;
+    initializeSocialLinks(data.social);
+    filterAndDisplayTimeline('all');
+    initializeNavigation(data.navigation);
+    if (data.showcase) {
+        initializeShowcase(data.showcase);
+    }
+    setupFilterButtons();
+}
+
+function handleError(message, error) {
+    console.error(message, error);
+    document.querySelector('.social-icons').innerHTML = 
+        `<li>${message}. Please refresh the page or try again later.</li>`;
 }
 
 function initializeShowcase(showcaseData) {
@@ -278,10 +262,10 @@ function openModal(id) {
         mount: content,
         class: ["winbox-content"],
         onfocus: function () {
-            this.setBackground('#00aa00');
+            this.setBackground(WINBOX_COLORS.active);
         },
         onblur: function () {
-            this.setBackground('#777');
+            this.setBackground(WINBOX_COLORS.inactive);
         },
         modal: true,
         onclose: function () {
@@ -297,12 +281,10 @@ function openModal(id) {
     winBoxStack.push(modalWinBox); // Add new WinBox to the stack
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadPortfolioData();
-});
-
-document.addEventListener('keydown', function (event) {
-    if (event.keyCode === 27 && winBoxStack.length > 0) {
-        winBoxStack[winBoxStack.length - 1].close(); // Close the topmost WinBox
+// Event Listeners
+document.addEventListener('DOMContentLoaded', loadPortfolioData);
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && winBoxStack.length > 0) {
+        winBoxStack[winBoxStack.length - 1].close();
     }
 });
