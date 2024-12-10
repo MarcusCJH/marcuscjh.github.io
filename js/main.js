@@ -7,9 +7,12 @@ const cvContent = document.querySelector('#cv-content');
 const timeline = document.querySelector('#timeline');
 const timelineContent = document.querySelector('#timeline-content');
 
-
-// Global variable to store the currently active WinBox instance
+// Global variables to store the currently active WinBox instance
 let winBoxStack = [];
+
+// Global variables to store timeline data and current filter
+let globalTimelineData = [];
+let currentFilter = 'all';
 
 function openWinBox(title, mountContent, width = '100%', height = '100%', top = 'center', right = 'center', bottom = 'center', left = 'center') {
     let newWinBox = new WinBox({
@@ -41,7 +44,6 @@ function openWinBox(title, mountContent, width = '100%', height = '100%', top = 
     return newWinBox;
 }
 
-
 showcase.addEventListener('click', () => {
     openWinBox('showcase', showcaseContent);
 });
@@ -72,46 +74,141 @@ cv.addEventListener('click', () => {
     document.getElementById('cv-pdf-container').appendChild(pdfIframe);
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const timelineItemsContainer = document.querySelector('.timeline-items');
-    const timelineItems = Array.from(document.querySelectorAll('.timeline-item'));
+// Load and initialize data
+async function loadPortfolioData() {
+    try {
+        console.log('Fetching data from ./data/data.json');
+        const response = await fetch('./data/data.json');
+        console.log('Fetch response:', response);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Loaded data:', data);
+        
+        // Store timeline data globally
+        globalTimelineData = data.timeline;
+        
+        // Initialize social links
+        console.log('Initializing social links');
+        initializeSocialLinks(data.social);
+        
+        // Initialize timeline with all items
+        console.log('Initializing timeline');
+        filterAndDisplayTimeline('all');
+        
+        // Initialize navigation
+        console.log('Initializing navigation');
+        initializeNavigation(data.navigation);
 
-    // Function to handle sorting and displaying of timeline items
-    function displayFilteredItems(filteredItems) {
-        // Sort items based on the data-order attribute, in descending order (newest first)
-        filteredItems.sort((a, b) => parseInt(b.getAttribute('data-order')) - parseInt(a.getAttribute('data-order')));
-
-        // Clear the container and append sorted and filtered items
-        timelineItemsContainer.innerHTML = '';
-        filteredItems.forEach(item => {
-            timelineItemsContainer.appendChild(item);
-        });
+        // Initialize showcase
+        if (data.showcase) {
+            console.log('Initializing showcase');
+            initializeShowcase(data.showcase);
+        }
+        
+        // Set up filter buttons
+        setupFilterButtons();
+    } catch (error) {
+        console.error('Detailed error:', error);
+        console.error('Error stack:', error.stack);
+        document.querySelector('.social-icons').innerHTML = '<li>Error loading data. Please check console for details.</li>';
     }
+}
 
-    // Event listener for filter buttons
+function initializeShowcase(showcaseData) {
+    const showcaseContainer = document.querySelector('.showcase-grid');
+    if (!showcaseContainer) return;
+
+    showcaseContainer.innerHTML = showcaseData.map(project => `
+        <div class="showcase-box" 
+             style="background-image: url('${project.backgroundImage}');"
+             onclick="openModal('${project.id}')">
+            <h4>${project.title}</h4>
+            <div id="${project.id}" style="display: none;">
+                <h1>${project.modalContent.title}</h1>
+                ${project.modalContent.image ? 
+                    `<img src="${project.modalContent.image}">` : ''}
+                ${project.modalContent.video ? 
+                    `<video width="100%" controls>
+                        <source src="${project.modalContent.video.src}" type="${project.modalContent.video.type}">
+                     </video>` : ''}
+                <p>${project.modalContent.description}</p>
+                ${project.modalContent.links ? 
+                    project.modalContent.links.map(link => 
+                        `<a href="${link.url}"><b>${link.text}</b></a><br>`
+                    ).join('') : ''}
+            </div>
+        </div>
+    `).join('');
+}
+
+function setupFilterButtons() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
-            let filteredItems = [];
-
-            timelineItems.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                    item.classList.add('active');  // Add 'active' to class list for CSS visibility
-                    filteredItems.push(item);     // Add to the array to be sorted and displayed
-                } else {
-                    item.classList.remove('active');  // Remove 'active' from class list if not matched
-                }
-            });
-
-            // Display sorted and filtered items
-            displayFilteredItems(filteredItems);
+            filterAndDisplayTimeline(filter);
+            
+            // Update active button state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
         });
     });
+}
 
-    // Initial display and sort on page load
-    displayFilteredItems(timelineItems);  // This line will sort and display items when the page is loaded
-});
+function filterAndDisplayTimeline(filter) {
+    currentFilter = filter;
+    const filteredItems = globalTimelineData.filter(item => 
+        filter === 'all' || item.category === filter
+    ).sort((a, b) => b.order - a.order);
+    
+    const timelineItemsContainer = document.querySelector('.timeline-items');
+    timelineItemsContainer.innerHTML = filteredItems.map(item => `
+        <div class="timeline-item" data-category="${item.category}" data-order="${item.order}" onclick="openModal('${item.company}')">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-date">${item.startDate} - ${item.endDate}</div>
+                <h3>${item.company}</h3>
+                <p>${item.title}</p>
+                <div id="${item.company}" style="display: none;">
+                    ${item.modalContent.subtitle ? `<h2>${item.modalContent.subtitle}</h2>` : ''}
+                    ${item.modalContent.location ? `<p>Location: ${item.modalContent.location}</p>` : ''}
+                    ${item.modalContent.details ? `<ul>${item.modalContent.details.map(detail => `<li>${detail}</li>`).join('')}</ul>` : ''}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function initializeSocialLinks(socialData) {
+    const socialIconsList = document.querySelector('.social-icons');
+    socialIconsList.innerHTML = socialData.map(social => `
+        <li>
+            <i class="${social.icon}"></i>
+            <a href="${social.url}" target="_blank">${social.platform}</a>
+        </li>
+    `).join('');
+}
+
+function initializeNavigation(navData) {
+    navData.forEach(nav => {
+        const element = document.getElementById(nav.id);
+        if (element) {
+            if (nav.display) {
+                element.style.display = nav.display;
+            }
+            // Use the title instead of path
+            element.textContent = nav.title;
+            // Add icon if present
+            if (nav.icon) {
+                element.innerHTML = `<i class="${nav.icon}"></i> ${nav.title}`;
+            }
+        }
+    });
+}
 
 function openModal(id) {
     const content = document.getElementById(id);
@@ -142,6 +239,10 @@ function openModal(id) {
     });
     winBoxStack.push(modalWinBox); // Add new WinBox to the stack
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadPortfolioData();
+});
 
 document.addEventListener('keydown', function (event) {
     if (event.keyCode === 27 && winBoxStack.length > 0) {
