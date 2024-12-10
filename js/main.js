@@ -73,7 +73,7 @@ cv.addEventListener('click', () => {
 // Data Loading and Initialization
 async function loadPortfolioData() {
     try {
-        const response = await fetch('./data/data.json');
+        const response = await fetch('./assets/data/data.json');
         if (!response.ok) {
             throw new Error(`Failed to load portfolio data (Status: ${response.status})`);
         }
