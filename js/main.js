@@ -126,20 +126,51 @@ function initializeShowcase(showcaseData) {
         <div class="showcase-box" 
              style="background-image: url('${project.backgroundImage}');"
              onclick="openModal('${project.id}')">
-            <h4>${project.title}</h4>
+            <div class="showcase-content">
+                <h4>${project.title}</h4>
+                ${project.technologies ? 
+                    `<div class="tech-stack">
+                        ${project.technologies.map(tech => 
+                            `<span class="tech-badge">${tech}</span>`
+                        ).join('')}
+                    </div>` : ''
+                }
+            </div>
             <div id="${project.id}" style="display: none;">
-                <h1>${project.modalContent.title}</h1>
-                ${project.modalContent.image ? 
-                    `<img src="${project.modalContent.image}">` : ''}
-                ${project.modalContent.video ? 
-                    `<video width="100%" controls>
-                        <source src="${project.modalContent.video.src}" type="${project.modalContent.video.type}">
-                     </video>` : ''}
-                <p>${project.modalContent.description}</p>
-                ${project.modalContent.links ? 
-                    project.modalContent.links.map(link => 
-                        `<a href="${link.url}"><b>${link.text}</b></a><br>`
-                    ).join('') : ''}
+                <div class="modal-header">
+                    <h1>${project.modalContent.title}</h1>
+                    ${project.technologies ? 
+                        `<div class="tech-stack">
+                            ${project.technologies.map(tech => 
+                                `<span class="tech-badge">${tech}</span>`
+                            ).join('')}
+                        </div>` : ''
+                    }
+                </div>
+                <div class="modal-content">
+                    ${project.modalContent.image ? 
+                        `<div class="modal-image">
+                            <img src="${project.modalContent.image}" alt="${project.title}">
+                        </div>` : ''}
+                    ${project.modalContent.video ? 
+                        `<div class="modal-video">
+                            <video width="100%" controls>
+                                <source src="${project.modalContent.video.src}" type="${project.modalContent.video.type}">
+                            </video>
+                        </div>` : ''}
+                    <div class="modal-description">
+                        <p>${project.modalContent.description}</p>
+                        ${project.modalContent.links ? 
+                            `<div class="modal-links">
+                                ${project.modalContent.links.map(link => 
+                                    `<a href="${link.url}" class="modal-link" target="_blank">
+                                        <i class="fas ${link.text.toLowerCase().includes('live') ? 'fa-external-link-alt' : 'fa-code'}"></i>
+                                        ${link.text}
+                                    </a>`
+                                ).join('')}
+                            </div>` : ''}
+                    </div>
+                </div>
             </div>
         </div>
     `).join('');
