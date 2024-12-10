@@ -162,56 +162,146 @@ table,tr,th,td {
     position: absolute;
     width: 2px;
     height: 100%;
-    background-color: #2f363e;
+    background: linear-gradient(180deg, 
+        rgba(120, 214, 133, 0.1) 0%,
+        rgba(120, 214, 133, 0.6) 50%,
+        rgba(120, 214, 133, 0.1) 100%
+    );
     left: calc(50% - 1px);
+    box-shadow: 0 0 15px rgba(120, 214, 133, 0.3);
 }
+
 .timeline-item{
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     width: 100%;
     position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
 }
-.timeline-item:last-child{
-    margin-bottom: 0;
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
+
 .timeline-item:nth-child(odd){
     padding-right: calc(50% + 30px);
     text-align: right;
 }
+
 .timeline-item:nth-child(even){
     padding-left: calc(50% + 30px);
+    text-align: left;
 }
+
 .timeline-dot{
-    height: 20px;
-    width: 20px;
-    background-color: #eaa023;
+    height: 32px;
+    width: 32px;
+    background: rgba(47, 54, 62, 0.8);
+    backdrop-filter: blur(10px);
     position: absolute;
-    left: calc(50% - 8px);
+    left: calc(50% - 16px);
     border-radius: 50%;
     top:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(120, 214, 133, 0.3);
+    box-shadow: 0 0 15px rgba(120, 214, 133, 0.2);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.timeline-dot i {
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.timeline-content{
+    background: rgba(47, 54, 62, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(120, 214, 133, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(120, 214, 133, 0.2),
+        transparent
+    );
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    border-color: rgba(120, 214, 133, 0.3);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
 }
 
 .timeline-date{
-    font-size: 18px;
-    color: #eaa023;
+    font-size: 0.9em;
+    color: var(--text-color);
     margin:6px 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
 }
-.timeline-content{
-    background-color: #2f363e;
-    padding: 30px;
-    border-radius: 5px;
+
+.timeline-item:nth-child(odd) .timeline-date {
+    justify-content: flex-end;
 }
+
+.timeline-item:nth-child(even) .timeline-date {
+    justify-content: flex-start;
+}
+
+.timeline-date i {
+    font-size: 0.8em;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
 .timeline-content h3{
-    font-size: 20px;
-    color: #ffffff;
+    font-size: 1.4em;
+    color: #fff;
     margin:0 0 10px;
-    text-transform: capitalize;
-    font-weight: 500;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
 }
+
+.timeline-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        rgba(120, 214, 133, 0.2),
+        transparent
+    );
+}
+
 .timeline-content p{
-    color: #c8c8c8;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 16px;
     font-weight: 300;
     line-height: 22px;
+    margin: 0;
 }
 
 .filter-btn {
@@ -393,18 +483,39 @@ table,tr,th,td {
 /* responsive */
 @media(max-width: 768px){
     .timeline-items::before{
-        left: 7px;
+        left: 16px;
+        background: linear-gradient(180deg, 
+            rgba(120, 214, 133, 0.1) 0%,
+            rgba(120, 214, 133, 0.4) 100%
+        );
     }
-    .timeline-item:nth-child(odd){
-        padding-right: 0;
-        text-align: left;
+    
+    .timeline-item {
+        padding-left: 50px !important;
+        padding-right: 0 !important;
+        text-align: left !important;
     }
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even){
-        padding-left: 37px;
+    
+    .timeline-dot {
+        left: 0;
+        width: 28px;
+        height: 28px;
     }
-    .timeline-dot{
-        left:0;
+    
+    .timeline-content {
+        width: 100%;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-date {
+        justify-content: flex-start;
+    }
+
+    .timeline-content h3::after {
+        background: linear-gradient(90deg, 
+            rgba(120, 214, 133, 0.2),
+            transparent
+        );
     }
 
     .showcase-grid {

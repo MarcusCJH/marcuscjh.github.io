@@ -199,9 +199,14 @@ function filterAndDisplayTimeline(filter) {
     const timelineItemsContainer = document.querySelector('.timeline-items');
     timelineItemsContainer.innerHTML = filteredItems.map(item => `
         <div class="timeline-item" data-category="${item.category}" data-order="${item.order}" onclick="openModal('${item.company}')">
-            <div class="timeline-dot"></div>
+            <div class="timeline-dot">
+                <i class="${item.category === 'work' ? 'fas fa-briefcase' : 'fas fa-graduation-cap'}"></i>
+            </div>
             <div class="timeline-content">
-                <div class="timeline-date">${item.startDate} - ${item.endDate}</div>
+                <div class="timeline-date">
+                    <i class="${item.category === 'work' ? 'fas fa-briefcase' : 'fas fa-graduation-cap'}"></i>
+                    ${item.startDate} - ${item.endDate}
+                </div>
                 <h3>${item.company}</h3>
                 <p>${item.title}</p>
                 <div id="${item.company}" style="display: none;">
@@ -212,6 +217,27 @@ function filterAndDisplayTimeline(filter) {
             </div>
         </div>
     `).join('');
+
+    // Add intersection observer for fade-in animation
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    timelineItems.forEach(item => {
+        observer.observe(item);
+        // Add initial visible class if item is already in view
+        if (item.getBoundingClientRect().top < window.innerHeight) {
+            item.classList.add('visible');
+        }
+    });
 }
 
 function initializeSocialLinks(socialData) {
