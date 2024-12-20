@@ -682,14 +682,6 @@ nav ul li:hover::before {
     left: 10%;
 }
 
-.cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1em;
-    background-color: var(--text-color);
-    margin-left: 5px;
-    animation: blink 1s step-end infinite;
-}
 
 @keyframes blink {
     from, to { opacity: 0; }
