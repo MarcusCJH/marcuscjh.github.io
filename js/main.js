@@ -189,7 +189,7 @@ function filterAndDisplayTimeline(filter) {
             <div class="timeline-content">
                 <div class="timeline-date">
                     <i class="${getTimelineIcon(item.category)}"></i>
-                    ${item.startDate} - ${item.endDate}
+                    ${item.category === 'certification' ? item.startDate : `${item.startDate} - ${item.endDate}`}
                 </div>
                 <h3>${item.company}</h3>
                 <p>${item.title}</p>

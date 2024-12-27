@@ -196,7 +196,6 @@
       "category": "certification",
       "order": 6,
       "startDate": "Jun 19",
-      "endDate": "Jun 19",
       "company": "Alibaba Cloud",
       "title": "Associate Cloud Computing",
       "modalContent": {
@@ -213,7 +212,6 @@
       "category": "certification",
       "order": 7,
       "startDate": "Dec 19",
-      "endDate": "Dec 19",
       "company": "Alibaba Cloud",
       "title": "Professional Cloud Computing",
       "modalContent": {
@@ -252,7 +250,6 @@
       "category": "certification",
       "order": 9,
       "startDate": "Mar 21",
-      "endDate": "Mar 21",
       "company": "Scrum Alliance",
       "title": "Certified Scrum Master",
       "modalContent": {
@@ -269,7 +266,6 @@
       "category": "certification",
       "order": 10,
       "startDate": "Apr 21",
-      "endDate": "Apr 21",
       "company": "Axelos",
       "title": "ITIL v4 Foundation",
       "modalContent": {
@@ -286,7 +282,6 @@
       "category": "certification",
       "order": 11,
       "startDate": "Jun 21",
-      "endDate": "Jun 21",
       "company": "Pegasystems",
       "title": "PEGA System Architect",
       "modalContent": {
@@ -303,7 +298,6 @@
       "category": "certification",
       "order": 12,
       "startDate": "Mar 22",
-      "endDate": "Mar 22",
       "company": "Amazon Web Services",
       "title": "AWS Certified Cloud Practitioner",
       "modalContent": {
@@ -320,7 +314,6 @@
       "category": "certification",
       "order": 13,
       "startDate": "Sep 22",
-      "endDate": "Sep 22",
       "company": "Scrum Alliance",
       "title": "Certified Product Owner",
       "modalContent": {
@@ -337,7 +330,6 @@
       "category": "certification",
       "order": 14,
       "startDate": "Aug 23",
-      "endDate": "Aug 23",
       "company": "Google Cloud",
       "title": "Digital Leader",
       "modalContent": {
@@ -354,7 +346,6 @@
       "category": "certification",
       "order": 15,
       "startDate": "Mar 24",
-      "endDate": "Mar 24",
       "company": "Databricks",
       "title": "Certified Data Engineer Associate",
       "modalContent": {
@@ -371,7 +362,6 @@
       "category": "certification",
       "order": 16,
       "startDate": "Jul 24",
-      "endDate": "Jul 24",
       "company": "HashiCorp",
       "title": "Terraform Associate",
       "modalContent": {
