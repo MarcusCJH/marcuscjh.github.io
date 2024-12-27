@@ -184,11 +184,11 @@ function filterAndDisplayTimeline(filter) {
     timelineItemsContainer.innerHTML = filteredItems.map(item => `
         <div class="timeline-item" data-category="${item.category}" data-order="${item.order}" onclick="openModal('${item.company}')">
             <div class="timeline-dot">
-                <i class="${item.category === 'work' ? 'fas fa-briefcase' : 'fas fa-graduation-cap'}"></i>
+                <i class="${getTimelineIcon(item.category)}"></i>
             </div>
             <div class="timeline-content">
                 <div class="timeline-date">
-                    <i class="${item.category === 'work' ? 'fas fa-briefcase' : 'fas fa-graduation-cap'}"></i>
+                    <i class="${getTimelineIcon(item.category)}"></i>
                     ${item.startDate} - ${item.endDate}
                 </div>
                 <h3>${item.company}</h3>
@@ -222,6 +222,19 @@ function filterAndDisplayTimeline(filter) {
             item.classList.add('visible');
         }
     });
+}
+
+function getTimelineIcon(category) {
+    switch(category) {
+        case 'work':
+            return 'fas fa-briefcase';
+        case 'education':
+            return 'fas fa-graduation-cap';
+        case 'certification':
+            return 'fas fa-certificate';
+        default:
+            return 'fas fa-circle';
+    }
 }
 
 function initializeSocialLinks(socialData) {

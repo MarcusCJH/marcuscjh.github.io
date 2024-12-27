@@ -92,15 +92,15 @@
   ],
   "timeline": [
     {
-      "category": "work",
-      "order": 4,
-      "startDate": "Apr 21",
-      "endDate": "Present",
-      "company": "Accenture",
-      "title": "Custom Software Engineering Specialist",
+      "category": "education",
+      "order": 0,
+      "startDate": "2011",
+      "endDate": "2014",
+      "company": "Temasek Polytechnic",
+      "title": "Diploma in Information Technology",
       "modalContent": {
-        "title": "Accenture",
-        "subtitle": "Apr 2021 - Present",
+        "title": "Temasek Polytechnic",
+        "subtitle": "2011",
         "location": "Singapore",
         "details": [
           
@@ -109,7 +109,126 @@
     },
     {
       "category": "work",
+      "order": 1,
+      "startDate": "Jul 13",
+      "endDate": "Dec 13",
+      "company": "Hitachi",
+      "title": "IT System Architecture Research Intern",
+      "modalContent": {
+        "title": "Hitachi",
+        "subtitle": "Jul 2013 - Dec 2013",
+        "location": "Singapore & Yokohama, Japan",
+        "details": [
+          "Developed a Taxi Simulator for testing passenger-taxi interactions",
+          "Created a Big Data Graph Visualizer Web Application",
+          "Conducted algorithm performance testing and optimization"
+        ]
+      }
+    },
+    {
+      "category": "work",
+      "order": 2,
+      "startDate": "Sep 14",
+      "endDate": "Sep 16",
+      "company": "Singapore Police Force",
+      "title": "Public Transport Security Command Officer",
+      "modalContent": {
+        "title": "Singapore Police Force",
+        "subtitle": "Sep 2014 - Sep 2016",
+        "location": "Singapore",
+        "details": [
+          "Led patrol groups for security operations",
+          "Ensured safety and security of public transport system"
+        ]
+      }
+    },
+    {
+      "category": "education",
       "order": 3,
+      "startDate": "2016",
+      "endDate": "2016",
+      "company": "Singapore Management University",
+      "title": "Bachelor of Science (Information Systems)",
+      "modalContent": {
+        "title": "Singapore Management University",
+        "subtitle": "2016",
+        "location": "Singapore",
+        "details": [
+          
+        ]
+      }
+    },
+    {
+      "category": "work",
+      "order": 4,
+      "startDate": "Jul 17",
+      "endDate": "Jan 18",
+      "company": "Veev Interactive",
+      "title": "Junior Software Developer",
+      "modalContent": {
+        "title": "Veev Interactive",
+        "subtitle": "Jul 2017 - Jan 2018",
+        "location": "Singapore",
+        "details": [
+          "Designed interactive e-learning content with Articulate 360 and JavaScript",
+          "Created multimedia assets using Adobe Creative Suite",
+          "Managed asset development and project workflows"
+        ]
+      }
+    },
+    {
+      "category": "education",
+      "order": 5,
+      "startDate": "2018",
+      "endDate": "2018",
+      "company": "The University of Queensland",
+      "title": "Bachelor of Information Technology",
+      "modalContent": {
+        "title": "The University of Queensland",
+        "subtitle": "2018",
+        "location": "Brisbane, Australia",
+        "details": [
+          
+        ]
+      }
+    },
+    {
+      "category": "certification",
+      "order": 6,
+      "startDate": "Jun 19",
+      "endDate": "Jun 19",
+      "company": "Alibaba Cloud",
+      "title": "Associate Cloud Computing",
+      "modalContent": {
+        "title": "Alibaba Cloud Associate - Cloud Computing",
+        "subtitle": "Jun 2019",
+        "location": "Online",
+        "details": [
+          "Core Alibaba Cloud services and solutions",
+          "Cloud infrastructure and architecture fundamentals"
+        ]
+      }
+    },
+    {
+      "category": "certification",
+      "order": 7,
+      "startDate": "Dec 19",
+      "endDate": "Dec 19",
+      "company": "Alibaba Cloud",
+      "title": "Professional Cloud Computing",
+      "modalContent": {
+        "title": "Alibaba Cloud Professional - Cloud Computing",
+        "subtitle": "Dec 2019",
+        "location": "Online",
+        "details": [
+          "Advanced Alibaba Cloud architecture and services",
+          "Cloud solution design and implementation"
+        ]
+      }
+    },
+    {
+      "category": "work",
+      "order":8,
       "startDate": "Apr 19",
       "endDate": "Mar 21",
       "company": "Whale Cloud",
@@ -130,100 +249,151 @@
       }
     },
     {
-      "category": "work",
-      "order": 2,
-      "startDate": "Jul 17",
-      "endDate": "Jan 18",
-      "company": "Veev Interactive",
-      "title": "Junior Software Developer",
+      "category": "certification",
+      "order": 9,
+      "startDate": "Mar 21",
+      "endDate": "Mar 21",
+      "company": "Scrum Alliance",
+      "title": "Certified Scrum Master",
       "modalContent": {
-        "title": "Veev Interactive",
-        "subtitle": "Jul 2017 - Jan 2018",
-        "location": "Singapore",
+        "title": "Certified Scrum Master",
+        "subtitle": "Mar 2021",
+        "location": "Online",
         "details": [
-          "Designed interactive e-learning content with Articulate 360 and JavaScript",
-          "Created multimedia assets using Adobe Creative Suite",
-          "Managed asset development and project workflows"
+          "Agile and Scrum framework expertise",
+          "Team facilitation and servant leadership"
+        ]
+      }
+    },
+    {
+      "category": "certification",
+      "order": 10,
+      "startDate": "Apr 21",
+      "endDate": "Apr 21",
+      "company": "Axelos",
+      "title": "ITIL v4 Foundation",
+      "modalContent": {
+        "title": "ITIL v4 Foundation",
+        "subtitle": "Apr 2021",
+        "location": "Online",
+        "details": [
+          "IT service management best practices",
+          "Service value system and practices"
+        ]
+      }
+    },
+    {
+      "category": "certification",
+      "order": 11,
+      "startDate": "Jun 21",
+      "endDate": "Jun 21",
+      "company": "Pegasystems",
+      "title": "PEGA System Architect",
+      "modalContent": {
+        "title": "PEGA Certified System Architect",
+        "subtitle": "Jun 2021",
+        "location": "Online",
+        "details": [
+          "PEGA platform architecture and development",
+          "Business process automation and case management"
+        ]
+      }
+    },
+    {
+      "category": "certification",
+      "order": 12,
+      "startDate": "Mar 22",
+      "endDate": "Mar 22",
+      "company": "Amazon Web Services",
+      "title": "AWS Certified Cloud Practitioner",
+      "modalContent": {
+        "title": "AWS Certified Cloud Practitioner",
+        "subtitle": "Mar 2022",
+        "location": "Online",
+        "details": [
+          "AWS Cloud concepts and services",
+          "Cloud security, architecture, and pricing"
+        ]
+      }
+    },
+    {
+      "category": "certification",
+      "order": 13,
+      "startDate": "Sep 22",
+      "endDate": "Sep 22",
+      "company": "Scrum Alliance",
+      "title": "Certified Product Owner",
+      "modalContent": {
+        "title": "Certified Scrum Product Owner",
+        "subtitle": "Sep 2022",
+        "location": "Online",
+        "details": [
+          "Agile product ownership and backlog management",
+          "Product vision and value maximization"
+        ]
+      }
+    },
+    {
+      "category": "certification",
+      "order": 14,
+      "startDate": "Aug 23",
+      "endDate": "Aug 23",
+      "company": "Google Cloud",
+      "title": "Digital Leader",
+      "modalContent": {
+        "title": "Google Cloud Digital Leader",
+        "subtitle": "Aug 2023",
+        "location": "Online",
+        "details": [
+          "Cloud technology and Google Cloud Platform fundamentals",
+          "Digital transformation and cloud solutions"
+        ]
+      }
+    },
+    {
+      "category": "certification",
+      "order": 15,
+      "startDate": "Mar 24",
+      "endDate": "Mar 24",
+      "company": "Databricks",
+      "title": "Certified Data Engineer Associate",
+      "modalContent": {
+        "title": "Databricks Certified Data Engineer Associate",
+        "subtitle": "Mar 2024",
+        "location": "Online",
+        "details": [
+          "Data Engineering on Databricks Lakehouse Platform",
+          "Big Data processing and analytics"
+        ]
+      }
+    },
+    {
+      "category": "certification",
+      "order": 16,
+      "startDate": "Jul 24",
+      "endDate": "Jul 24",
+      "company": "HashiCorp",
+      "title": "Terraform Associate",
+      "modalContent": {
+        "title": "HashiCorp Terraform Associate",
+        "subtitle": "Jul 2024",
+        "location": "Online",
+        "details": [
+          "Infrastructure as Code with Terraform",
+          "Cloud infrastructure provisioning and management"
         ]
       }
     },
     {
       "category": "work",
-      "order": 1,
-      "startDate": "Sep 14",
-      "endDate": "Sep 16",
-      "company": "Singapore Police Force",
-      "title": "Public Transport Security Command Officer",
+      "order": 17,
+      "startDate": "Apr 21",
+      "endDate": "Present",
+      "company": "Accenture",
+      "title": "Custom Software Engineering Specialist",
       "modalContent": {
-        "title": "Singapore Police Force",
-        "subtitle": "Sep 2014 - Sep 2016",
-        "location": "Singapore",
-        "details": [
-          "Led patrol groups for security operations",
-          "Ensured safety and security of public transport system"
-        ]
-      }
-    },
-    {
-      "category": "work",
-      "order": 0,
-      "startDate": "Jul 13",
-      "endDate": "Dec 13",
-      "company": "Hitachi",
-      "title": "IT System Architecture Research Intern",
-      "modalContent": {
-        "title": "Hitachi",
-        "subtitle": "Jul 2013 - Dec 2013",
-        "location": "Singapore & Yokohama, Japan",
-        "details": [
-          "Developed a Taxi Simulator for testing passenger-taxi interactions",
-          "Created a Big Data Graph Visualizer Web Application",
-          "Conducted algorithm performance testing and optimization"
-        ]
-      }
-    },
-    {
-      "category": "education",
-      "order": 3,
-      "startDate": "2018",
-      "endDate": "2018",
-      "company": "The University of Queensland",
-      "title": "Bachelor of Information Technology",
-      "modalContent": {
-        "title": "The University of Queensland",
-        "subtitle": "2018",
-        "location": "Brisbane, Australia",
-        "details": [
-          
-        ]
-      }
-    },
-    {
-      "category": "education",
-      "order": 2,
-      "startDate": "2016",
-      "endDate": "2016",
-      "company": "Singapore Management University",
-      "title": "Bachelor of Science (Information Systems)",
-      "modalContent": {
-        "title": "Singapore Management University",
-        "subtitle": "2016",
-        "location": "Singapore",
-        "details": [
-          
-        ]
-      }
-    },
-    {
-      "category": "education",
-      "order": 1,
-      "startDate": "2011",
-      "endDate": "2014",
-      "company": "Temasek Polytechnic",
-      "title": "Diploma in Information Technology",
-      "modalContent": {
-        "title": "Temasek Polytechnic",
-        "subtitle": "2011",
+        "title": "Accenture",
+        "subtitle": "Apr 2021 - Present",
         "location": "Singapore",
         "details": [
           
