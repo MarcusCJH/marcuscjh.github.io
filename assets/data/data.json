@@ -62,7 +62,7 @@
       "id": "slackbot",
       "title": "Slack Bot",
       "backgroundImage": "assets/showcase/slackbot/slackbot-bg.png",
-      "technologies": ["Node.js", "Slack API"],
+      "technologies": ["Python", "Slack API", "AWS"],
       "modalContent": {
         "title": "Slack Bot",
         "description": "A custom Slack bot built to automate various workspace tasks.",
