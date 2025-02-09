@@ -51,7 +51,10 @@ function openWinBox(title, mountContent, width = '100%', height = '100%', top = 
 
 // Event Listeners
 showcase.addEventListener('click', () => openWinBox('Showcase', showcaseContent));
-timeline.addEventListener('click', () => openWinBox('Timeline', timelineContent));
+timeline.addEventListener('click', () => {
+    openWinBox('Timeline', timelineContent);
+    filterAndDisplayTimeline('all');
+});
 // contact.addEventListener('click', () => {
 //     openWinBox('Contact Me', contactContent);
 // });
