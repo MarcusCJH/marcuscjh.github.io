@@ -1,4 +1,25 @@
 {
+  "_comment": "This file controls all content and navigation for the portfolio website. Simply modify values here to update the site.",
+  "_instructions": {
+    "config": "Update personal information, typed messages, and CV settings",
+    "navigation": "Set 'enabled: false' to hide sections and navigation items",
+    "social": "Add/remove social media links",
+    "showcase": "Add/remove/modify project showcases",
+    "timeline": "Add/remove/modify timeline entries (work, education, certifications)"
+  },
+  "config": {
+    "name": "marcus.cjh",
+    "title": "Full Stack Engineer & Cloud Architect",
+    "subtitle": "Transforming ideas into scalable digital solutions",
+    "typedMessages": [
+      "whoami",
+      "cat /etc/skills",
+      "ls -la projects/",
+      "git status",
+      "npm run deploy"
+    ],
+    "cvDriveId": "16eXxJWLCsUib7gZKX48jhT85myOxqh0_"
+  },
   "social": [
     {
       "platform": "Telegram",
@@ -393,28 +414,28 @@
   ],
   "navigation": [
     {
-      "id": "cv",
-      "display": "none",
-      "title": "CV",
-      "icon": "fas fa-file-alt"
-    },
-    {
-      "id": "about",
-      "display": "block",
-      "title": "About",
-      "icon": "fas fa-user"
+      "id": "home",
+      "enabled": true,
+      "title": "home",
+      "icon": "fas fa-home"
     },
     {
       "id": "timeline",
-      "display": "block",
-      "title": "Timeline",
-      "icon": "fas fa-clock"
+      "enabled": true,
+      "title": "timeline",
+      "icon": "fas fa-code-branch"
     },
     {
       "id": "showcase",
-      "display": "block",
-      "title": "Showcase",
-      "icon": "fas fa-briefcase"
+      "enabled": true,
+      "title": "projects",
+      "icon": "fas fa-rocket"
+    },
+    {
+      "id": "cv",
+      "enabled": false,
+      "title": "resume",
+      "icon": "fas fa-file-code"
     }
   ]
 }
