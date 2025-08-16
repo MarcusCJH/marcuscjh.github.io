@@ -142,38 +142,18 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
     cursor: pointer;
     transition: var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
 }
 
-.nav-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
-    transition: var(--transition-smooth);
-}
-
-.nav-item:hover::before {
-    left: 100%;
-}
+/* Removed navigation highlight effect */
 
 .nav-item:hover {
-    background: var(--glass-bg);
     color: var(--primary-color);
-    transform: translateY(-2px);
 }
 
 .nav-item.active {
-    background: rgba(0, 255, 136, 0.1);
     color: var(--primary-color);
-    border: 1px solid var(--border-color);
 }
 
 .nav-toggle {
@@ -379,8 +359,7 @@ body {
     font-size: 0.9rem;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
+.filter-btn:hover {
     background: rgba(0, 255, 136, 0.1);
     border-color: var(--primary-color);
     color: var(--primary-color);

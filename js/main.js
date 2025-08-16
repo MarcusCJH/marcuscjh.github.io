@@ -184,30 +184,13 @@ class ModernPortfolio {
                 // Close mobile menu
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
-                
-                // Update active state
-                navItems.forEach(nav => nav.classList.remove('active'));
-                e.currentTarget.classList.add('active');
             });
         });
 
-        // Scroll spy
+        // Scroll spy for nav background only
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-            const sections = document.querySelectorAll('.content-section, .hero-section');
             
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.offsetHeight;
-                const sectionId = section.id.replace('-section', '');
-                
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    const activeNav = document.getElementById(`${sectionId}-nav`);
-                    if (activeNav) activeNav.classList.add('active');
-                }
-            });
-
             // Add scrolled class to nav
             const nav = document.querySelector('.nav-container');
             if (scrollY > 50) {
@@ -296,8 +279,6 @@ class ModernPortfolio {
 
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
                 renderTimeline(btn.dataset.filter);
             });
         });
