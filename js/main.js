@@ -497,11 +497,42 @@ class ModernPortfolio {
         }
         
         if (content.details && content.details.length > 0) {
-            html += '<ul style="margin-bottom: 1rem; padding-left: 1rem;">';
+            html += '<div style="margin-bottom: 1rem; font-family: monospace; line-height: 1.8;">';
             content.details.forEach(detail => {
-                html += `<li style="margin-bottom: 0.5rem;">${detail}</li>`;
+                // Check if line starts with spaces for indentation
+                const trimmedDetail = detail.trim();
+                const leadingSpaces = detail.length - detail.trimStart().length;
+                
+                if (trimmedDetail === '') {
+                    // Empty line for spacing
+                    html += '<br>';
+                } else if (leadingSpaces > 0) {
+                    // Indented line - preserve indentation
+                    const indentLevel = Math.floor(leadingSpaces / 2); // Every 2 spaces = 1 indent level
+                    const indentStyle = `margin-left: ${indentLevel * 1.5}rem;`;
+                    
+                    if (trimmedDetail.startsWith('•')) {
+                        // Bullet point with indentation
+                        html += `<div style="${indentStyle} margin-bottom: 0.3rem; color: var(--text-secondary);">${trimmedDetail}</div>`;
+                    } else {
+                        // Regular indented text
+                        html += `<div style="${indentStyle} margin-bottom: 0.3rem; color: var(--text-primary);">${trimmedDetail}</div>`;
+                    }
+                } else {
+                    // Non-indented line (role titles, main descriptions)
+                    if (trimmedDetail.includes('(') && trimmedDetail.includes(')')) {
+                        // Role title - make it stand out
+                        html += `<h3 style="color: var(--primary-color); margin: 1.5rem 0 0.8rem 0; font-size: 1.2rem; font-weight: 600;">${trimmedDetail}</h3>`;
+                    } else if (trimmedDetail.endsWith(':')) {
+                        // Section header
+                        html += `<h4 style="color: var(--secondary-color); margin: 1rem 0 0.5rem 0; font-size: 1rem; font-weight: 500;">${trimmedDetail}</h4>`;
+                    } else {
+                        // Regular description
+                        html += `<div style="margin-bottom: 0.5rem; color: var(--text-primary);">${trimmedDetail}</div>`;
+                    }
+                }
             });
-            html += '</ul>';
+            html += '</div>';
         }
         
         if (content.links && content.links.length > 0) {
