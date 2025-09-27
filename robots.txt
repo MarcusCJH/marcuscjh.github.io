@@ -4,7 +4,5 @@ Allow: /
 # Sitemap location
 Sitemap: https://marcuscjh.github.io/sitemap.xml
 
-# Block common bot files
-Disallow: /js/
-Disallow: /css/
+# Block data files but allow CSS/JS for proper rendering
 Disallow: /assets/data/ 
