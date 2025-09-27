@@ -82,6 +82,9 @@
                 </h2>
             </div>
             <div class="timeline-container">
+                <div class="timeline-search">
+                    <input type="text" id="timeline-search" placeholder="Search timeline entries...">
+                </div>
                 <div class="timeline-filters">
                     <button class="filter-btn active" data-filter="all">
                         <i class="fas fa-asterisk"></i> All
@@ -96,24 +99,41 @@
                         <i class="fas fa-certificate"></i> Certs
                     </button>
                 </div>
-                <div class="timeline-items" id="timeline-items">
-                    <!-- Timeline items will be dynamically loaded -->
-                    <!-- Static content for SEO -->
-                    <noscript>
-                        <div class="timeline-item">
-                            <h3>Senior Software Engineer at Alibaba Cloud</h3>
-                            <p>Leading cloud infrastructure and data engineering projects</p>
+                <div class="timeline-wrapper" id="timeline-wrapper">
+                    <div class="timeline-track">
+                        <div class="timeline-line"></div>
+                        <div class="timeline-progress" id="timeline-progress"></div>
+                        <div class="timeline-items" id="timeline-items">
+                            <!-- Timeline items will be dynamically loaded -->
                         </div>
-                        <div class="timeline-item">
-                            <h3>Singapore Management University</h3>
-                            <p>Bachelor of Science in Information Systems</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h3>AWS Certified Solutions Architect</h3>
-                            <p>Professional level cloud architecture certification</p>
-                        </div>
-                    </noscript>
+                    </div>
                 </div>
+                <div class="timeline-nav">
+                    <button class="timeline-nav-btn" id="timeline-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="timeline-indicator" id="timeline-indicator">
+                        <!-- Navigation dots will be dynamically generated -->
+                    </div>
+                    <button class="timeline-nav-btn" id="timeline-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <!-- Static content for SEO -->
+                <noscript>
+                    <div class="timeline-item">
+                        <h3>Senior Software Engineer at Alibaba Cloud</h3>
+                        <p>Leading cloud infrastructure and data engineering projects</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Singapore Management University</h3>
+                        <p>Bachelor of Science in Information Systems</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>AWS Certified Solutions Architect</h3>
+                        <p>Professional level cloud architecture certification</p>
+                    </div>
+                </noscript>
             </div>
         </section>
 

@@ -252,38 +252,305 @@ class ModernPortfolio {
     initTimeline() {
         const timelineContainer = document.getElementById('timeline-items');
         const filterButtons = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('timeline-search');
+        const timelineWrapper = document.getElementById('timeline-wrapper');
+        const progressBar = document.getElementById('timeline-progress');
+        const prevBtn = document.getElementById('timeline-prev');
+        const nextBtn = document.getElementById('timeline-next');
+        const indicatorContainer = document.getElementById('timeline-indicator');
         
         if (!this.data.timeline || !timelineContainer) return;
 
-        const renderTimeline = (filter = 'all') => {
-            const filteredItems = this.data.timeline
-                .filter(item => filter === 'all' || item.category === filter)
-                .sort((a, b) => b.order - a.order);
+        this.currentFilter = 'all';
+        this.currentSearch = '';
+        this.currentIndex = 0;
+        this.filteredItems = [];
+        this.isScrolling = false; // Prevent multiple simultaneous scrolls
 
-            timelineContainer.innerHTML = filteredItems.map(item => `
-                <div class="timeline-item" data-category="${item.category}" onclick="portfolio.openModal('${item.company}', ${JSON.stringify(item).replace(/"/g, '&quot;')})">
-                    <div class="timeline-dot">
+        const renderTimeline = (filter = 'all', search = '') => {
+            this.currentFilter = filter;
+            this.currentSearch = search.toLowerCase();
+            
+            this.filteredItems = this.data.timeline
+                .filter(item => {
+                    const matchesFilter = filter === 'all' || item.category === filter;
+                    const matchesSearch = search === '' || 
+                        item.company.toLowerCase().includes(this.currentSearch) ||
+                        item.title.toLowerCase().includes(this.currentSearch);
+                    return matchesFilter && matchesSearch;
+                })
+                .sort((a, b) => b.order - a.order); // Sort in reverse chronological order (newest first)
+
+            timelineContainer.innerHTML = this.filteredItems.map((item, index) => `
+                <div class="timeline-item" data-category="${item.category}" data-index="${index}" onclick="portfolio.openModal('${item.company}', ${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                    <div class="timeline-dot ${item.category}">
                         <i class="${this.getTimelineIcon(item.category)}"></i>
-                </div>
+                    </div>
                     <div class="timeline-content">
                         <div class="timeline-date">${item.startDate}${item.endDate ? ` - ${item.endDate}` : ''}</div>
                         <h3>${item.company}</h3>
                         <p>${item.title}</p>
-            </div>
-        </div>
-    `).join('');
+                    </div>
+                </div>
+            `).join('');
 
+            // Update navigation indicators
+            this.updateTimelineIndicators();
+            
             // Animate timeline items
             this.animateTimelineItems();
+            
+            // Update progress bar and navigation buttons
+            this.updateTimelineProgress();
+            this.updateNavigationButtons();
         };
 
+        // Filter functionality
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                renderTimeline(btn.dataset.filter);
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderTimeline(btn.dataset.filter, this.currentSearch);
             });
         });
 
+        // Search functionality
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                renderTimeline(this.currentFilter, e.target.value);
+            });
+        }
+
+        // Drag-to-scroll functionality for desktop
+        this.initDragToScroll();
+
+        // Scroll progress tracking
+        if (timelineWrapper) {
+            timelineWrapper.addEventListener('scroll', () => {
+                this.updateTimelineProgress();
+                this.updateNavigationButtons();
+            });
+        }
+
+        // Keyboard navigation removed for drag-to-scroll experience
+
+        // Touch/swipe support for mobile
+        this.initTimelineTouchSupport();
+
+        // Handle window resize for responsive behavior
+        window.addEventListener('resize', () => {
+            this.updateNavigationButtons();
+            this.updateTimelineProgress();
+        });
+
         renderTimeline();
+    }
+
+    navigateTimeline(direction) {
+        if (this.isScrolling) return;
+
+        const timelineWrapper = document.getElementById('timeline-wrapper');
+        if (!timelineWrapper) return;
+
+        const scrollLeft = timelineWrapper.scrollLeft;
+        const maxScroll = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
+        const itemWidth = 300;
+        const targetScroll = scrollLeft + (direction * itemWidth);
+
+        // Check bounds
+        if (targetScroll < 0 || targetScroll > maxScroll) return;
+
+        this.isScrolling = true;
+        
+        // Visual feedback
+        const prevBtn = document.getElementById('timeline-prev');
+        const nextBtn = document.getElementById('timeline-next');
+        if (prevBtn) prevBtn.classList.add('scrolling');
+        if (nextBtn) nextBtn.classList.add('scrolling');
+        
+        timelineWrapper.scrollTo({
+            left: targetScroll,
+            behavior: 'smooth'
+        });
+
+        setTimeout(() => {
+            this.isScrolling = false;
+            if (prevBtn) prevBtn.classList.remove('scrolling');
+            if (nextBtn) nextBtn.classList.remove('scrolling');
+            this.updateNavigationButtons();
+        }, 500);
+    }
+
+    updateTimelineIndicators() {
+        const indicatorContainer = document.getElementById('timeline-indicator');
+        if (!indicatorContainer) return;
+
+        const totalItems = this.filteredItems.length;
+        const itemsPerPage = Math.floor(window.innerWidth / 300); // Approximate items visible
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        indicatorContainer.innerHTML = Array.from({ length: totalPages }, (_, index) => 
+            `<div class="timeline-dot-indicator" data-page="${index}"></div>`
+        ).join('');
+
+        // Add click handlers to indicators
+        indicatorContainer.querySelectorAll('.timeline-dot-indicator').forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                this.scrollToTimelinePage(index);
+            });
+        });
+    }
+
+    scrollToTimelinePage(pageIndex) {
+        // Prevent multiple simultaneous scroll operations
+        if (this.isScrolling) {
+            return;
+        }
+
+        const timelineWrapper = document.getElementById('timeline-wrapper');
+        const itemWidth = 280;
+        const itemsPerPage = Math.floor(window.innerWidth / 300);
+        const scrollPosition = pageIndex * itemsPerPage * itemWidth;
+        
+        if (timelineWrapper) {
+            this.isScrolling = true;
+            
+            timelineWrapper.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+
+            // Reset scroll lock after animation completes
+            setTimeout(() => {
+                this.isScrolling = false;
+            }, 500);
+        }
+    }
+
+    updateTimelineProgress() {
+        const timelineWrapper = document.getElementById('timeline-wrapper');
+        const progressBar = document.getElementById('timeline-progress');
+        
+        if (!timelineWrapper || !progressBar) return;
+
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            // Vertical progress for mobile
+            const scrollTop = timelineWrapper.scrollTop;
+            const scrollHeight = timelineWrapper.scrollHeight - timelineWrapper.clientHeight;
+            const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            
+            progressBar.style.height = `${progress}%`;
+            progressBar.style.width = '2px';
+        } else {
+            // Horizontal progress for desktop/tablet
+            const scrollLeft = timelineWrapper.scrollLeft;
+            const scrollWidth = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
+            const progress = scrollWidth > 0 ? (scrollLeft / scrollWidth) * 100 : 0;
+            
+            progressBar.style.width = `${progress}%`;
+            progressBar.style.height = '4px';
+        }
+    }
+
+    updateNavigationButtons() {
+        // Navigation buttons are hidden - no need to update them
+        // This function is kept for compatibility but does nothing
+    }
+
+    initDragToScroll() {
+        const timelineWrapper = document.getElementById('timeline-wrapper');
+        if (!timelineWrapper) return;
+
+        let isDragging = false;
+        let startX = 0;
+        let scrollLeft = 0;
+
+        // Mouse events for desktop
+        timelineWrapper.addEventListener('mousedown', (e) => {
+            if (window.innerWidth <= 768) return; // Only on desktop
+            
+            isDragging = true;
+            timelineWrapper.style.cursor = 'grabbing';
+            timelineWrapper.style.userSelect = 'none';
+            
+            startX = e.pageX - timelineWrapper.offsetLeft;
+            scrollLeft = timelineWrapper.scrollLeft;
+            
+            e.preventDefault();
+        });
+
+        timelineWrapper.addEventListener('mouseleave', () => {
+            isDragging = false;
+            timelineWrapper.style.cursor = 'grab';
+            timelineWrapper.style.userSelect = 'auto';
+        });
+
+        timelineWrapper.addEventListener('mouseup', () => {
+            isDragging = false;
+            timelineWrapper.style.cursor = 'grab';
+            timelineWrapper.style.userSelect = 'auto';
+        });
+
+        timelineWrapper.addEventListener('mousemove', (e) => {
+            if (!isDragging || window.innerWidth <= 768) return;
+            
+            e.preventDefault();
+            const x = e.pageX - timelineWrapper.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            timelineWrapper.scrollLeft = scrollLeft - walk;
+        });
+
+        // Set initial cursor
+        timelineWrapper.style.cursor = 'grab';
+    }
+
+    initTimelineTouchSupport() {
+        const timelineWrapper = document.getElementById('timeline-wrapper');
+        if (!timelineWrapper) return;
+
+        let startX = 0;
+        let startY = 0;
+        let isScrolling = false;
+
+        timelineWrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isScrolling = false;
+        });
+
+        timelineWrapper.addEventListener('touchmove', (e) => {
+            if (!startX || !startY) return;
+
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = Math.abs(startX - currentX);
+            const diffY = Math.abs(startY - currentY);
+
+            if (diffX > diffY) {
+                isScrolling = true;
+            }
+        });
+
+        timelineWrapper.addEventListener('touchend', (e) => {
+            if (!isScrolling) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+
+            if (Math.abs(diffX) > 50) { // Minimum swipe distance
+                if (diffX > 0) {
+                    this.navigateTimeline(1); // Swipe left - go forward
+                } else {
+                    this.navigateTimeline(-1); // Swipe right - go backward
+                }
+            }
+
+            startX = 0;
+            startY = 0;
+            isScrolling = false;
+        });
     }
 
     initShowcase() {
