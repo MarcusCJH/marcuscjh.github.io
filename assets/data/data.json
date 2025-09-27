@@ -257,13 +257,18 @@
         "subtitle": "Apr 2019 - Mar 2021",
         "location": "Singapore",
         "details": [
-          "Directed the creation and maintenance of Business Intelligence dashboards",
-          "Led User Acceptance Testing (UAT) processes",
-          "Provided technical support and maintenance for clients",
-          "Subject matter expert in Alibaba Cloud products",
-          "Product Manager for Proof of Concepts (POCs)",
-          "Created comprehensive documentation and knowledge base",
-          "Supported big data projects and ETL processes"
+          " Delivered Business Intelligence dashboards using Alibaba Cloud (Dataphin, DataWorks, QuickBI, DataV), empowering clients with actionable insights for decision-making",
+          " Led UAT cycles and quality assurance to ensure reliability and alignment with business requirements",
+          " Provided technical support and maintenance for both new and existing clients, ensuring smooth adoption and long-term stability of solutions",
+          " Acted as subject matter expert on Alibaba Cloud products, partnering with Alibaba Cloud's IT team to support enterprise stakeholders",
+          " Oversaw Proof of Concept (POC) development as product manager, driving innovation and rapid solutioning",
+          " Authored development guidelines, knowledge base articles, and release notes to strengthen delivery consistency and knowledge sharing",
+          " Supported on-site big data projects, covering system configuration, upgrades, ETL processes, SQL scripting, and data analysis",
+          "",
+          "Career Progression:",
+          " Joined Whale Cloud Singapore under the Infocomm Media Development Authority (IMDA) Company-Led Training Programme",
+          " Contributed to early project support and training in Alibaba Cloud technologies",
+          " Performance led to conversion into a permanent staff role"
         ]
       }
     },
@@ -407,7 +412,35 @@
         "subtitle": "Apr 2021 - Present",
         "location": "Singapore",
         "details": [
-          
+          "Full Stack Engineer (2024 - Present) - Changi Airport Group - DIVA",
+          "  Designed and delivered serverless applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify), building both backend APIs and frontend features.",
+          "",
+          "  Led delivery across flagship initiatives:",
+          "    • Terminal X Innovation Showcase – engineered RFID-triggered podiums integrating hardware, backend APIs, and interactive content displays",
+          "    • AES Wayfinding Mobile Application – developed GraphQL APIs and SNS/APNS push notification services powering airport mobile navigation",
+          "    • GroupBuy 2.0 – implemented voucher redemption flows, self-collection logic, and expanded admin tooling",
+          "    • Mass Re-Entry Squad – built scalable serverless APIs and Terraform IaC to support large-scale passenger operations",
+          "    • Bridged hardware and software with 3D-printed prototypes, sensor integrations, and cloud-native systems",
+          "    • Partnered with architects, designers, and stakeholders to deliver scalable, user-focused solutions",
+          "    • Drove developer enablement by introducing feature flags, automation pipelines, and technical catch-up sessions",
+          "",
+          "Site Reliability Engineer (2022 - 2024): GovTech - National Digital Identity",
+          "  • Built and launched an internal chatbot (end-to-end) to automate service request handling and reduce manual effort",
+          "  • Executed monitoring and alerting frameworks across applications and infrastructure for improved reliability",
+          "  • Streamlined tenant onboarding, ensuring smooth and secure integration to the NDI platform",
+          "  • Hardened security posture by addressing vulnerabilities and enforcing system integrity measures",
+          "  • Maintained platform resilience by managing dependency upgrades and performance optimizations",
+          "  • Provided hands-on support to functional teams, fulfilling service requests and operational needs",
+          "",
+          "Software Development Engineer (2021 - 2022): Financial Services",
+          "  • Developed and integrated APIs with Django, contributing to a mission-critical financial services platform",
+          "  • Collaborated closely with clients across requirements, design, development, testing, and deployment, ensuring business alignment at every stage",
+          "  • Showcased the project at Singapore FinTech Festival 2021, representing Accenture's delivery capabilities to industry stakeholders",
+          "",
+          "Application Engineer (2021): Healthcare Services",
+          "  • Automated reporting workflows through data analysis and SSRS/SSIS pipelines, improving efficiency and accuracy",
+          "  • Resolved service requests and platform issues on SSRS/SSIS and Pega, strengthening system reliability",
+          "  • Provided operational support to healthcare stakeholders, ensuring high availability and smooth service delivery"
         ]
       }
     }
