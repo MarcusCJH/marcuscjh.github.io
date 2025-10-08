@@ -394,6 +394,10 @@ body {
     scroll-behavior: smooth;
 }
 
+.timeline-track {
+    position: relative;
+}
+
 /* Desktop/Tablet: Horizontal Timeline */
 @media (min-width: 769px) {
     .timeline-wrapper {
@@ -418,7 +422,6 @@ body {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        position: relative;
         padding: 0 3rem;
         width: fit-content;
         min-width: 100%;
@@ -437,42 +440,44 @@ body {
 
     .timeline-track {
         display: block;
-        position: relative;
         padding: 0 1rem;
         max-width: 100%;
     }
 }
 
+/* Timeline Line */
+.timeline-line {
+    position: absolute;
+    z-index: 1;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(0, 255, 136, 0.3) 10%,
+        var(--primary-color) 20%,
+        var(--primary-color) 80%,
+        rgba(0, 255, 136, 0.3) 90%,
+        transparent 100%
+    );
+    box-shadow: 
+        0 0 10px rgba(0, 255, 136, 0.3),
+        inset 0 0 10px rgba(0, 255, 136, 0.1);
+    animation: timelineGlow 3s ease-in-out infinite alternate;
+}
+
 /* Desktop/Tablet: Horizontal Timeline Line */
 @media (min-width: 769px) {
     .timeline-line {
-        position: absolute;
         top: 50%;
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, 
-            transparent 0%,
-            rgba(0, 255, 136, 0.3) 10%,
-            var(--primary-color) 20%,
-            var(--primary-color) 80%,
-            rgba(0, 255, 136, 0.3) 90%,
-            transparent 100%
-        );
         transform: translateY(-50%);
-        z-index: 1;
         border-radius: 2px;
-        box-shadow: 
-            0 0 10px rgba(0, 255, 136, 0.3),
-            inset 0 0 10px rgba(0, 255, 136, 0.1);
-        animation: timelineGlow 3s ease-in-out infinite alternate;
     }
 }
 
 /* Mobile: Vertical Timeline Line */
 @media (max-width: 768px) {
     .timeline-line {
-        position: absolute;
         top: 0;
         bottom: 0;
         left: 20px;
@@ -485,12 +490,7 @@ body {
             rgba(0, 255, 136, 0.3) 90%,
             transparent 100%
         );
-        z-index: 1;
         border-radius: 1px;
-        box-shadow: 
-            0 0 10px rgba(0, 255, 136, 0.3),
-            inset 0 0 10px rgba(0, 255, 136, 0.1);
-        animation: timelineGlow 3s ease-in-out infinite alternate;
     }
 }
 
@@ -532,33 +532,36 @@ body {
     }
 }
 
+/* Timeline Progress Bar */
+.timeline-progress {
+    position: absolute;
+    z-index: 2;
+    background: linear-gradient(90deg, 
+        var(--secondary-color) 0%,
+        var(--primary-color) 50%,
+        var(--secondary-color) 100%
+    );
+    box-shadow: 
+        0 0 15px rgba(0, 136, 255, 0.7),
+        inset 0 0 5px rgba(255, 255, 255, 0.2);
+    animation: progressPulse 2s ease-in-out infinite;
+}
+
 /* Desktop/Tablet: Horizontal Progress Bar */
 @media (min-width: 769px) {
     .timeline-progress {
-        position: absolute;
         top: 50%;
         left: 0;
         height: 4px;
-        background: linear-gradient(90deg, 
-            var(--secondary-color) 0%,
-            var(--primary-color) 50%,
-            var(--secondary-color) 100%
-        );
         transform: translateY(-50%);
-        z-index: 2;
         transition: width 0.3s ease;
         border-radius: 2px;
-        box-shadow: 
-            0 0 15px rgba(0, 136, 255, 0.7),
-            inset 0 0 5px rgba(255, 255, 255, 0.2);
-        animation: progressPulse 2s ease-in-out infinite;
     }
 }
 
 /* Mobile: Vertical Progress Bar */
 @media (max-width: 768px) {
     .timeline-progress {
-        position: absolute;
         top: 0;
         left: 20px;
         width: 2px;
@@ -567,13 +570,8 @@ body {
             var(--primary-color) 50%,
             var(--secondary-color) 100%
         );
-        z-index: 2;
         transition: height 0.3s ease;
         border-radius: 1px;
-        box-shadow: 
-            0 0 15px rgba(0, 136, 255, 0.7),
-            inset 0 0 5px rgba(255, 255, 255, 0.2);
-        animation: progressPulse 2s ease-in-out infinite;
     }
 }
 
@@ -590,14 +588,26 @@ body {
     }
 }
 
+/* Timeline Items */
+.timeline-items {
+    position: relative;
+    z-index: 3;
+}
+
+.timeline-item {
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
 /* Desktop/Tablet: Horizontal Timeline Items */
 @media (min-width: 769px) {
     .timeline-items {
         display: flex;
         align-items: center;
         gap: 5rem;
-        position: relative;
-        z-index: 3;
         justify-content: flex-start;
         width: fit-content;
         min-width: 100%;
@@ -607,14 +617,9 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        position: relative;
-        cursor: pointer;
-        transition: var(--transition-smooth);
         width: 350px;
         flex-shrink: 0;
         scroll-snap-align: center;
-        opacity: 0;
-        transform: translateY(30px);
     }
 }
 
@@ -622,36 +627,12 @@ body {
 @media (min-width: 1400px) {
     .timeline-items {
         gap: 4.5rem;
-        justify-content: flex-start;
-        width: fit-content;
-        min-width: 100%;
-    }
-    
-    .timeline-item {
-        width: 350px;
-    }
-    
-    .timeline-content {
-        width: 320px;
-        height: 180px;
     }
 }
 
 @media (min-width: 1800px) {
     .timeline-items {
         gap: 4rem;
-        justify-content: flex-start;
-        width: fit-content;
-        min-width: 100%;
-    }
-    
-    .timeline-item {
-        width: 350px;
-    }
-    
-    .timeline-content {
-        width: 320px;
-        height: 180px;
     }
 }
 
@@ -659,28 +640,13 @@ body {
 @media (max-width: 768px) {
     .timeline-items {
         display: block;
-        position: relative;
-        z-index: 3;
     }
 
     .timeline-item {
         display: flex;
         align-items: flex-start;
-        position: relative;
-        cursor: pointer;
-        transition: var(--transition-smooth);
         margin-bottom: 3rem;
         padding-left: 50px;
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    .timeline-item:nth-child(odd) {
-        flex-direction: row;
-    }
-
-    .timeline-item:nth-child(even) {
-        flex-direction: row;
     }
 }
 
@@ -700,25 +666,29 @@ body {
     border-color: var(--primary-color);
 }
 
+/* Timeline Dots */
+.timeline-dot {
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 4px solid var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg-primary);
+    z-index: 4;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    transition: var(--transition-smooth);
+    pointer-events: none;
+}
+
 /* Desktop/Tablet: Horizontal Timeline Dots */
 @media (min-width: 769px) {
     .timeline-dot {
         width: 24px;
         height: 24px;
-        border-radius: 50%;
-        background: var(--primary-color);
-        border: 4px solid var(--bg-primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
         font-size: 0.8rem;
-        color: var(--bg-primary);
         position: relative;
-        z-index: 4;
-        box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        transition: var(--transition-smooth);
         margin-bottom: 1rem;
-        pointer-events: none;
     }
 }
 
@@ -727,21 +697,11 @@ body {
     .timeline-dot {
         width: 20px;
         height: 20px;
-        border-radius: 50%;
-        background: var(--primary-color);
-        border: 3px solid var(--bg-primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
         font-size: 0.7rem;
-        color: var(--bg-primary);
         position: absolute;
         left: -10px;
         top: 0;
-        z-index: 4;
-        box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        transition: var(--transition-smooth);
-        pointer-events: none;
+        border-width: 3px;
     }
 }
 
@@ -757,43 +717,37 @@ body {
     background: var(--accent-color);
 }
 
+/* Timeline Content */
+.timeline-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* Desktop/Tablet: Horizontal Timeline Content */
 @media (min-width: 769px) {
     .timeline-content {
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
-        border-radius: 15px;
         padding: 2rem;
         text-align: center;
-        transition: var(--transition-smooth);
-        position: relative;
-        overflow: hidden;
         width: 320px;
         height: 180px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 }
 
 /* Mobile: Vertical Timeline Content */
 @media (max-width: 768px) {
     .timeline-content {
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
-        border-radius: 15px;
         padding: 1.5rem;
         text-align: left;
-        transition: var(--transition-smooth);
-        position: relative;
-        overflow: hidden;
         width: 100%;
         min-height: 120px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 }
 
@@ -941,18 +895,23 @@ body {
 /* Showcase Grid */
 .showcase-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
     margin-top: 3rem;
     padding: 0 2rem;
     max-width: none;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-/* Limit to maximum 5 cards per row */
-@media (min-width: 1200px) {
+/* Responsive Grid Layouts */
+@media (min-width: 600px) and (max-width: 799px) {
     .showcase-grid {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 800px) and (max-width: 999px) {
+    .showcase-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -963,17 +922,10 @@ body {
     }
 }
 
-@media (min-width: 800px) and (max-width: 999px) {
+@media (min-width: 1200px) {
     .showcase-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-@media (min-width: 600px) and (max-width: 799px) {
-    .showcase-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2rem;
     }
 }
 
@@ -986,7 +938,7 @@ body {
     transition: var(--transition-bounce);
     cursor: pointer;
     position: relative;
-    height: 300px;
+    height: 350px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     animation: cardFloat 6s ease-in-out infinite;
 }
@@ -1664,7 +1616,7 @@ body {
     }
 
     .showcase-card {
-        height: 250px;
+        height: 300px;
     }
 
     .filter-btn {
@@ -1700,7 +1652,7 @@ body {
     }
 
     .showcase-card {
-        height: 200px;
+        height: 250px;
     }
 
     .timeline-filters {

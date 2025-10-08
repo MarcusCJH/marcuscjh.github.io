@@ -7,6 +7,9 @@ class ModernPortfolio {
         this.typedTextIndex = 0;
         this.typedMessages = [];
         
+        // Cache DOM elements for better performance
+        this.cachedElements = {};
+        
         this.init();
     }
 
@@ -19,9 +22,35 @@ class ModernPortfolio {
         await this.hideLoading();
     }
 
+    // Utility function to get DOM elements with caching
+    getElement(id) {
+        if (!this.cachedElements[id]) {
+            this.cachedElements[id] = document.getElementById(id);
+        }
+        return this.cachedElements[id];
+    }
+
+    // Utility function to get DOM elements by selector
+    getElements(selector) {
+        return document.querySelectorAll(selector);
+    }
+
+    // Debounce function for better performance
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
     showLoading() {
-        const loadingScreen = document.getElementById('loading-screen');
-        const progressBar = document.getElementById('loading-progress');
+        const progressBar = this.getElement('loading-progress');
+        if (!progressBar) return;
         
         let progress = 0;
         const interval = setInterval(() => {
@@ -37,8 +66,10 @@ class ModernPortfolio {
     async hideLoading() {
         return new Promise(resolve => {
             setTimeout(() => {
-                const loadingScreen = document.getElementById('loading-screen');
-                loadingScreen.classList.add('hidden');
+                const loadingScreen = this.getElement('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hidden');
+                }
                 resolve();
             }, 2000);
         });
@@ -154,8 +185,8 @@ class ModernPortfolio {
     }
 
     initNavigation() {
-        const navMenu = document.getElementById('nav-menu');
-        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = this.getElement('nav-menu');
+        const navToggle = this.getElement('nav-toggle');
         
         if (!this.data.navigation || !navMenu) return;
 
@@ -169,7 +200,7 @@ class ModernPortfolio {
                 </div>
             `).join('');
 
-        const navItems = document.querySelectorAll('.nav-item');
+        const navItems = this.getElements('.nav-item');
 
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
@@ -187,18 +218,14 @@ class ModernPortfolio {
             });
         });
 
-        // Scroll spy for nav background only
-        window.addEventListener('scroll', () => {
+        // Scroll spy for nav background only (debounced for performance)
+        const debouncedScrollHandler = this.debounce(() => {
             const scrollY = window.scrollY;
-            
-            // Add scrolled class to nav
             const nav = document.querySelector('.nav-container');
-            if (scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
+            nav?.classList.toggle('scrolled', scrollY > 50);
+        }, 10);
+        
+        window.addEventListener('scroll', debouncedScrollHandler);
     }
 
     toggleSections() {
@@ -250,14 +277,10 @@ class ModernPortfolio {
     }
 
     initTimeline() {
-        const timelineContainer = document.getElementById('timeline-items');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const searchInput = document.getElementById('timeline-search');
-        const timelineWrapper = document.getElementById('timeline-wrapper');
-        const progressBar = document.getElementById('timeline-progress');
-        const prevBtn = document.getElementById('timeline-prev');
-        const nextBtn = document.getElementById('timeline-next');
-        const indicatorContainer = document.getElementById('timeline-indicator');
+        const timelineContainer = this.getElement('timeline-items');
+        const filterButtons = this.getElements('.filter-btn');
+        const searchInput = this.getElement('timeline-search');
+        const timelineWrapper = this.getElement('timeline-wrapper');
         
         if (!this.data.timeline || !timelineContainer) return;
 
@@ -324,12 +347,14 @@ class ModernPortfolio {
         // Drag-to-scroll functionality for desktop
         this.initDragToScroll();
 
-        // Scroll progress tracking
+        // Scroll progress tracking (debounced for performance)
         if (timelineWrapper) {
-            timelineWrapper.addEventListener('scroll', () => {
+            const debouncedTimelineScroll = this.debounce(() => {
                 this.updateTimelineProgress();
                 this.updateNavigationButtons();
-            });
+            }, 16); // ~60fps
+            
+            timelineWrapper.addEventListener('scroll', debouncedTimelineScroll);
         }
 
         // Keyboard navigation removed for drag-to-scroll experience
@@ -337,11 +362,13 @@ class ModernPortfolio {
         // Touch/swipe support for mobile
         this.initTimelineTouchSupport();
 
-        // Handle window resize for responsive behavior
-        window.addEventListener('resize', () => {
+        // Handle window resize for responsive behavior (debounced for performance)
+        const debouncedResize = this.debounce(() => {
             this.updateNavigationButtons();
             this.updateTimelineProgress();
-        });
+        }, 250);
+        
+        window.addEventListener('resize', debouncedResize);
 
         renderTimeline();
     }
@@ -428,8 +455,8 @@ class ModernPortfolio {
     }
 
     updateTimelineProgress() {
-        const timelineWrapper = document.getElementById('timeline-wrapper');
-        const progressBar = document.getElementById('timeline-progress');
+        const timelineWrapper = this.getElement('timeline-wrapper');
+        const progressBar = this.getElement('timeline-progress');
         
         if (!timelineWrapper || !progressBar) return;
 
@@ -460,7 +487,7 @@ class ModernPortfolio {
     }
 
     initDragToScroll() {
-        const timelineWrapper = document.getElementById('timeline-wrapper');
+        const timelineWrapper = this.getElement('timeline-wrapper');
         if (!timelineWrapper) return;
 
         let isDragging = false;
@@ -507,7 +534,7 @@ class ModernPortfolio {
     }
 
     initTimelineTouchSupport() {
-        const timelineWrapper = document.getElementById('timeline-wrapper');
+        const timelineWrapper = this.getElement('timeline-wrapper');
         if (!timelineWrapper) return;
 
         let startX = 0;
@@ -554,7 +581,7 @@ class ModernPortfolio {
     }
 
     initShowcase() {
-        const showcaseContainer = document.getElementById('showcase-grid');
+        const showcaseContainer = this.getElement('showcase-grid');
         
         if (!this.data.showcase || !showcaseContainer) return;
 
@@ -576,7 +603,9 @@ class ModernPortfolio {
     }
 
     initTypedText() {
-        const typedElement = document.getElementById('typed-text');
+        const typedElement = this.getElement('typed-text');
+        if (!typedElement) return;
+        
         let messageIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -615,66 +644,49 @@ class ModernPortfolio {
             rootMargin: '0px 0px -50px 0px'
         };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
         }, observerOptions);
 
-        // Observe timeline items
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            observer.observe(item);
-        });
-
-        // Observe showcase cards
-        document.querySelectorAll('.showcase-card').forEach(card => {
-            observer.observe(card);
-        });
+        // Observe timeline items and showcase cards
+        [...this.getElements('.timeline-item'), ...this.getElements('.showcase-card')]
+            .forEach(element => observer.observe(element));
     }
 
     animateTimelineItems() {
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach((item, index) => {
+        this.getElements('.timeline-item').forEach((item, index) => {
             setTimeout(() => {
-            item.classList.add('visible');
+                item.classList.add('visible');
             }, index * 200);
         });
     }
 
     setupEventListeners() {
         // CV Preview click
-        const cvPreview = document.getElementById('cv-preview');
-        if (cvPreview) {
-            cvPreview.addEventListener('click', () => {
-                this.openCVModal();
-            });
-        }
+        const cvPreview = this.getElement('cv-preview');
+        cvPreview?.addEventListener('click', () => this.openCVModal());
 
         // Scroll indicator
         const scrollArrow = document.querySelector('.scroll-arrow');
-        if (scrollArrow) {
-            scrollArrow.addEventListener('click', () => {
-                document.getElementById('timeline-section').scrollIntoView({ behavior: 'smooth' });
-            });
-        }
+        scrollArrow?.addEventListener('click', () => {
+            this.getElement('timeline-section')?.scrollIntoView({ behavior: 'smooth' });
+        });
 
         // Modal close
-        const modalClose = document.getElementById('modal-close');
-        const modalOverlay = document.getElementById('modal-overlay');
+        const modalClose = this.getElement('modal-close');
+        const modalOverlay = this.getElement('modal-overlay');
         
-        if (modalClose) {
-            modalClose.addEventListener('click', () => this.closeModal());
-        }
+        modalClose?.addEventListener('click', () => this.closeModal());
         
-        if (modalOverlay) {
-            modalOverlay.addEventListener('click', (e) => {
-                if (e.target === modalOverlay) {
-                    this.closeModal();
-                }
-            });
-        }
+        modalOverlay?.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                this.closeModal();
+            }
+        });
 
         // Escape key to close modal
         document.addEventListener('keydown', (e) => {
@@ -686,8 +698,7 @@ class ModernPortfolio {
 
     startAnimations() {
         // Start fade-in animations for hero content
-        const fadeElements = document.querySelectorAll('.fade-in-up');
-        fadeElements.forEach((element, index) => {
+        this.getElements('.fade-in-up').forEach((element, index) => {
             setTimeout(() => {
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
@@ -696,9 +707,9 @@ class ModernPortfolio {
     }
 
     openModal(title, data) {
-        const modal = document.getElementById('modal-overlay');
-        const modalTitle = document.getElementById('modal-title');
-        const modalContent = document.getElementById('modal-content');
+        const modal = this.getElement('modal-overlay');
+        const modalTitle = this.getElement('modal-title');
+        const modalContent = this.getElement('modal-content');
 
         let parsedData;
         try {
@@ -832,8 +843,8 @@ class ModernPortfolio {
     }
 
     closeModal() {
-        const modal = document.getElementById('modal-overlay');
-        modal.classList.remove('active');
+        const modal = this.getElement('modal-overlay');
+        modal?.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
