@@ -109,6 +109,27 @@
           }
         ]
       }
+    },
+    {
+      "id": "endless-jumper",
+      "title": "Endless Jumper",
+      "backgroundImage": "assets/showcase/endlessJumper/6_Final.gif",
+      "technologies": ["Python", "Pygame", "Amazon Q"],
+      "modalContent": {
+        "title": "Endless Jumper Game",
+        "description": "A fun endless runner game built in just 2 hours using Amazon Q AI assistant. Features include power-ups, increasing difficulty, and smooth gameplay mechanics. The game demonstrates rapid prototyping and AI-assisted development.",
+        "image": "assets/showcase/endlessJumper/6_Final.gif",
+        "links": [
+          {
+            "text": "Read Development Story",
+            "url": "https://marcuscjh.medium.com/built-a-game-in-2-hours-with-amazon-q-d02c1da6dd53"
+          },
+          {
+            "text": "View Source Code",
+            "url": "https://github.com/MarcusCJH/amazon-q-pygame"
+          }
+        ]
+      }
     }
   ],
   "timeline": [
