@@ -39,23 +39,71 @@
   ],
   "showcase": [
     {
-      "id": "portfolio",
-      "title": "Portfolio Website",
-      "backgroundImage": "assets/showcase/marcuscjh/marcuscjh-bg.PNG",
-      "technologies": ["HTML", "CSS", "JavaScript"],
+      "id": "amazon-connect-poc",
+      "title": "Amazon Connect Incident Response",
+      "backgroundImage": "assets/showcase/amazon-connect-poc/amazon-connect-bg.png",
+      "technologies": ["Lambda", "Amazon Connect", "DynamoDB", "SNS", "Python"],
       "modalContent": {
-        "title": "Personal Portfolio",
-        "description": "A dynamic personal portfolio website built with HTML, CSS, and JavaScript. Features include a timeline section, project showcase, and dynamic content loading.",
+        "title": "Real-Time Incident Response System",
+        "description": "An automated incident response system built with Amazon Connect that triggers escalation calls when alerts are received. The system uses AWS Lambda to orchestrate outbound calls, with automatic escalation to secondary contacts if the first contact doesn't respond. Features include call status monitoring, DynamoDB logging, and SNS integration for alert management.",
         "links": [
           {
-            "text": "View Live Site",
-            "url": "https://marcuscjh.github.io"
+            "text": "Read Development Story",
+            "url": "https://marcuscjh.medium.com/leveraging-amazon-connect-for-real-time-incident-response-calls-bd3c43440662"
+          }
+        ]
+      }
+    },
+    {
+      "id": "endless-jumper",
+      "title": "Endless Jumper",
+      "backgroundImage": "assets/showcase/endlessJumper/6_Final.gif",
+      "technologies": ["Python", "Pygame", "Amazon Q"],
+      "modalContent": {
+        "title": "Endless Jumper Game",
+        "description": "A fun endless runner game built in just 2 hours using Amazon Q AI assistant. Features include power-ups, increasing difficulty, and smooth gameplay mechanics. The game demonstrates rapid prototyping and AI-assisted development.",
+        "image": "assets/showcase/endlessJumper/6_Final.gif",
+        "links": [
+          {
+            "text": "Read Development Story",
+            "url": "https://marcuscjh.medium.com/built-a-game-in-2-hours-with-amazon-q-d02c1da6dd53"
           },
           {
             "text": "View Source Code",
-            "url": "https://github.com/MarcusCJH/marcuscjh.github.io"
+            "url": "https://github.com/MarcusCJH/amazon-q-pygame"
           }
         ]
+      }
+    },
+    {
+      "id": "datav-webinar",
+      "title": "Alibaba Cloud: DataV Webinar",
+      "backgroundImage": "assets/showcase/webinar/DataV-bg.PNG",
+      "technologies": ["DataV", "Alibaba Cloud"],
+      "modalContent": {
+        "title": "ApsaraChat Live: Real-time monitoring of COVID-19 with DataV",
+        "description": "A webinar where I was invited to speak about utilizing Alibaba Cloud's DataV for real-time data visualization and monitoring.",
+        "video": {
+          "src": "https://alicloud-common.oss-ap-southeast-1.aliyuncs.com/video/DataV%20COMPLETE.mp4",
+          "type": "video/mp4"
+        },
+        "links": [
+          {
+            "text": "Watch Recording",
+            "url": "https://resource.alibabacloud.com/webinar/detail.html?id=1441"
+          }
+        ]
+      }
+    },
+    {
+      "id": "slackbot",
+      "title": "Slack Bot",
+      "backgroundImage": "assets/showcase/slackbot/slackbot-bg.png",
+      "technologies": ["Python", "Slack API", "AWS"],
+      "modalContent": {
+        "title": "Slack Bot",
+        "description": "A custom Slack bot built to automate various workspace tasks.",
+        "links": []
       }
     },
     {
@@ -80,53 +128,21 @@
       }
     },
     {
-      "id": "slackbot",
-      "title": "Slack Bot",
-      "backgroundImage": "assets/showcase/slackbot/slackbot-bg.png",
-      "technologies": ["Python", "Slack API", "AWS"],
+      "id": "portfolio",
+      "title": "Portfolio Website",
+      "backgroundImage": "assets/showcase/marcuscjh/marcuscjh-bg.PNG",
+      "technologies": ["HTML", "CSS", "JavaScript"],
       "modalContent": {
-        "title": "Slack Bot",
-        "description": "A custom Slack bot built to automate various workspace tasks.",
-        "links": []
-      }
-    },
-    {
-      "id": "datav-webinar",
-      "title": "Alibaba Cloud: DataV Webinar",
-      "backgroundImage": "assets/showcase/webinar/DataV-bg.PNG",
-      "technologies": ["DataV", "Alibaba Cloud"],
-      "modalContent": {
-        "title": "ApsaraChat Live: Real-time monitoring of COVID-19 with DataV",
-        "description": "A webinar where I was invited to speak about utilizing Alibaba Cloud's DataV for real-time data visualization and monitoring.",
-        "video": {
-          "src": "https://alicloud-common.oss-ap-southeast-1.aliyuncs.com/video/DataV%20COMPLETE.mp4",
-          "type": "video/mp4"
-        },
+        "title": "Personal Portfolio",
+        "description": "A dynamic personal portfolio website built with HTML, CSS, and JavaScript. Features include a timeline section, project showcase, and dynamic content loading.",
         "links": [
           {
-            "text": "Watch Recording",
-            "url": "https://resource.alibabacloud.com/webinar/detail.html?id=1441"
-          }
-        ]
-      }
-    },
-    {
-      "id": "endless-jumper",
-      "title": "Endless Jumper",
-      "backgroundImage": "assets/showcase/endlessJumper/6_Final.gif",
-      "technologies": ["Python", "Pygame", "Amazon Q"],
-      "modalContent": {
-        "title": "Endless Jumper Game",
-        "description": "A fun endless runner game built in just 2 hours using Amazon Q AI assistant. Features include power-ups, increasing difficulty, and smooth gameplay mechanics. The game demonstrates rapid prototyping and AI-assisted development.",
-        "image": "assets/showcase/endlessJumper/6_Final.gif",
-        "links": [
-          {
-            "text": "Read Development Story",
-            "url": "https://marcuscjh.medium.com/built-a-game-in-2-hours-with-amazon-q-d02c1da6dd53"
+            "text": "View Live Site",
+            "url": "https://marcuscjh.github.io"
           },
           {
             "text": "View Source Code",
-            "url": "https://github.com/MarcusCJH/amazon-q-pygame"
+            "url": "https://github.com/MarcusCJH/marcuscjh.github.io"
           }
         ]
       }
