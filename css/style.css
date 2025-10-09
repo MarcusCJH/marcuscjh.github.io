@@ -1014,6 +1014,7 @@ body {
     justify-content: space-between;
     position: relative;
     z-index: 2;
+    min-height: 120px;
 }
 
 .showcase-title {
@@ -1042,6 +1043,8 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: var(--transition-smooth);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .tech-badge:hover {
@@ -1616,7 +1619,7 @@ body {
     }
 
     .showcase-card {
-        height: 300px;
+        height: 380px;
     }
 
     .filter-btn {
@@ -1636,6 +1639,26 @@ body {
     .modal-content {
         padding: 1rem;
     }
+
+    .tech-badge {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.4px;
+    }
+
+    .tech-stack {
+        gap: 0.4rem;
+    }
+
+    .showcase-content {
+        padding: 1.2rem;
+        min-height: 140px;
+    }
+
+    .showcase-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.6rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1652,7 +1675,7 @@ body {
     }
 
     .showcase-card {
-        height: 250px;
+        height: 320px;
     }
 
     .timeline-filters {
@@ -1681,6 +1704,26 @@ body {
         width: 200px;
         font-size: 0.75rem;
         padding: 0.6rem 1rem;
+    }
+
+    .tech-badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.3px;
+    }
+
+    .tech-stack {
+        gap: 0.3rem;
+    }
+
+    .showcase-content {
+        padding: 1rem;
+        min-height: 120px;
+    }
+
+    .showcase-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
     }
 }
 
