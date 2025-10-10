@@ -42,4 +42,4 @@ Edit `public/data.json` to update:
 
 ---
 
-**Marcus Chan** - [GitHub](https://github.com/MarcusCJH) | [LinkedIn](https://www.linkedin.com/in/marcuschanjh)
+**Marcus Chan** - [GitHub](https://github.com/MarcusCJH) | [LinkedIn](https://www.linkedin.com/in/marcuschanjh) | [Portfolio](https://marcuscjh.github.io)
