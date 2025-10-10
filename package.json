@@ -1,0 +1,57 @@
+{
+  "name": "marcus-chan-portfolio",
+  "version": "2.0.0",
+  "description": "Modern portfolio website for Marcus Chan - Full Stack Engineer & Cloud Architect. Built with Vite, featuring responsive design, interactive timeline, and project showcase.",
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist",
+    "clean": "rimraf dist",
+    "lint": "echo 'No linting configured'",
+    "serve": "vite preview --port 4173"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcusCJH/marcuscjh.github.io.git"
+  },
+  "keywords": [
+    "portfolio",
+    "website",
+    "vite",
+    "javascript",
+    "css",
+    "html",
+    "responsive",
+    "modern",
+    "github-pages",
+    "full-stack",
+    "cloud-architect",
+    "developer"
+  ],
+  "author": {
+    "name": "Marcus Chan",
+    "email": "marcus.cjh@gmail.com",
+    "url": "https://marcuscjh.github.io"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcusCJH/marcuscjh.github.io/issues"
+  },
+  "homepage": "https://marcuscjh.github.io",
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "vite": "^7.1.9"
+  }
+}

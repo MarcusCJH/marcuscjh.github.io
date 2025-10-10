@@ -4,5 +4,11 @@ Allow: /
 # Sitemap location
 Sitemap: https://marcuscjh.github.io/sitemap.xml
 
-# Block data files but allow CSS/JS for proper rendering
-Disallow: /assets/data/ 
+# Allow all assets for proper rendering
+Allow: /assets/
+Allow: /src/
+
+# Block unnecessary files
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /dist/ 

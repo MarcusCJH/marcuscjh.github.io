@@ -1,3 +1,6 @@
+// Import CSS for Vite
+import '../css/style.css';
+
 // Modern Portfolio JavaScript
 class ModernPortfolio {
     constructor() {
@@ -19,7 +22,8 @@ class ModernPortfolio {
         this.initializeComponents();
         this.setupEventListeners();
         this.startAnimations();
-        await this.hideLoading();
+        // Only hide loading after everything is ready
+        this.hideLoading();
     }
 
     // Utility function to get DOM elements with caching
@@ -63,25 +67,32 @@ class ModernPortfolio {
         }, 100);
     }
 
-    async hideLoading() {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                const loadingScreen = this.getElement('loading-screen');
-                if (loadingScreen) {
-                    loadingScreen.classList.add('hidden');
-                }
-                resolve();
-            }, 2000);
-        });
+    hideLoading() {
+        const loadingScreen = this.getElement('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+        }
     }
 
     async loadData() {
-    try {
-        const response = await fetch('./assets/data/data.json');
+        try {
+            const response = await fetch('./data.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             this.data = await response.json();
         } catch (error) {
             console.error('Failed to load data:', error);
-            this.data = { social: [], showcase: [], timeline: [] };
+            // Provide fallback data so the site doesn't get stuck
+            this.data = { 
+                social: [
+                    { name: "GitHub", url: "https://github.com/MarcusCJH", icon: "fab fa-github" },
+                    { name: "LinkedIn", url: "https://www.linkedin.com/in/marcuschanjh", icon: "fab fa-linkedin" },
+                    { name: "Telegram", url: "https://t.me/marcuscjh", icon: "fab fa-telegram" }
+                ], 
+                showcase: [], 
+                timeline: [] 
+            };
         }
     }
 

@@ -41,7 +41,7 @@
     {
       "id": "amazon-connect-poc",
       "title": "Amazon Connect Incident Response",
-      "backgroundImage": "assets/showcase/amazon-connect-poc/amazon-connect-bg.png",
+      "backgroundImage": "./showcase/amazon-connect-poc/amazon-connect-bg.png",
       "technologies": ["Lambda", "Amazon Connect", "DynamoDB", "SNS", "Python"],
       "modalContent": {
         "title": "Real-Time Incident Response System",
@@ -57,12 +57,12 @@
     {
       "id": "endless-jumper",
       "title": "Endless Jumper",
-      "backgroundImage": "assets/showcase/endlessJumper/6_Final.gif",
+      "backgroundImage": "./showcase/endlessJumper/6_Final.gif",
       "technologies": ["Python", "Pygame", "Amazon Q"],
       "modalContent": {
         "title": "Endless Jumper Game",
         "description": "A fun endless runner game built in just 2 hours using Amazon Q AI assistant. Features include power-ups, increasing difficulty, and smooth gameplay mechanics. The game demonstrates rapid prototyping and AI-assisted development.",
-        "image": "assets/showcase/endlessJumper/6_Final.gif",
+        "image": "./showcase/endlessJumper/6_Final.gif",
         "links": [
           {
             "text": "Read Development Story",
@@ -78,7 +78,7 @@
     {
       "id": "datav-webinar",
       "title": "Alibaba Cloud: DataV Webinar",
-      "backgroundImage": "assets/showcase/webinar/DataV-bg.PNG",
+      "backgroundImage": "./showcase/webinar/DataV-bg.PNG",
       "technologies": ["DataV", "Alibaba Cloud"],
       "modalContent": {
         "title": "ApsaraChat Live: Real-time monitoring of COVID-19 with DataV",
@@ -98,7 +98,7 @@
     {
       "id": "slackbot",
       "title": "Slack Bot",
-      "backgroundImage": "assets/showcase/slackbot/slackbot-bg.png",
+      "backgroundImage": "./showcase/slackbot/slackbot-bg.png",
       "technologies": ["Python", "Slack API", "AWS"],
       "modalContent": {
         "title": "Slack Bot",
@@ -109,11 +109,11 @@
     {
       "id": "webcamtest",
       "title": "Webcam Test",
-      "backgroundImage": "assets/showcase/webcamtest/webcamTest-bg.png",
+      "backgroundImage": "./showcase/webcamtest/webcamTest-bg.png",
       "technologies": ["HTML", "JavaScript", "WebRTC"],
       "modalContent": {
         "title": "Webcam Test",
-        "image": "assets/showcase/webcamtest/webcamDemo.PNG",
+        "image": "./showcase/webcamtest/webcamDemo.PNG",
         "description": "A static webpage designed for testing your webcam before going live, ensuring you look great before presenting yourself to the world.",
         "links": [
           {
@@ -130,7 +130,7 @@
     {
       "id": "portfolio",
       "title": "Portfolio Website",
-      "backgroundImage": "assets/showcase/marcuscjh/marcuscjh-bg.PNG",
+      "backgroundImage": "./showcase/marcuscjh/marcuscjh-bg.PNG",
       "technologies": ["HTML", "CSS", "JavaScript"],
       "modalContent": {
         "title": "Personal Portfolio",
