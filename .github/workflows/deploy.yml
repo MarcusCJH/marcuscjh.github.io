@@ -40,6 +40,13 @@ jobs:
     - name: 🔨 Build
       run: npm run build
       
+    - name: 🧹 Clear cache headers
+      run: |
+        # Add cache-busting meta tags and build timestamp to index.html
+        BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+        sed -i "s/<meta name=\"build-time\" content=\"\">/<meta name=\"build-time\" content=\"$BUILD_TIME\">/g" dist/index.html
+        sed -i 's/<head>/<head>\n    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n    <meta http-equiv="Pragma" content="no-cache">\n    <meta http-equiv="Expires" content="0">/g' dist/index.html
+        
     - name: 📁 Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
