@@ -146,22 +146,6 @@
           }
         ]
       }
-    },
-    {
-      "id": "wip-test",
-      "title": "🚧 WIP: Automated Deployment Test",
-      "backgroundImage": "./showcase/marcuscjh/marcuscjh-bg.PNG",
-      "technologies": ["GitHub Actions", "Vite", "TypeScript", "Tailwind CSS"],
-      "modalContent": {
-        "title": "Automated Deployment Test",
-        "description": "Testing if automated deployment works instantly! If you can see this, the GitHub Actions pipeline is working perfectly! 🎉",
-        "links": [
-          {
-            "text": "View GitHub Actions",
-            "url": "https://github.com/MarcusCJH/marcuscjh.github.io/actions"
-          }
-        ]
-      }
     }
   ],
   "timeline": [
