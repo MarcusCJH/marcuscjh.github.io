@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/marcuscjh.github.io/', // GitHub Pages base path
+  base: '/', // GitHub Pages base path
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
