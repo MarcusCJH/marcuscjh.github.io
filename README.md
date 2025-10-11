@@ -34,7 +34,7 @@ npm run deploy
 │   └── styles/style.css      # Styles
 ├── index.html                # Main page
 ├── tsconfig.json             # TypeScript config
-└── vite.config.js            # Build config
+└── vite.config.ts            # Build config
 ```
 
 ## 🎨 Customization
