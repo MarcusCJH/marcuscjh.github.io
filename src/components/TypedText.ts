@@ -15,7 +15,7 @@ export class TypedText {
     messageIndex: 0,
     charIndex: 0,
     isDeleting: false,
-    messages: []
+    messages: [],
   };
   private timeoutId: NodeJS.Timeout | null = null;
 
@@ -26,7 +26,9 @@ export class TypedText {
 
   private init(): void {
     this.element = DOMUtils.getElement('typed-text') as HTMLElement;
-    if (!this.element) return;
+    if (!this.element) {
+      return;
+    }
 
     this.startTyping();
   }
@@ -36,7 +38,9 @@ export class TypedText {
   }
 
   private typeText(): void {
-    if (!this.element) return;
+    if (!this.element) {
+      return;
+    }
 
     const currentMessage = this.state.messages[this.state.messageIndex];
 
@@ -48,8 +52,8 @@ export class TypedText {
       this.state.charIndex++;
     }
 
-    let typeSpeed = this.state.isDeleting 
-      ? APP_CONFIG.TYPED_TEXT_SPEEDS.DELETE 
+    let typeSpeed: number = this.state.isDeleting
+      ? APP_CONFIG.TYPED_TEXT_SPEEDS.DELETE
       : APP_CONFIG.TYPED_TEXT_SPEEDS.TYPE;
 
     if (!this.state.isDeleting && this.state.charIndex === currentMessage.length) {
@@ -74,11 +78,11 @@ export class TypedText {
     this.state.messageIndex = 0;
     this.state.charIndex = 0;
     this.state.isDeleting = false;
-    
+
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
-    
+
     this.startTyping();
   }
 

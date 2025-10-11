@@ -14,7 +14,7 @@ export class LoadingService {
   private state: LoadingState = {
     progress: 0,
     messages: [],
-    currentMessageIndex: 0
+    currentMessageIndex: 0,
   };
 
   private constructor() {
@@ -23,7 +23,7 @@ export class LoadingService {
       'Loading portfolio data...',
       'Setting up components...',
       'Preparing animations...',
-      'Almost ready...'
+      'Almost ready...',
     ];
   }
 
@@ -40,8 +40,10 @@ export class LoadingService {
   public startLoading(): void {
     const progressBar = DOMUtils.getElement('loading-progress') as HTMLElement;
     const loadingText = document.querySelector(SELECTORS.LOADING_TEXT) as HTMLElement;
-    
-    if (!progressBar) return;
+
+    if (!progressBar) {
+      return;
+    }
 
     this.state.progress = 0;
     this.state.currentMessageIndex = 0;
@@ -80,7 +82,9 @@ export class LoadingService {
    * Update loading message based on progress
    */
   private updateLoadingMessage(loadingText: HTMLElement | null): void {
-    if (!loadingText) return;
+    if (!loadingText) {
+      return;
+    }
 
     const { progress, currentMessageIndex, messages } = this.state;
 
@@ -107,6 +111,9 @@ export class LoadingService {
     const loadingScreen = DOMUtils.getElement('loading-screen') as HTMLElement;
     const loadingText = document.querySelector(SELECTORS.LOADING_TEXT) as HTMLElement;
     const mainContainer = document.querySelector(SELECTORS.MAIN_CONTAINER) as HTMLElement;
+
+    // Update internal state to 100%
+    this.state.progress = 100;
 
     // Complete the progress bar to 100%
     if (progressBar) {

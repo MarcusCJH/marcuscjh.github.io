@@ -12,16 +12,20 @@ export class DataService {
         name: 'Marcus Chan',
         title: 'Full Stack Engineer & Cloud Architect',
         subtitle: 'Building the future with modern technologies',
-        typedMessages: ['Full Stack Engineer', 'Cloud Architect', 'Problem Solver']
+        typedMessages: ['Full Stack Engineer', 'Cloud Architect', 'Problem Solver'],
       },
       social: [
-        { name: "GitHub", url: "https://github.com/MarcusCJH", icon: "fab fa-github" },
-        { name: "LinkedIn", url: "https://www.linkedin.com/in/marcuschanjh", icon: "fab fa-linkedin" },
-        { name: "Telegram", url: "https://t.me/marcuscjh", icon: "fab fa-telegram" }
+        { name: 'GitHub', url: 'https://github.com/MarcusCJH', icon: 'fab fa-github' },
+        {
+          name: 'LinkedIn',
+          url: 'https://www.linkedin.com/in/marcuschanjh',
+          icon: 'fab fa-linkedin',
+        },
+        { name: 'Telegram', url: 'https://t.me/marcuscjh', icon: 'fab fa-telegram' },
       ],
       navigation: [],
       showcase: [],
-      timeline: []
+      timeline: [],
     };
   }
 
@@ -41,10 +45,10 @@ export class DataService {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      this.data = await response.json() as PortfolioData;
+      this.data = (await response.json()) as PortfolioData;
       return this.data;
-    } catch (error) {
-      console.error('Failed to load data:', error);
+    } catch {
+      // Failed to load data - using fallback data
       this.data = this.fallbackData;
       return this.data;
     }

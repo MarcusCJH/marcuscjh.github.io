@@ -12,7 +12,9 @@ export class ParticleSystem {
 
   private init(): void {
     this.container = DOMUtils.getElement('particles-container') as HTMLElement;
-    if (!this.container) return;
+    if (!this.container) {
+      return;
+    }
 
     this.startParticleGeneration();
   }
@@ -24,12 +26,14 @@ export class ParticleSystem {
   }
 
   private createParticle(): void {
-    if (!this.container) return;
+    if (!this.container) {
+      return;
+    }
 
     const particle = document.createElement('div');
     particle.className = 'particle';
     particle.style.left = Math.random() * 100 + '%';
-    particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    particle.style.animationDuration = Math.random() * 3 + 3 + 's';
     particle.style.animationDelay = Math.random() * 2 + 's';
 
     this.container.appendChild(particle);

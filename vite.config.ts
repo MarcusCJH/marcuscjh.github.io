@@ -1,14 +1,16 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/', // GitHub Pages base path
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: undefined
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
       }
     }
   },
@@ -21,10 +23,10 @@ export default defineConfig({
     open: true
   },
   publicDir: 'public',
-  assetsInclude: ['**/*.json'], // Include JSON files as assets
+  assetsInclude: ['**/*.json'],
   resolve: {
     alias: {
       '@': '/src'
     }
   }
-})
+});

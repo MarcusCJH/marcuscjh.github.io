@@ -90,15 +90,3 @@ export interface TypedTextState {
   isDeleting: boolean;
   messages: string[];
 }
-
-export interface DragState {
-  isDragging: boolean;
-  startX: number;
-  scrollLeft: number;
-}
-
-export interface TouchState {
-  startX: number;
-  startY: number;
-  isScrolling: boolean;
-}
