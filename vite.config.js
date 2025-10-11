@@ -21,5 +21,10 @@ export default defineConfig({
     open: true
   },
   publicDir: 'public',
-  assetsInclude: ['**/*.json'] // Include JSON files as assets
+  assetsInclude: ['**/*.json'], // Include JSON files as assets
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  }
 })
