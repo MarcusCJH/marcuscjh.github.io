@@ -14,10 +14,14 @@ export class MatrixBackground {
 
   private init(): void {
     this.canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement;
-    if (!this.canvas) return;
+    if (!this.canvas) {
+      return;
+    }
 
     this.ctx = this.canvas.getContext('2d');
-    if (!this.ctx) return;
+    if (!this.ctx) {
+      return;
+    }
 
     this.setupCanvas();
     this.setupCharacters();
@@ -27,8 +31,10 @@ export class MatrixBackground {
   }
 
   private setupCanvas(): void {
-    if (!this.canvas) return;
-    
+    if (!this.canvas) {
+      return;
+    }
+
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
   }
@@ -39,14 +45,18 @@ export class MatrixBackground {
   }
 
   private setupDrops(): void {
-    if (!this.canvas) return;
-    
+    if (!this.canvas) {
+      return;
+    }
+
     const columns = this.canvas.width / this.fontSize;
     this.drops = Array(Math.floor(columns)).fill(1);
   }
 
   private startAnimation(): void {
-    if (!this.canvas || !this.ctx) return;
+    if (!this.canvas || !this.ctx) {
+      return;
+    }
 
     // Use setInterval exactly like the original implementation
     this.animationId = setInterval(() => {
@@ -55,7 +65,9 @@ export class MatrixBackground {
   }
 
   private drawMatrix(): void {
-    if (!this.canvas || !this.ctx) return;
+    if (!this.canvas || !this.ctx) {
+      return;
+    }
 
     // Create trailing effect
     this.ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';

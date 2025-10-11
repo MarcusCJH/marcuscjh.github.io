@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "MarcusCJH"
+    assignees:
+      - "MarcusCJH"
+    commit-message:
+      prefix: "chore"
+      include: "scope"

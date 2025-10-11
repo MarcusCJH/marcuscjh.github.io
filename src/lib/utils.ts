@@ -3,11 +3,11 @@
 /**
  * Debounce function for better performance
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
+  let timeout: ReturnType<typeof setTimeout>;
   return function executedFunction(...args: Parameters<T>): void {
     const later = () => {
       clearTimeout(timeout);
@@ -21,7 +21,7 @@ export function debounce<T extends (...args: any[]) => any>(
 /**
  * Throttle function to limit function execution frequency
  */
-export function throttle<T extends (...args: any[]) => any>(
+export function throttle<T extends (...args: unknown[]) => unknown>(
   func: T,
   limit: number
 ): (...args: Parameters<T>) => void {
@@ -70,7 +70,7 @@ export function formatDate(dateString: string): string {
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   });
 }
 

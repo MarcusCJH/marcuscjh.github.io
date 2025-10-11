@@ -14,8 +14,8 @@ export const APP_CONFIG = {
     DELETE: 50,
     TYPE: 100,
     PAUSE: 2000,
-    NEXT_MESSAGE: 500
-  }
+    NEXT_MESSAGE: 500,
+  },
 } as const;
 
 export const CSS_CLASSES = {
@@ -23,7 +23,7 @@ export const CSS_CLASSES = {
   ACTIVE: 'active',
   VISIBLE: 'visible',
   SCROLLED: 'scrolled',
-  SCROLLING: 'scrolling'
+  SCROLLING: 'scrolling',
 } as const;
 
 export const SELECTORS = {
@@ -39,11 +39,11 @@ export const SELECTORS = {
   MODAL_OVERLAY: '#modal-overlay',
   MODAL_CLOSE: '#modal-close',
   MATRIX_CANVAS: '#matrix-canvas',
-  PARTICLES_CONTAINER: '#particles-container'
+  PARTICLES_CONTAINER: '#particles-container',
 } as const;
 
 export const BREAKPOINTS = {
   MOBILE: 768,
   TABLET: 1024,
-  DESKTOP: 1200
+  DESKTOP: 1200,
 } as const;

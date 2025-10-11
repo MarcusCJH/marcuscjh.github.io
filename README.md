@@ -1,9 +1,8 @@
-# Portfolio
-This repository contains a modern static portfolio webpage, deployed using GitHub Pages. It is built with HTML, CSS, and TypeScript using Vite.
+# Marcus Chan - Portfolio
 
-# Preview
+A modern, responsive portfolio website built with TypeScript, Vite, and modern web technologies. Features interactive animations, responsive design, and automated CI/CD deployment.
+
 ![Preview](./public/showcase/marcuscjh/marcuscjh-bg.PNG)
-
 
 ## 🚀 Quick Start
 
@@ -11,8 +10,11 @@ This repository contains a modern static portfolio webpage, deployed using GitHu
 # Install dependencies
 npm install
 
-# Start development
+# Start development server
 npm run dev
+
+# Run tests
+npm run test
 
 # Build for production
 npm run build
@@ -21,36 +23,36 @@ npm run build
 npm run deploy
 ```
 
-## 📁 Structure
+## 📁 Project Structure
 
 ```
-├── public/data.json           # Site content
 ├── src/
-│   ├── main.ts               # Main TypeScript entry point
-│   ├── types/index.ts        # TypeScript interfaces
-│   ├── lib/                  # Utilities (constants, DOM, utils)
-│   ├── services/             # Data and loading services
-│   ├── components/           # UI components
-│   └── styles/style.css      # Styles
-├── index.html                # Main page
-├── tsconfig.json             # TypeScript config
-└── vite.config.ts            # Build config
+│   ├── main.ts               # Main application entry
+│   ├── services/             # Data & loading services
+│   ├── components/           # UI components (Matrix, Particles, TypedText)
+│   ├── lib/                  # Utilities & constants
+│   ├── styles/               # CSS with modern features
+│   └── test/                 # Unit tests (76% coverage)
+├── public/data.json          # Site content & configuration
+└── .github/workflows/        # CI/CD automation
 ```
 
 ## 🎨 Customization
 
 Edit `public/data.json` to update:
-- Personal info
-- Projects
-- Timeline
-- Social links
+- Personal information
+- Project showcase
+- Timeline entries
+- Social media links
 
 ## 🛠️ Tech Stack
 
-- **TypeScript** - Type-safe JavaScript
-- **Vite** - Fast build tool and dev server
+- **TypeScript** - Type-safe development
+- **Vite** - Fast build tool & dev server
+- **Vitest** - Modern testing framework
+- **ESLint + Prettier** - Code quality & formatting
 - **CSS3** - Modern styling with custom properties
-- **GitHub Pages** - Static site hosting
+- **GitHub Actions** - Automated CI/CD
 
 
 ---
