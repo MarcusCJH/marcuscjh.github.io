@@ -13,17 +13,48 @@ class ModernPortfolio {
         // Cache DOM elements for better performance
         this.cachedElements = {};
         
+        // Hide main content initially
+        this.hideMainContent();
+        
         this.init();
     }
 
     async init() {
         this.showLoading();
-        await this.loadData();
+        
+        // Start loading data and components in parallel
+        const dataPromise = this.loadData();
+        const minLoadingTime = 2000; // Minimum 2 seconds loading time
+        const startTime = Date.now();
+        
+        // Wait for data to load
+        await dataPromise;
+        
+        // Initialize components
         this.initializeComponents();
         this.setupEventListeners();
         this.startAnimations();
-        // Only hide loading after everything is ready
+        
+        // Ensure minimum loading time has passed
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+        
+        if (remainingTime > 0) {
+            await new Promise(resolve => setTimeout(resolve, remainingTime));
+        }
+        
+        // Only hide loading after everything is ready and minimum time has passed
         this.hideLoading();
+    }
+
+    // Hide main content initially to prevent flash
+    hideMainContent() {
+        const mainContainer = document.querySelector('.main-container');
+        if (mainContainer) {
+            mainContainer.style.opacity = '0';
+            mainContainer.style.visibility = 'hidden';
+            mainContainer.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+        }
     }
 
     // Utility function to get DOM elements with caching
@@ -54,24 +85,82 @@ class ModernPortfolio {
 
     showLoading() {
         const progressBar = this.getElement('loading-progress');
+        const loadingText = document.querySelector('.loading-text');
         if (!progressBar) return;
         
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 15;
-            if (progress > 100) {
-                progress = 100;
-                clearInterval(interval);
+        this.loadingProgress = 0;
+        this.loadingMessages = [
+            'Initializing systems...',
+            'Loading portfolio data...',
+            'Setting up components...',
+            'Preparing animations...',
+            'Almost ready...'
+        ];
+        this.currentMessageIndex = 0;
+        
+        // Update loading text
+        if (loadingText) {
+            loadingText.textContent = this.loadingMessages[0];
+        }
+        
+        this.loadingInterval = setInterval(() => {
+            // More realistic progress increments
+            const increment = Math.random() * 8 + 2; // 2-10% increments
+            this.loadingProgress += increment;
+            
+            // Update loading message based on progress
+            if (loadingText && this.loadingProgress > 20 && this.currentMessageIndex === 0) {
+                this.currentMessageIndex = 1;
+                loadingText.textContent = this.loadingMessages[1];
+            } else if (loadingText && this.loadingProgress > 40 && this.currentMessageIndex === 1) {
+                this.currentMessageIndex = 2;
+                loadingText.textContent = this.loadingMessages[2];
+            } else if (loadingText && this.loadingProgress > 60 && this.currentMessageIndex === 2) {
+                this.currentMessageIndex = 3;
+                loadingText.textContent = this.loadingMessages[3];
+            } else if (loadingText && this.loadingProgress > 80 && this.currentMessageIndex === 3) {
+                this.currentMessageIndex = 4;
+                loadingText.textContent = this.loadingMessages[4];
             }
-            progressBar.style.width = `${progress}%`;
-        }, 100);
+            
+            if (this.loadingProgress > 95) {
+                this.loadingProgress = 95; // Stop at 95% until everything is ready
+                clearInterval(this.loadingInterval);
+            }
+            progressBar.style.width = `${this.loadingProgress}%`;
+        }, 150); // Slightly slower updates
     }
 
     hideLoading() {
+        const progressBar = this.getElement('loading-progress');
         const loadingScreen = this.getElement('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
+        const loadingText = document.querySelector('.loading-text');
+        const mainContainer = document.querySelector('.main-container');
+        
+        // Complete the progress bar to 100%
+        if (progressBar) {
+            progressBar.style.width = '100%';
         }
+        
+        // Show final message
+        if (loadingText) {
+            loadingText.textContent = 'Ready!';
+        }
+        
+        // Wait a moment for the user to see 100% and "Ready!", then start transition
+        setTimeout(() => {
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+            }
+            
+            // Wait for the CSS transition to complete before showing main content
+            setTimeout(() => {
+                if (mainContainer) {
+                    mainContainer.style.opacity = '1';
+                    mainContainer.style.visibility = 'visible';
+                }
+            }, 500); // Match the CSS transition duration
+        }, 500);
     }
 
     async loadData() {
