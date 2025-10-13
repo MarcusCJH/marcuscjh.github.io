@@ -21,8 +21,9 @@
     "test:watch": "vitest --watch",
     "test:services": "vitest run src/services/*.test.ts",
     "test:components": "vitest run src/components/*.test.ts",
+    "test:timeline": "vitest run src/test/timeline.test.ts",
     "serve": "vite preview --port 4173",
-    "pre-commit": "npm run lint:check && npm run format:check && npx tsc --noEmit && npm run test:run",
+    "pre-commit": "npm run lint && npm run format && npx tsc --noEmit && npm run test:run",
     "quality-check": "npm run pre-commit"
   },
   "repository": {

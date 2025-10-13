@@ -182,8 +182,8 @@ class Portfolio {
           const matchesFilter = filter === 'all' || item.category === filter;
           const matchesSearch =
             search === '' ||
-            item.company.toLowerCase().includes(this.timelineState.currentSearch) ||
-            item.title.toLowerCase().includes(this.timelineState.currentSearch);
+            item.company.toLowerCase().includes(search.toLowerCase()) ||
+            item.title.toLowerCase().includes(search.toLowerCase());
           return matchesFilter && matchesSearch;
         })
         .sort((a, b) => b.order - a.order);
@@ -191,7 +191,7 @@ class Portfolio {
       timelineContainer.innerHTML = this.timelineState.filteredItems
         .map(
           (item, index) => `
-        <div class="timeline-item" data-category="${item.category}" data-index="${index}" data-timeline-item>
+        <div class="timeline-item visible" data-category="${item.category}" data-index="${index}" data-timeline-item>
           <div class="timeline-dot ${item.category}">
             <i class="${this.getTimelineIcon(item.category)}"></i>
           </div>
@@ -222,12 +222,10 @@ class Portfolio {
     // Filter functionality
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
+        const filterValue = (btn as HTMLElement).dataset.filter || 'all';
         filterButtons.forEach(b => b.classList.remove(CSS_CLASSES.ACTIVE));
         btn.classList.add(CSS_CLASSES.ACTIVE);
-        renderTimeline(
-          (btn as HTMLElement).dataset.filter || 'all',
-          this.timelineState.currentSearch
-        );
+        renderTimeline(filterValue, this.timelineState.currentSearch);
       });
     });
 
