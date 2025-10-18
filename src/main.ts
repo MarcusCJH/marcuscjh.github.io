@@ -173,6 +173,11 @@ class Portfolio {
       return;
     }
 
+    // Drag-to-scroll state
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
     const renderTimeline = (filter: string = 'all', search: string = ''): void => {
       this.timelineState.currentFilter = filter;
       this.timelineState.currentSearch = search.toLowerCase();
@@ -243,6 +248,48 @@ class Portfolio {
       }, APP_CONFIG.THROTTLE_DELAY);
 
       timelineWrapper.addEventListener('scroll', debouncedTimelineScroll);
+
+      // Drag-to-scroll functionality (desktop only)
+      const isDesktop = window.innerWidth > 768;
+      
+      if (isDesktop) {
+        // Mouse down - start drag
+        timelineWrapper.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          timelineWrapper.style.cursor = 'grabbing';
+          timelineWrapper.style.userSelect = 'none';
+          startX = e.pageX - timelineWrapper.offsetLeft;
+          scrollLeft = timelineWrapper.scrollLeft;
+        });
+
+        // Mouse move - drag scroll
+        timelineWrapper.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          e.preventDefault();
+          const x = e.pageX - timelineWrapper.offsetLeft;
+          const walk = (x - startX) * 2; // Scroll speed multiplier
+          timelineWrapper.scrollLeft = scrollLeft - walk;
+        });
+
+        // Mouse up - end drag
+        timelineWrapper.addEventListener('mouseup', () => {
+          isDragging = false;
+          timelineWrapper.style.cursor = 'grab';
+          timelineWrapper.style.userSelect = 'none';
+        });
+
+        // Mouse leave - end drag
+        timelineWrapper.addEventListener('mouseleave', () => {
+          isDragging = false;
+          timelineWrapper.style.cursor = 'grab';
+          timelineWrapper.style.userSelect = 'none';
+        });
+
+        // Prevent default drag behavior
+        timelineWrapper.addEventListener('dragstart', (e) => {
+          e.preventDefault();
+        });
+      }
     }
 
     renderTimeline();
