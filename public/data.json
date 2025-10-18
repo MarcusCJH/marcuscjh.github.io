@@ -177,8 +177,8 @@
     {
       "category": "work",
       "order": 1,
-      "startDate": "Jul 13",
-      "endDate": "Dec 13",
+      "startDate": "Jul 2013",
+      "endDate": "Dec 2013",
       "company": "Hitachi",
       "title": "IT System Architecture Research Intern",
       "modalContent": {
@@ -198,8 +198,8 @@
     {
       "category": "work",
       "order": 2,
-      "startDate": "Sep 14",
-      "endDate": "Sep 16",
+      "startDate": "Sep 2014",
+      "endDate": "Sep 2016",
       "company": "Singapore Police Force",
       "title": "Public Transport Security Command Officer",
       "modalContent": {
@@ -229,8 +229,8 @@
     {
       "category": "work",
       "order": 4,
-      "startDate": "Jul 17",
-      "endDate": "Jan 18",
+      "startDate": "Jul 2017",
+      "endDate": "Jan 2018",
       "company": "Veev Interactive",
       "title": "Junior Software Developer",
       "modalContent": {
@@ -262,7 +262,7 @@
     {
       "category": "certification",
       "order": 6,
-      "startDate": "Jun 19",
+      "startDate": "Jun 2019",
       "company": "Alibaba Cloud",
       "title": "Associate Cloud Computing",
       "modalContent": {
@@ -278,7 +278,7 @@
     {
       "category": "certification",
       "order": 7,
-      "startDate": "Dec 19",
+      "startDate": "Jun 2019",
       "company": "Alibaba Cloud",
       "title": "Professional Cloud Computing",
       "modalContent": {
@@ -294,8 +294,8 @@
     {
       "category": "work",
       "order":8,
-      "startDate": "Apr 19",
-      "endDate": "Mar 21",
+      "startDate": "Apr 2019",
+      "endDate": "Mar 2021",
       "company": "Whale Cloud",
       "title": "Software Delivery Engineer",
       "modalContent": {
@@ -320,7 +320,7 @@
     {
       "category": "certification",
       "order": 9,
-      "startDate": "Mar 21",
+      "startDate": "Mar 2021",
       "company": "Scrum Alliance",
       "title": "Certified Scrum Master",
       "modalContent": {
@@ -336,7 +336,7 @@
     {
       "category": "certification",
       "order": 10,
-      "startDate": "Apr 21",
+      "startDate": "Apr 2021",
       "company": "Axelos",
       "title": "ITIL v4 Foundation",
       "modalContent": {
@@ -352,7 +352,7 @@
     {
       "category": "certification",
       "order": 11,
-      "startDate": "Jun 21",
+      "startDate": "Jun 2021",
       "company": "Pegasystems",
       "title": "PEGA System Architect",
       "modalContent": {
@@ -368,7 +368,7 @@
     {
       "category": "certification",
       "order": 12,
-      "startDate": "Mar 22",
+      "startDate": "Mar 2022",
       "company": "Amazon Web Services",
       "title": "AWS Certified Cloud Practitioner",
       "modalContent": {
@@ -384,7 +384,7 @@
     {
       "category": "certification",
       "order": 13,
-      "startDate": "Sep 22",
+      "startDate": "Sep 2022",
       "company": "Scrum Alliance",
       "title": "Certified Product Owner",
       "modalContent": {
@@ -400,7 +400,7 @@
     {
       "category": "certification",
       "order": 14,
-      "startDate": "Aug 23",
+      "startDate": "Aug 2023",
       "company": "Google Cloud",
       "title": "Digital Leader",
       "modalContent": {
@@ -416,7 +416,7 @@
     {
       "category": "certification",
       "order": 15,
-      "startDate": "Mar 24",
+      "startDate": "Mar 2024",
       "company": "Databricks",
       "title": "Certified Data Engineer Associate",
       "modalContent": {
@@ -432,7 +432,7 @@
     {
       "category": "certification",
       "order": 16,
-      "startDate": "Jul 24",
+      "startDate": "Jul 2024",
       "company": "HashiCorp",
       "title": "Terraform Associate",
       "modalContent": {
@@ -448,7 +448,7 @@
     {
       "category": "work",
       "order": 17,
-      "startDate": "Apr 21",
+      "startDate": "Apr 2021",
       "endDate": "Present",
       "company": "Accenture",
       "title": "Custom Software Engineering Specialist",
