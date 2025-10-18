@@ -251,10 +251,10 @@ class Portfolio {
 
       // Drag-to-scroll functionality (desktop only)
       const isDesktop = window.innerWidth > 768;
-      
+
       if (isDesktop) {
         // Mouse down - start drag
-        timelineWrapper.addEventListener('mousedown', (e) => {
+        timelineWrapper.addEventListener('mousedown', e => {
           isDragging = true;
           timelineWrapper.style.cursor = 'grabbing';
           timelineWrapper.style.userSelect = 'none';
@@ -263,8 +263,10 @@ class Portfolio {
         });
 
         // Mouse move - drag scroll
-        timelineWrapper.addEventListener('mousemove', (e) => {
-          if (!isDragging) return;
+        timelineWrapper.addEventListener('mousemove', e => {
+          if (!isDragging) {
+            return;
+          }
           e.preventDefault();
           const x = e.pageX - timelineWrapper.offsetLeft;
           const walk = (x - startX) * 2; // Scroll speed multiplier
@@ -286,7 +288,7 @@ class Portfolio {
         });
 
         // Prevent default drag behavior
-        timelineWrapper.addEventListener('dragstart', (e) => {
+        timelineWrapper.addEventListener('dragstart', e => {
           e.preventDefault();
         });
       }
