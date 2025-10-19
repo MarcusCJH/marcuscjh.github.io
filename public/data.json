@@ -265,7 +265,7 @@
       "order": 6,
       "startDate": "Jun 2019",
       "company": "Alibaba Cloud",
-      "title": "Associate Cloud Computing",
+      "title": "Alibaba Cloud Associate - Cloud Computing",
       "modalContent": {
         "title": "Alibaba Cloud Associate - Cloud Computing",
         "subtitle": "Jun 2019",
@@ -281,7 +281,7 @@
       "order": 7,
       "startDate": "Jun 2019",
       "company": "Alibaba Cloud",
-      "title": "Professional Cloud Computing",
+      "title": "Alibaba Cloud Professional - Cloud Computing",
       "modalContent": {
         "title": "Alibaba Cloud Professional - Cloud Computing",
         "subtitle": "Dec 2019",
@@ -323,9 +323,9 @@
       "order": 9,
       "startDate": "Mar 2021",
       "company": "Scrum Alliance",
-      "title": "Certified Scrum Master",
+      "title": "Certified ScrumMaster® (CSM®)",
       "modalContent": {
-        "title": "Certified Scrum Master",
+        "title": "Certified ScrumMaster® (CSM®)",
         "subtitle": "Mar 2021",
         "location": "Online",
         "details": [
@@ -339,9 +339,9 @@
       "order": 10,
       "startDate": "Apr 2021",
       "company": "Axelos",
-      "title": "ITIL v4 Foundation",
+      "title": "ITIL® Foundation Certificate in IT Service Management",
       "modalContent": {
-        "title": "ITIL v4 Foundation",
+        "title": "ITIL® Foundation Certificate in IT Service Management",
         "subtitle": "Apr 2021",
         "location": "Online",
         "details": [
@@ -355,9 +355,9 @@
       "order": 11,
       "startDate": "Jun 2021",
       "company": "Pegasystems",
-      "title": "PEGA System Architect",
+      "title": "Certified System Architect (CSA)",
       "modalContent": {
-        "title": "PEGA Certified System Architect",
+        "title": "Certified System Architect (CSA)",
         "subtitle": "Jun 2021",
         "location": "Online",
         "details": [
@@ -387,9 +387,9 @@
       "order": 13,
       "startDate": "Sep 2022",
       "company": "Scrum Alliance",
-      "title": "Certified Product Owner",
+      "title": "Certified Scrum Product Owner® (CSPO®)",
       "modalContent": {
-        "title": "Certified Scrum Product Owner",
+        "title": "Certified Scrum Product Owner® (CSPO®)",
         "subtitle": "Sep 2022",
         "location": "Online",
         "details": [
@@ -403,9 +403,9 @@
       "order": 14,
       "startDate": "Aug 2023",
       "company": "Google Cloud",
-      "title": "Digital Leader",
+      "title": "Cloud Digital Leader",
       "modalContent": {
-        "title": "Google Cloud Digital Leader",
+        "title": "Cloud Digital Leader",
         "subtitle": "Aug 2023",
         "location": "Online",
         "details": [
@@ -419,7 +419,7 @@
       "order": 15,
       "startDate": "Mar 2024",
       "company": "Databricks",
-      "title": "Certified Data Engineer Associate",
+      "title": "Databricks Certified Data Engineer Associate",
       "modalContent": {
         "title": "Databricks Certified Data Engineer Associate",
         "subtitle": "Mar 2024",
@@ -435,9 +435,9 @@
       "order": 16,
       "startDate": "Jul 2024",
       "company": "HashiCorp",
-      "title": "Terraform Associate",
+      "title": "HashiCorp Certified: Terraform Associate (003)",
       "modalContent": {
-        "title": "HashiCorp Terraform Associate",
+        "title": "HashiCorp Certified: Terraform Associate (003)",
         "subtitle": "Jul 2024",
         "location": "Online",
         "details": [
@@ -447,8 +447,23 @@
       }
     },
     {
-      "category": "work",
+      "category": "certification",
       "order": 17,
+      "startDate": "Apr 2025",
+      "company": "Amazon Web Services",
+      "title": "AWS Certified AI Practitioner",
+      "modalContent": {
+        "title": "AWS Certified AI Practitioner",
+        "subtitle": "Apr 2025",
+        "location": "Online",
+        "details": [
+          "Sagemaker, Bedrock, AI"
+        ]
+      }
+    },
+    {
+      "category": "work",
+      "order": 18,
       "startDate": "Apr 2021",
       "endDate": "Present",
       "company": "Accenture",
