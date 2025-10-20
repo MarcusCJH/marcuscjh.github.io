@@ -150,6 +150,38 @@
           }
         ]
       }
+    },
+    {
+      "id": "shareshed",
+      "title": "ShareShed",
+      "backgroundImage": "./showcase/shareshed/shareshed.png",
+      "technologies": ["Python", "Django", "HTML", "JavaScript", "Bootstrap"],
+      "modalContent": {
+        "title": "ShareShed: Library of Things",
+        "description": "A Brisbane-based 'Library of Things' platform enabling members to borrow useful items with an annual membership. Built as part of my DECO3801 course to replace limitations in the third-party system (downtime, limited customization, mobile access issues) with a responsive, role-based web app for customers and librarians/admins. Features include membership management, catalogue browsing, lending/returns, operating hours configuration, and an admin dashboard.",
+        "links": [
+          {
+            "text": "View Source Code",
+            "url": "https://github.com/MarcusCJH/UQ-Deco3801-ShareShed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lulzcloud",
+      "title": "LULZ CLOUD",
+      "backgroundImage": "./showcase/lulzcloud/lulzcloud.png",
+      "technologies": ["Spark", "Cassandra", "Docker", "Nginx", "PHP", "Scala"],
+      "modalContent": {
+        "title": "INFS3208/INFS7208 Cloud Computing Project",
+        "description": "University of Queensland cloud computing assignment using Cassandra as the NoSQL datastore with CRUD functionality, Spark Job Server integration, and Docker + Nginx deployment. Awarded Project Excellence Award (Best Project Demo) by Prof Xue Li in Oct 2018.",
+        "links": [
+          {
+            "text": "View Source Code",
+            "url": "https://github.com/MarcusCJH/lulzcloud"
+          }
+        ]
+      }
     }
   ],
   "skills": {
