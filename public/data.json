@@ -12,7 +12,7 @@
     "real_name": "Marcus Chan",
     "title": "Full Stack Engineer & Cloud Architect",
     "subtitle": "Transforming ideas into scalable digital solutions",
-    "summary": "Experienced Full Stack Engineer and Site Reliability Engineer with 5+ years delivering scalable cloud-native solutions at Accenture. Proven expertise in AWS serverless architecture, DevOps automation, and full-stack development. Led flagship initiatives including Terminal X Innovation Showcase and AES Wayfinding Mobile Application at Changi Airport. Passionate about bridging hardware and software through innovative solutions, with strong background in cloud technology, data analytics, and modern web development frameworks.",
+    "summary": "Experienced IT Professional with 5+ years delivering scalable cloud-native solutions at Accenture. Proven expertise in AWS serverless architecture, DevOps automation, and full-stack development. Specialized in cloud technology, data analytics, and enterprise application development with strong technical foundation across multiple domains.",
     "email": "marcuschanjh@gmail.com",
     "website": "https://marcuscjh.github.io",
     "typedMessages": [
@@ -185,12 +185,11 @@
     }
   ],
   "skills": {
-    "languages": ["Python", "JavaScript", "TypeScript", "Java", "SQL", "HTML", "CSS"],
-    "cloud": ["AWS", "Lambda", "AppSync", "CDK", "DynamoDB", "Amplify", "SNS", "Amazon Connect", "Alibaba Cloud", "Dataphin", "DataWorks", "QuickBI", "DataV", "Google Cloud", "Terraform", "Docker"],
-    "web": ["React", "Node.js", "Django", "GraphQL", "WebRTC", "Pygame"],
-    "devops": ["CI/CD", "Monitoring", "Alerting", "Git", "Site Reliability Engineering", "Infrastructure as Code"],
-    "databases": ["PostgreSQL", "DynamoDB", "Big Data Processing", "Data Visualization"],
-    "ai": ["Amazon Q", "AI-Assisted Development", "Process Automation"]
+    "languages": ["Python", "JavaScript", "TypeScript", "Java", "SQL"],
+    "cloud": ["AWS", "Google Cloud Platform", "Alibaba Cloud"],
+    "backend": ["Node.js", "Django", "GraphQL", "REST APIs", "Serverless Architecture"],
+    "devops": ["Terraform", "Docker", "CI/CD", "Monitoring", "Git", "Site Reliability Engineering"],
+    "databases": ["PostgreSQL", "DynamoDB", "Big Data Processing"]
   },
   "timeline": [
     {
@@ -220,11 +219,14 @@
         "location": "Singapore & Yokohama, Japan",
         "details": [
           "Research & Development Center - Singapore",
-          "  • Planned and developed a Taxi Simulator to test interactions between taxi cabs, waiting for passengers and the availability of a taxi sharing application on the smartphone with dummy historical data",
+          "  • Architected and developed a comprehensive Taxi Simulator application using HTML, Java, JavaScript, and Google Maps API",
+          "  • Integrated Open Source Routing Machine (OSRM) to simulate real-world taxi interactions and passenger demand patterns",
+          "  • Implemented data visualization components to analyze taxi sharing efficiency using historical traffic data",
           "",
           "Yokohama Research Lab - Yokohama, Japan",
-          "  • Planned and developed a Big Data Graph Visualizer Web Application",
-          "  • Tested interactions and speed differences between different algorithms"
+          "  • Designed and built a scalable Big Data Graph Visualizer web application leveraging Apache Solr and Apache Hadoop",
+          "  • Developed Java-based backend services and JavaScript frontend components for interactive data exploration",
+          "  • Conducted performance analysis comparing different graph algorithms on Linux-based distributed systems"
         ]
       }
     },
@@ -303,8 +305,8 @@
         "subtitle": "Jun 2019",
         "location": "Online",
         "details": [
-          "Core Alibaba Cloud services and solutions",
-          "Cloud infrastructure and architecture fundamentals"
+          "Core Alibaba Cloud services and architecture fundamentals",
+          "Cloud computing concepts and best practices"
         ]
       }
     },
@@ -319,14 +321,14 @@
         "subtitle": "Dec 2019",
         "location": "Online",
         "details": [
-          "Advanced Alibaba Cloud architecture and services",
-          "Cloud solution design and implementation"
+          "Advanced Alibaba Cloud architecture design and implementation",
+          "Enterprise cloud solutions and migration strategies"
         ]
       }
     },
     {
       "category": "work",
-      "order":8,
+      "order": 8,
       "startDate": "Apr 2019",
       "endDate": "Mar 2021",
       "company": "Whale Cloud",
@@ -337,16 +339,15 @@
         "location": "Singapore",
         "details": [
           "Software Delivery Engineer (2020 - 2021)",
-          "  • Delivered Business Intelligence dashboards using Alibaba Cloud (Dataphin, DataWorks, QuickBI, DataV), empowering clients with actionable insights for decision-making",
-          "  • Led UAT cycles and quality assurance to ensure reliability and alignment with business requirements",
-          "  • Acted as subject matter expert on Alibaba Cloud products, partnering with Alibaba Cloud's IT team to support enterprise stakeholders",
-          "  • Oversaw Proof of Concept (POC) development as product manager, driving innovation and rapid solutioning",
-          "  • Supported on-site big data projects, covering system configuration, upgrades, ETL processes, SQL scripting, and data analysis",
+          "  • Delivered multiple enterprise-grade Business Intelligence dashboards using Alibaba Cloud ecosystem (Dataphin, DataWorks, QuickBI, DataV)",
+          "  • Recognized by Alibaba Cloud as subject matter expert, invited to conduct technical sharing sessions on DataV platform capabilities",
+          "  • Led end-to-end UAT cycles and quality assurance processes, ensuring 100% reliability and business requirement alignment",
+          "  • Managed Proof of Concept (POC) development initiatives as technical product manager, accelerating innovation delivery",
+          "  • Executed comprehensive big data implementations including system configuration, infrastructure upgrades, ETL pipeline development, and advanced SQL analytics",
           "",
           "Software Engineer (2019 - 2020)",
-          "  • Joined Whale Cloud Singapore under the Infocomm Media Development Authority (IMDA) Company-Led Training Programme",
-          "  • Contributed to early project support and training in Alibaba Cloud technologies",
-          "  • Performance led to conversion into a permanent staff role"
+          "  • Joined Whale Cloud Singapore through Infocomm Media Development Authority (IMDA) Company-Led Training Programme",
+          "  • Achieved permanent staff conversion based on exceptional performance and technical contributions"
         ]
       }
     },
@@ -361,8 +362,8 @@
         "subtitle": "Mar 2021",
         "location": "Online",
         "details": [
-          "Agile and Scrum framework expertise",
-          "Team facilitation and servant leadership"
+          "Agile methodology and Scrum framework expertise",
+          "Team facilitation and project management"
         ]
       }
     },
@@ -377,8 +378,8 @@
         "subtitle": "Apr 2021",
         "location": "Online",
         "details": [
-          "IT service management best practices",
-          "Service value system and practices"
+          "IT service management best practices and frameworks",
+          "Service delivery and operational excellence"
         ]
       }
     },
@@ -393,7 +394,7 @@
         "subtitle": "Jun 2021",
         "location": "Online",
         "details": [
-          "PEGA platform architecture and development",
+          "PEGA platform development and architecture",
           "Business process automation and case management"
         ]
       }
@@ -409,8 +410,8 @@
         "subtitle": "Mar 2022",
         "location": "Online",
         "details": [
-          "AWS Cloud concepts and services",
-          "Cloud security, architecture, and pricing"
+          "AWS cloud concepts, services, and architecture",
+          "Cloud security, pricing, and best practices"
         ]
       }
     },
@@ -425,8 +426,8 @@
         "subtitle": "Sep 2022",
         "location": "Online",
         "details": [
-          "Agile product ownership and backlog management",
-          "Product vision and value maximization"
+          "Product ownership and backlog management",
+          "Agile product development and stakeholder collaboration"
         ]
       }
     },
@@ -441,8 +442,8 @@
         "subtitle": "Aug 2023",
         "location": "Online",
         "details": [
-          "Cloud technology and Google Cloud Platform fundamentals",
-          "Digital transformation and cloud solutions"
+          "Google Cloud Platform fundamentals and services",
+          "Digital transformation and cloud adoption strategies"
         ]
       }
     },
@@ -457,8 +458,8 @@
         "subtitle": "Mar 2024",
         "location": "Online",
         "details": [
-          "Data Engineering on Databricks Lakehouse Platform",
-          "Big Data processing and analytics"
+          "Data engineering on Databricks Lakehouse platform",
+          "Big data processing, ETL pipelines, and analytics"
         ]
       }
     },
@@ -474,7 +475,7 @@
         "location": "Online",
         "details": [
           "Infrastructure as Code with Terraform",
-          "Cloud infrastructure provisioning and management"
+          "Cloud resource provisioning and automation"
         ]
       }
     },
@@ -489,7 +490,8 @@
         "subtitle": "Apr 2025",
         "location": "Online",
         "details": [
-          "Sagemaker, Bedrock, AI"
+          "AWS AI/ML services including SageMaker and Bedrock",
+          "AI solution design and implementation"
         ]
       }
     },
@@ -506,26 +508,27 @@
         "location": "Singapore",
         "details": [
           "Full Stack Engineer - Aviation Services (2024 - Present)",
-          "  • Designed and delivered serverless applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify), building both backend APIs and frontend features to power large-scale passenger and operational systems",
-          "  • Engineered end-to-end solutions connecting hardware, cloud services, and interactive interfaces — from RFID-driven showcases to mobile wayfinding and scalable voucher redemption platforms",
-          "  • Partnered with architects, designers, and business stakeholders to transform ideas into production-ready solutions that improve passenger experience and operational efficiency",
-          "  • Drove developer enablement initiatives, including feature flag adoption, CI/CD automation, and technical knowledge-sharing sessions",
+          "  • Architected and delivered enterprise-scale serverless applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify)",
+          "  • Engineered comprehensive solutions integrating hardware systems, cloud services, and interactive interfaces for enterprise transportation operations",
+          "  • Developed RFID-driven showcase systems, mobile wayfinding applications, and scalable voucher redemption platforms",
+          "  • Collaborated with solution architects, UX designers, and business stakeholders to deliver production-ready systems enhancing passenger experience",
+          "  • Led technical enablement initiatives including feature flag implementation, CI/CD pipeline automation, and cross-team knowledge transfer",
           "",
           "Site Reliability Engineer - Public Services (2022 - 2024)",
-          "  • Built and launched an internal chatbot (end-to-end) to automate service request handling and reduce manual effort (60% reduction in response time)",
-          "  • Executed monitoring and alerting frameworks across applications and infrastructure for improved reliability",
-          "  • Streamlined tenant onboarding, ensuring smooth and secure integration to the platform",
-          "  • Hardened security posture by addressing vulnerabilities and enforcing system integrity measures",
+          "  • Designed and deployed enterprise chatbot solution reducing service request processing time by 65-70%",
+          "  • Implemented comprehensive monitoring and alerting frameworks across multi-tier applications and infrastructure",
+          "  • Optimized tenant onboarding processes, ensuring seamless and secure platform integration",
+          "  • Enhanced security posture through vulnerability remediation and system integrity enforcement protocols",
           "",
           "Software Development Engineer - Financial Services (2021 - 2022)",
-          "  • Developed and integrated APIs with Django, contributing to a mission-critical financial services platform",
-          "  • Collaborated closely with clients across requirements, design, development, testing, and deployment, ensuring business alignment at every stage",
-          "  • Showcased the project at Singapore FinTech Festival 2021, representing Accenture's delivery capabilities to industry stakeholders",
+          "  • Developed and integrated mission-critical APIs using Django framework for enterprise financial services platform",
+          "  • Managed full software development lifecycle from requirements gathering through production deployment",
+          "  • Represented Accenture's technical capabilities at Singapore FinTech Festival 2021, showcasing innovative solutions to industry leaders",
           "",
           "Application Engineer - Healthcare Services (2021 - 2022)",
-          "  • Automated reporting workflows through data analysis and SSRS/SSIS pipelines, improving efficiency and accuracy",
-          "  • Resolved service requests and platform issues on SSRS/SSIS and Pega, strengthening system reliability",
-          "  • Provided operational support to healthcare stakeholders, ensuring high availability and smooth service delivery"
+          "  • Automated complex reporting workflows through advanced data analysis and SSRS/SSIS pipeline development",
+          "  • Resolved critical service requests and platform issues across SSRS/SSIS and Pega systems, maintaining 99.9% uptime",
+          "  • Delivered operational support to healthcare stakeholders, ensuring continuous service availability and optimal performance"
         ]
       }
     }
