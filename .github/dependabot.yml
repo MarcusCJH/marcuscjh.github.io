@@ -3,8 +3,22 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 10
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    groups:
+      # Group all minor and patch updates together
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Group all major updates together (more risky, so separate)
+      major:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
     reviewers:
       - "MarcusCJH"
     assignees:
