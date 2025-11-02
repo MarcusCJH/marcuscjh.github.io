@@ -57,8 +57,53 @@ export interface Config {
   cvDriveId?: string;
 }
 
+export interface SEOMeta {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  author?: string;
+  robots?: string;
+}
+
+export interface OpenGraph {
+  type?: string;
+  url?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+export interface TwitterCard {
+  card?: string;
+  url?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+export interface SEODefaults {
+  url?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  author?: string;
+  robots?: string;
+  openGraph?: Partial<OpenGraph>;
+  twitter?: Partial<TwitterCard>;
+}
+
+export interface SEOConfig {
+  defaults?: SEODefaults;
+  meta?: SEOMeta;
+  openGraph?: OpenGraph;
+  twitter?: TwitterCard;
+  canonical?: string;
+  googleSiteVerification?: string;
+}
+
 export interface PortfolioData {
   config: Config;
+  seo?: SEOConfig;
   social: SocialLink[];
   navigation: NavigationItem[];
   timeline: TimelineItem[];

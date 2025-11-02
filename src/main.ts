@@ -4,6 +4,7 @@ import './styles/style.css';
 // Import services and components
 import { DataService } from './services/dataService';
 import { LoadingService } from './services/loadingService';
+import { SEOService } from './services/seoService';
 import { MatrixBackground } from './components/MatrixBackground';
 import { ParticleSystem } from './components/ParticleSystem';
 import { TypedText } from './components/TypedText';
@@ -48,7 +49,12 @@ class Portfolio {
     const minLoadingTime = APP_CONFIG.MIN_LOADING_TIME;
     const startTime = Date.now();
 
-    await dataPromise;
+    const data = await dataPromise;
+
+    // Apply SEO configuration from data.json
+    if (data.seo) {
+      SEOService.applySEO(data.seo);
+    }
 
     this.initializeComponents();
     this.setupEventListeners();

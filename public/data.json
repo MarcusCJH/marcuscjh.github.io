@@ -2,6 +2,7 @@
   "_comment": "This file controls all content and navigation for the portfolio website. Simply modify values here to update the site.",
   "_instructions": {
     "config": "Update personal information, typed messages, and CV settings",
+    "seo": "Configure SEO meta tags, Open Graph, Twitter cards, canonical URL, and Google verification",
     "navigation": "Set 'enabled: false' to hide sections and navigation items",
     "social": "Add/remove social media links",
     "showcase": "Add/remove/modify project showcases",
@@ -23,6 +24,29 @@
       "npm run deploy"
     ],
     "cvDriveId": "16eXxJWLCsUib7gZKX48jhT85myOxqh0_"
+  },
+  "seo": {
+    "defaults": {
+      "url": "https://marcuscjh.github.io/",
+      "title": "Marcus Chan | Full Stack Engineer & Cloud Architect",
+      "description": "Experienced Software Engineer specializing in cloud technologies, data engineering, and full-stack development. Certified in AWS, GCP, Alibaba Cloud, and more.",
+      "image": "https://marcuscjh.github.io/assets/showcase/marcuscjh/marcuscjh-bg.PNG",
+      "author": "Marcus Chan",
+      "robots": "index, follow",
+      "openGraph": {
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image"
+      }
+    },
+    "meta": {
+      "title": "Marcus Chan | Software Engineer",
+      "keywords": "Software Engineer, Cloud Computing, AWS, GCP, Alibaba Cloud, Data Engineering, Full Stack Developer, Singapore"
+    },
+    "openGraph": {},
+    "twitter": {},
+    "googleSiteVerification": "Jlbf6yUFhveoZFeEvTUvWje_puCb9jOSUmMrz5YACfg"
   },
   "social": [
     {

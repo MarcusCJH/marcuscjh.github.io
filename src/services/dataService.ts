@@ -95,4 +95,11 @@ export class DataService {
   public getShowcase() {
     return this.data?.showcase || this.fallbackData.showcase;
   }
+
+  /**
+   * Get SEO configuration
+   */
+  public getSEO() {
+    return this.data?.seo;
+  }
 }
