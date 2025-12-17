@@ -13,7 +13,7 @@
     "real_name": "Marcus Chan",
     "title": "Full Stack Engineer & Cloud Architect",
     "subtitle": "Transforming ideas into scalable digital solutions",
-    "summary": "Experienced IT Professional with 5+ years delivering scalable cloud-native solutions at Accenture. Proven expertise in AWS serverless architecture, DevOps automation, and full-stack development. Specialized in cloud technology, data analytics, and enterprise application development with strong technical foundation across multiple domains.",
+    "summary": "Experienced IT Professional with 8+ years delivering scalable cloud-native solutions across multiple industries. Proven expertise in AWS and Alibaba Cloud with specialization in serverless architecture, DevOps automation, and full-stack development. Certified in AWS, Alibaba Cloud, and Google Cloud. Strong background in big data analytics, enterprise application development, and cloud infrastructure with hands-on experience from research to production systems.",
     "email": "marcuschanjh@gmail.com",
     "website": "https://marcuscjh.github.io",
     "typedMessages": [
@@ -29,7 +29,7 @@
     "defaults": {
       "url": "https://marcuscjh.github.io/",
       "title": "Marcus Chan | Full Stack Engineer & Cloud Architect",
-      "description": "Experienced Software Engineer specializing in cloud technologies, data engineering, and full-stack development. Certified in AWS, GCP, Alibaba Cloud, and more.",
+      "description": "Experienced Software Engineer specializing in cloud technologies, data engineering, and full-stack development. Certified in AWS, Alibaba Cloud, and Google Cloud.",
       "image": "https://marcuscjh.github.io/assets/showcase/marcuscjh/marcuscjh-bg.PNG",
       "author": "Marcus Chan",
       "robots": "index, follow",
@@ -42,7 +42,7 @@
     },
     "meta": {
       "title": "Marcus Chan | Software Engineer",
-      "keywords": "Software Engineer, Cloud Computing, AWS, GCP, Alibaba Cloud, Data Engineering, Full Stack Developer, Singapore"
+      "keywords": "Software Engineer, Cloud Computing, AWS, Alibaba Cloud, Data Engineering, Full Stack Developer, Singapore"
     },
     "openGraph": {},
     "twitter": {},
@@ -130,7 +130,7 @@
       "technologies": ["Python", "Slack API", "AWS"],
       "modalContent": {
         "title": "Slack Bot",
-        "description": "A custom Slack bot built to automate various workspace tasks.",
+        "description": "A custom Slack bot built to automate workspace tasks and streamline team workflows using Python, Slack API, and AWS services.",
         "links": []
       }
     },
@@ -159,10 +159,10 @@
       "id": "portfolio",
       "title": "Portfolio Website",
       "backgroundImage": "./showcase/marcuscjh/marcuscjh-bg.PNG",
-      "technologies": ["HTML", "CSS", "JavaScript"],
+      "technologies": ["TypeScript", "Vite", "HTML", "CSS", "JavaScript"],
       "modalContent": {
         "title": "Personal Portfolio",
-        "description": "A dynamic personal portfolio website built with HTML, CSS, and JavaScript. Features include a timeline section, project showcase, and dynamic content loading.",
+        "description": "A dynamic personal portfolio website built with TypeScript, Vite, and modern web technologies. Features include interactive timeline, project showcase, and dynamic content loading from JSON configuration.",
         "links": [
           {
             "text": "View Live Site",
@@ -182,7 +182,7 @@
       "technologies": ["Python", "Django", "HTML", "JavaScript", "Bootstrap"],
       "modalContent": {
         "title": "ShareShed: Library of Things",
-        "description": "A Brisbane-based 'Library of Things' platform enabling members to borrow useful items with an annual membership. Built as part of my DECO3801 course to replace limitations in the third-party system (downtime, limited customization, mobile access issues) with a responsive, role-based web app for customers and librarians/admins. Features include membership management, catalogue browsing, lending/returns, operating hours configuration, and an admin dashboard.",
+        "description": "A Brisbane-based 'Library of Things' platform enabling members to borrow items with annual membership. Built as part of DECO3801 course using Django, replacing third-party system limitations with a responsive, role-based web application. Features include membership management, catalogue browsing, lending/returns, operating hours configuration, and admin dashboard.",
         "links": [
           {
             "text": "View Source Code",
@@ -198,7 +198,7 @@
       "technologies": ["Spark", "Cassandra", "Docker", "Nginx", "PHP", "Scala"],
       "modalContent": {
         "title": "INFS3208/INFS7208 Cloud Computing Project",
-        "description": "University of Queensland cloud computing assignment using Cassandra as the NoSQL datastore with CRUD functionality, Spark Job Server integration, and Docker + Nginx deployment. Awarded Project Excellence Award (Best Project Demo) by Prof Xue Li in Oct 2018.",
+        "description": "University of Queensland cloud computing project implementing a scalable web application using Cassandra NoSQL database, Spark Job Server for data processing, and Docker + Nginx for containerized deployment. Awarded Project Excellence Award (Best Project Demo) by Prof Xue Li in Oct 2018.",
         "links": [
           {
             "text": "View Source Code",
@@ -225,7 +225,7 @@
       "title": "Diploma in Information Technology",
       "modalContent": {
         "title": "Temasek Polytechnic",
-        "subtitle": "2011",
+        "subtitle": "2011 - 2014",
         "location": "Singapore",
         "details": []
       }
@@ -243,14 +243,14 @@
         "location": "Singapore & Yokohama, Japan",
         "details": [
           "Research & Development Center - Singapore",
-          "  • Architected and developed a comprehensive Taxi Simulator application using HTML, Java, JavaScript, and Google Maps API",
-          "  • Integrated Open Source Routing Machine (OSRM) to simulate real-world taxi interactions and passenger demand patterns",
-          "  • Implemented data visualization components to analyze taxi sharing efficiency using historical traffic data",
+          "  • Built Taxi Simulator application using HTML, Java, JavaScript, and Google Maps API to model real-world transportation patterns",
+          "  • Integrated Open Source Routing Machine (OSRM) to simulate taxi interactions and optimize passenger demand forecasting",
+          "  • Created data visualization dashboards analyzing taxi sharing efficiency and route optimization using historical traffic data",
           "",
           "Yokohama Research Lab - Yokohama, Japan",
-          "  • Designed and built a scalable Big Data Graph Visualizer web application leveraging Apache Solr and Apache Hadoop",
-          "  • Developed Java-based backend services and JavaScript frontend components for interactive data exploration",
-          "  • Conducted performance analysis comparing different graph algorithms on Linux-based distributed systems"
+          "  • Developed scalable Big Data Graph Visualizer web application using Apache Solr and Apache Hadoop for large-scale data processing",
+          "  • Developed Java backend services and JavaScript frontend components enabling interactive exploration of complex graph datasets",
+          "  • Performed performance benchmarking of graph algorithms on distributed Linux systems, identifying optimal solutions for production use"
         ]
       }
     },
@@ -266,8 +266,8 @@
         "subtitle": "Sep 2014 - Sep 2016",
         "location": "Singapore",
         "details": [
-          "Leading patrol teams on scheduled tours to maintain a visible and reassuring presence",
-          "Diligently ensuring the safety and security of the public transportation network, a commitment to the well-being of all passengers and commuters"
+          "Led patrol teams across public transportation networks to maintain security and public safety",
+          "Ensured operational readiness and rapid response capabilities for security incidents"
         ]
       }
     },
@@ -297,10 +297,9 @@
         "subtitle": "Jul 2017 - Jan 2018",
         "location": "Singapore",
         "details": [
-          "Designed interactive e-learning videos and courseware with Articulate 360 and JavaScript, while creating assets using Adobe tools such as Premiere Pro, After Effects, Illustrator, and Audition",
-          "Transcribed audio and incorporated subtitles into e-learning videos and courseware to enhance accessibility",
-          "Refined e-learning videos and courseware through systematic reviews and updates",
-          "Managed asset development lists for streamlined project workflows"
+          "Developed interactive e-learning content using Articulate 360, JavaScript, and Adobe Creative Suite (Premiere Pro, After Effects, Illustrator, Audition)",
+          "Enhanced content accessibility by implementing audio transcription and multi-language subtitles across all courseware",
+          "Streamlined production workflows through systematic content reviews, version control, and asset management processes"
         ]
       }
     },
@@ -310,7 +309,7 @@
       "startDate": "2018",
       "endDate": "2018",
       "company": "The University of Queensland",
-      "title": "Bachelor of Information Technology with a Major in Software Information System",
+      "title": "Bachelor of Information Technology with a Major in Software Information Systems",
       "modalContent": {
         "title": "The University of Queensland",
         "subtitle": "2018",
@@ -363,15 +362,14 @@
         "location": "Singapore",
         "details": [
           "Software Delivery Engineer - (2020 - 2021)",
-          "  • Delivered multiple enterprise-grade Business Intelligence dashboards using Alibaba Cloud ecosystem (Dataphin, DataWorks, QuickBI, DataV)",
+          "  • Delivered enterprise-grade Business Intelligence dashboards using Alibaba Cloud ecosystem (Dataphin, DataWorks, QuickBI, DataV) for multiple client engagements",
           "  • Recognized by Alibaba Cloud as subject matter expert, invited to conduct technical sharing sessions on DataV platform capabilities",
-          "  • Led end-to-end UAT cycles and quality assurance processes, ensuring 100% reliability and business requirement alignment",
-          "  • Managed Proof of Concept (POC) development initiatives as technical product manager, accelerating innovation delivery",
-          "  • Executed comprehensive big data implementations including system configuration, infrastructure upgrades, ETL pipeline development, and advanced SQL analytics",
+          "  • Led end-to-end UAT cycles and QA processes, ensuring 100% reliability and alignment with business requirements",
+          "  • Managed POC development initiatives as technical product manager, accelerating time-to-market for new solutions",
+          "  • Executed comprehensive big data implementations including infrastructure upgrades, ETL pipeline development, and advanced SQL analytics",
           "",
           "Software Engineer - (2019 - 2020)",
-          "  • Joined Whale Cloud Singapore through Infocomm Media Development Authority (IMDA) Company-Led Training Programme",
-          "  • Achieved permanent staff conversion based on exceptional performance and technical contributions"
+          "  • Joined Whale Cloud Singapore through IMDA Company-Led Training Programme, achieving permanent staff conversion based on exceptional performance"
         ]
       }
     },
@@ -531,27 +529,27 @@
         "subtitle": "Apr 2021 - Present",
         "location": "Singapore",
         "details": [
-          "Full Stack Engineer - Aviation Services (2024 - Present)",
-          "  • Deployed and customized enterprise-scale serverless applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify) directly at client sites",
-          "  • Worked closely with aviation stakeholders to understand operational requirements and translate business needs into technical solutions",
-          "  • Designed and developed diverse full-stack solutions including RFID-driven showcase systems, mobile wayfinding applications, and e-commerce platforms tailored to client specifications",
-          "  • Acted as technical liaison between engineering teams and business stakeholders, ensuring solutions meet operational requirements and passenger experience goals",
-          "  • Led technical implementation initiatives across infrastructure automation, deployment pipelines, and cross-functional knowledge transfer to enable client teams for long-term system ownership",
+          "Full Stack Engineer - Travel (2024 - Present)",
+          "  • Deployed and customized enterprise-scale serverless applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify) at client sites",
+          "  • Collaborated with travel industry stakeholders to translate business requirements into scalable technical solutions",
+          "  • Designed and developed full-stack solutions including RFID showcase systems, mobile wayfinding applications, and e-commerce platforms",
+          "  • Acted as technical liaison between engineering and business teams, ensuring alignment with operational requirements and passenger experience goals",
+          "  • Led infrastructure automation, CI/CD pipeline implementation, and knowledge transfer initiatives to enable client self-sufficiency",
           "",
           "Site Reliability Engineer - Public Services (2022 - 2024)",
           "  • Designed and deployed enterprise chatbot solution, reducing service request processing time by 65-70%",
-          "  • Implemented monitoring and alerting frameworks across multi-tier applications and infrastructure",
-          "  • Optimized tenant onboarding processes to ensure seamless and secure platform integration",
-          "  • Enhanced security posture through vulnerability remediation and system integrity enforcement",
+          "  • Implemented comprehensive monitoring and alerting frameworks across multi-tier applications and infrastructure",
+          "  • Streamlined tenant onboarding processes for seamless and secure platform integration",
+          "  • Strengthened security posture through proactive vulnerability remediation and system hardening",
           "",
           "Software Development Engineer - Financial Services (2022)",
           "  • Developed and integrated mission-critical APIs using Django framework for enterprise financial services platform",
           "  • Managed full software development lifecycle from requirements gathering through production deployment",
-          "  • Represented Accenture's technical capabilities at Singapore FinTech Festival 2021",
+          "  • Showcased Accenture's technical capabilities at Singapore FinTech Festival 2022",
           "",
           "Application Engineer - Healthcare Services (2021 - 2022)",
           "  • Automated complex reporting workflows through data analysis and SSRS/SSIS pipeline development",
-          "  • Resolved critical service requests and platform issues across SSRS/SSIS and Pega systems, maintaining 99.9% uptime",
+          "  • Resolved critical service requests and platform issues across SSRS/SSIS and Pega systems, maintaining 99.9% system uptime",
           "  • Delivered operational support to healthcare stakeholders, ensuring continuous service availability"
         ]
       }
