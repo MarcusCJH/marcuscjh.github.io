@@ -209,11 +209,12 @@
     }
   ],
   "skills": {
-    "languages": ["Python", "JavaScript", "TypeScript", "Java", "SQL"],
-    "cloud": ["AWS", "Google Cloud Platform", "Alibaba Cloud"],
-    "backend": ["Node.js", "Django", "GraphQL", "REST APIs", "Serverless Architecture"],
-    "devops": ["Terraform", "Docker", "CI/CD", "Monitoring", "Git", "Site Reliability Engineering"],
-    "databases": ["PostgreSQL", "DynamoDB", "Big Data Processing"]
+    "languages": ["TypeScript", "Python", "JavaScript", "C#", "Java", "SQL"],
+    "cloud": ["AWS", "Alibaba Cloud", "Google Cloud Platform"],
+    "backend": ["Node.js", "Django", "GraphQL", "Microservices", "Event-Driven Architecture"],
+    "devops": ["Terraform", "Docker", "CI/CD Automation", "Observability", "IaC"],
+    "data": ["Databricks", "Apache Spark", "DynamoDB", "Generative AI", "LLM Integration"],
+    "management": ["Technical Leadership", "Agile/Scrum (CSM/CSPO)", "Project Delivery"]
   },
   "timeline": [
     {
