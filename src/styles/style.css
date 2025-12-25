@@ -277,31 +277,14 @@ body {
   font-size: 1.5rem;
   transition: var(--transition-bounce);
   position: relative;
-  overflow: hidden;
-}
-
-.social-link::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
-  transition: var(--transition-smooth);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-}
-
-.social-link:hover::before {
-  width: 100px;
-  height: 100px;
 }
 
 .social-link:hover {
   transform: translateY(-5px) scale(1.1);
   box-shadow: var(--shadow-glow);
-  color: var(--bg-primary);
+  color: var(--primary-color);
+  background: rgba(0, 255, 136, 0.1);
+  border-color: var(--primary-color);
 }
 
 .scroll-indicator {

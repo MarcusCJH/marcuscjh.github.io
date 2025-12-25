@@ -1,7 +1,8 @@
 // TypeScript interfaces for portfolio data structures
 
 export interface SocialLink {
-  name: string;
+  name?: string;
+  platform?: string;
   url: string;
   icon: string;
 }

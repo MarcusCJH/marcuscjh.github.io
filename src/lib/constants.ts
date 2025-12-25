@@ -38,6 +38,7 @@ export const SELECTORS = {
   TIMELINE_PROGRESS: '#timeline-progress',
   MODAL_OVERLAY: '#modal-overlay',
   MODAL_CLOSE: '#modal-close',
+  SOCIAL_LINKS: '.social-links',
   MATRIX_CANVAS: '#matrix-canvas',
   PARTICLES_CONTAINER: '#particles-container',
 } as const;

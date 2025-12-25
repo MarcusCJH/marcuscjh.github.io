@@ -91,6 +91,7 @@ class Portfolio {
     }
 
     this.initNavigation();
+    this.initSocials();
     this.initTimeline();
     this.initShowcase();
     this.initScrollAnimations();
@@ -146,6 +147,29 @@ class Portfolio {
     }, APP_CONFIG.DEBOUNCE_DELAY);
 
     window.addEventListener('scroll', debouncedScrollHandler);
+  }
+
+  private initSocials(): void {
+    const socialLinksContainers = document.querySelectorAll(SELECTORS.SOCIAL_LINKS);
+    const socialLinks = this.dataService.getSocialLinks();
+
+    if (!socialLinks || socialLinksContainers.length === 0) {
+      return;
+    }
+
+    const socialHtml = socialLinks
+      .map(
+        social => `
+        <a href="${social.url}" target="_blank" class="social-link" title="${social.platform || social.name || ''}">
+          <i class="${social.icon}"></i>
+        </a>
+      `
+      )
+      .join('');
+
+    socialLinksContainers.forEach(container => {
+      container.innerHTML = socialHtml;
+    });
   }
 
   private navigateToSection(section: string): void {
