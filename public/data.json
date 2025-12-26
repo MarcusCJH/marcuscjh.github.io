@@ -50,9 +50,9 @@
   },
   "social": [
     {
-      "platform": "Telegram",
-      "icon": "fab fa-telegram",
-      "url": "https://t.me/marcuscjh"
+      "platform": "LinkedIn",
+      "icon": "fab fa-linkedin",
+      "url": "https://www.linkedin.com/in/marcuschanjh"
     },
     {
       "platform": "GitHub",
@@ -60,9 +60,14 @@
       "url": "https://github.com/MarcusCJH"
     },
     {
-      "platform": "LinkedIn",
-      "icon": "fab fa-linkedin",
-      "url": "https://www.linkedin.com/in/marcuschanjh"
+      "platform": "Email",
+      "icon": "fas fa-envelope",
+      "url": "mailto:marcuschanjh@gmail.com"
+    },
+    {
+      "platform": "Telegram",
+      "icon": "fab fa-telegram",
+      "url": "https://t.me/marcuscjh"
     }
   ],
   "showcase": [
