@@ -66,18 +66,18 @@
   ],
   "devDependencies": {
     "@types/node": "^24.10.1",
-    "@typescript-eslint/eslint-plugin": "^8.48.0",
+    "@typescript-eslint/eslint-plugin": "^8.51.0",
     "@typescript-eslint/parser": "^8.46.2",
-    "@vitest/coverage-v8": "^4.0.14",
-    "eslint": "^9.39.1",
+    "@vitest/coverage-v8": "^4.0.16",
+    "eslint": "^9.39.2",
     "gh-pages": "^6.3.0",
     "jiti": "^2.0.0",
-    "jsdom": "^27.2.0",
-    "prettier": "^3.7.3",
+    "jsdom": "^27.4.0",
+    "prettier": "^3.7.4",
     "rimraf": "^6.1.2",
     "terser": "^5.44.1",
     "typescript": "^5.9.3",
-    "vite": "^7.2.6",
+    "vite": "^7.3.0",
     "vitest": "^4.0.4"
   }
 }
