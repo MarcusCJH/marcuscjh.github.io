@@ -15,7 +15,7 @@
     "subtitle": "Transforming ideas into scalable digital solutions",
     "summary": "Experienced IT Professional with 8+ years delivering scalable cloud-native solutions across multiple industries. Proven expertise in AWS and Alibaba Cloud with specialization in serverless architecture, DevOps automation, and full-stack development. Certified in AWS, Alibaba Cloud, and Google Cloud. Strong background in big data analytics, enterprise application development, and cloud infrastructure with hands-on experience from research to production systems.",
     "email": "marcuschanjh@gmail.com",
-    "website": "https://marcuscjh.github.io",
+    "website": "https://marcuscjh.com",
     "typedMessages": [
       "whoami",
       "cat /etc/skills",
@@ -27,10 +27,10 @@
   },
   "seo": {
     "defaults": {
-      "url": "https://marcuscjh.github.io/",
+      "url": "https://marcuscjh.com/",
       "title": "Marcus Chan | Full Stack Engineer & Cloud Architect",
       "description": "Experienced Software Engineer specializing in cloud technologies, data engineering, and full-stack development. Certified in AWS, Alibaba Cloud, and Google Cloud.",
-      "image": "https://marcuscjh.github.io/assets/showcase/marcuscjh/marcuscjh-bg.PNG",
+      "image": "https://marcuscjh.com/assets/showcase/marcuscjh/marcuscjh-bg.PNG",
       "author": "Marcus Chan",
       "robots": "index, follow",
       "openGraph": {
@@ -46,7 +46,7 @@
     },
     "openGraph": {},
     "twitter": {},
-    "googleSiteVerification": "Jlbf6yUFhveoZFeEvTUvWje_puCb9jOSUmMrz5YACfg"
+    "googleSiteVerification": "9uLWJUwdMi1ZP3xka1tror2bPKaC6dqVj9WxmA6kRBk"
   },
   "social": [
     {
@@ -171,7 +171,7 @@
         "links": [
           {
             "text": "View Live Site",
-            "url": "https://marcuscjh.github.io"
+            "url": "https://marcuscjh.com"
           },
           {
             "text": "View Source Code",
