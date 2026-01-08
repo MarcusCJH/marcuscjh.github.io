@@ -277,7 +277,10 @@ class Portfolio {
         this.updateTimelineProgress();
       }, APP_CONFIG.THROTTLE_DELAY);
 
+      // On mobile, listen to window scroll; on desktop, listen to wrapper scroll
       timelineWrapper.addEventListener('scroll', debouncedTimelineScroll);
+      window.addEventListener('scroll', debouncedTimelineScroll);
+      window.addEventListener('resize', debouncedTimelineScroll);
 
       // Drag-to-scroll functionality (desktop only)
       const isDesktop = window.innerWidth > 768;
@@ -338,12 +341,19 @@ class Portfolio {
     const isMobile = window.innerWidth <= 768;
 
     if (isMobile) {
-      const scrollTop = timelineWrapper.scrollTop;
-      const scrollHeight = timelineWrapper.scrollHeight - timelineWrapper.clientHeight;
-      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      const rect = timelineWrapper.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Calculate progress based on how much of the timeline has passed the center of the screen
+      // or simply how much of it is scrolled through.
+      const totalHeight = rect.height;
+      const scrolledPast = viewportHeight / 2 - rect.top;
+      let progress = (scrolledPast / totalHeight) * 100;
+
+      progress = Math.max(0, Math.min(100, progress));
 
       progressBar.style.height = `${progress}%`;
-      progressBar.style.width = '2px';
+      progressBar.style.width = '4px';
     } else {
       const scrollLeft = timelineWrapper.scrollLeft;
       const scrollWidth = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
