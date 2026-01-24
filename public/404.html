@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="theme-color" content="#00ff88">
+    <title>404 | Page Not Found | marcus.cjh</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root {
+            --primary-color: #00ff88;
+            --secondary-color: #0088ff;
+            --accent-color: #ff0088;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Matrix Background */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .error-code {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(6rem, 20vw, 12rem);
+            font-weight: 900;
+            position: relative;
+            margin-bottom: 1rem;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+
+        .error-code::before,
+        .error-code::after {
+            content: '404';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .error-code::before {
+            animation: glitch-anim-1 0.5s infinite linear alternate-reverse;
+            color: var(--accent-color);
+            z-index: -1;
+        }
+
+        .error-code::after {
+            animation: glitch-anim-2 1s infinite linear alternate-reverse;
+            color: var(--secondary-color);
+            z-index: -2;
+        }
+
+        .terminal-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .terminal-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        }
+
+        .prompt {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            font-weight: 600;
+        }
+
+        .command {
+            color: var(--secondary-color);
+        }
+
+        .output {
+            color: var(--text-secondary);
+            margin-left: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .error-output {
+            color: var(--accent-color);
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background: var(--primary-color);
+            margin-left: 0.3rem;
+            animation: blink 1s infinite;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-family: 'Orbitron', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .home-btn:hover::before {
+            left: 100%;
+        }
+
+        .home-btn:hover {
+            background: rgba(0, 255, 136, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+            transform: translateY(-3px);
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-2deg); }
+            40% { transform: skew(2deg); }
+            60% { transform: skew(0deg); }
+            80% { transform: skew(2deg); }
+            100% { transform: skew(-2deg); }
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(40% 0 61% 0); transform: translate(-2px, -2px); }
+            20% { clip-path: inset(92% 0 1% 0); transform: translate(2px, 2px); }
+            40% { clip-path: inset(43% 0 1% 0); transform: translate(-2px, 2px); }
+            60% { clip-path: inset(25% 0 58% 0); transform: translate(2px, -2px); }
+            80% { clip-path: inset(54% 0 7% 0); transform: translate(-2px, 2px); }
+            100% { clip-path: inset(58% 0 43% 0); transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(25% 0 58% 0); transform: translate(2px, 2px); }
+            20% { clip-path: inset(54% 0 7% 0); transform: translate(-2px, -2px); }
+            40% { clip-path: inset(58% 0 43% 0); transform: translate(2px, -2px); }
+            60% { clip-path: inset(40% 0 61% 0); transform: translate(-2px, 2px); }
+            80% { clip-path: inset(92% 0 1% 0); transform: translate(2px, 2px); }
+            100% { clip-path: inset(43% 0 1% 0); transform: translate(-2px, -2px); }
+        }
+
+        @media (max-width: 480px) {
+            .terminal-box {
+                padding: 1.5rem;
+            }
+            .terminal-line {
+                font-size: 0.85rem;
+            }
+            .output {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    
+    <div class="container">
+        <div class="error-code">404</div>
+        
+        <div class="terminal-box">
+            <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">locate requested_page</span>
+            </div>
+            <div class="output error-output">Error: Page not found in filesystem</div>
+            <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">suggest --fix</span>
+            </div>
+            <div class="output">Recommended: Navigate to homepage</div>
+            <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="cursor-blink"></span>
+            </div>
+        </div>
+
+        <a href="/" class="home-btn">
+            <i class="fas fa-home"></i>
+            Return to Homepage
+        </a>
+    </div>
+
+    <script>
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const fontSize = 14;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 50);
+
+        window.addEventListener('resize', () => {
+            columns = Math.floor(canvas.width / fontSize);
+            drops = Array(columns).fill(1);
+        });
+    </script>
+</body>
+</html>
