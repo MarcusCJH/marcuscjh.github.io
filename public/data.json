@@ -219,7 +219,7 @@
     "alicloud": ["Dataphin", "DataWorks", "QuickBI", "DataV"],
     "backend": ["Django", "GraphQL", "REST APIs", "Serverless"],
     "devops": ["Terraform", "Docker", "CI/CD", "Git", "Linux"],
-    "ai": ["Generative AI", "LLM Integration", "RAG", "AI Agents", "Prompt Engineering"],
+    "ai": ["Generative AI", "LLM Integration", "AI Agents", "Prompt Engineering"],
     "management": ["Agile/Scrum", "Technical Leadership", "Project Delivery"]
   },
   "timeline": [
