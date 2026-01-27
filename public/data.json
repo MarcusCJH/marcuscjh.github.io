@@ -215,13 +215,11 @@
   ],
   "skills": {
     "languages": ["Python", "JavaScript", "Java", "C#", "SQL"],
-    "cloud": ["AWS", "Alibaba Cloud"],
-    "aws": ["Lambda", "AppSync", "CDK", "DynamoDB", "Amplify", "Bedrock"],
-    "alibabaCloud": ["Dataphin", "DataWorks", "QuickBI", "DataV"],
+    "aws": ["Lambda", "AppSync", "CDK", "DynamoDB", "Amplify", "Bedrock", "Q", "SNS", "SQS", "Cognito", "CloudWatch"],
+    "alicloud": ["Dataphin", "DataWorks", "QuickBI", "DataV"],
     "backend": ["Django", "GraphQL", "REST APIs", "Serverless"],
     "devops": ["Terraform", "Docker", "CI/CD", "Git", "Linux"],
-    "databases": ["DynamoDB", "MySQL"],
-    "ai": ["Generative AI", "Amazon Q", "Amazon Bedrock"],
+    "ai": ["Generative AI", "LLM Integration", "RAG", "AI Agents", "Prompt Engineering"],
     "management": ["Agile/Scrum", "Technical Leadership", "Project Delivery"]
   },
   "timeline": [
