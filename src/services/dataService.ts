@@ -41,7 +41,7 @@ export class DataService {
    */
   public async loadData(): Promise<PortfolioData> {
     try {
-      const response = await fetch('./data.json');
+      const response = await fetch('./data.json', { cache: 'no-cache' });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

@@ -39,7 +39,7 @@ describe('DataService', () => {
 
     const result = await dataService.loadData();
     expect(result).toEqual(mockData);
-    expect(fetch).toHaveBeenCalledWith('./data.json');
+    expect(fetch).toHaveBeenCalledWith('./data.json', { cache: 'no-cache' });
   });
 
   it('should return fallback data on error', async () => {
