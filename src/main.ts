@@ -56,6 +56,12 @@ class Portfolio {
       SEOService.applySEO(data.seo);
     }
 
+    // Set favicon from config
+    const config = this.dataService.getConfig();
+    if (config?.favicon) {
+      SEOService.setFavicon(config.favicon);
+    }
+
     this.initializeComponents();
     this.setupEventListeners();
     this.startAnimations();
@@ -132,7 +138,12 @@ class Portfolio {
       item.addEventListener('click', e => {
         const target = (e.currentTarget as HTMLElement).dataset.navId;
         if (target) {
-          this.navigateToSection(target);
+          // Special handling for resume - open in modal instead of scrolling
+          if (target === 'resume') {
+            this.openResumeModal();
+          } else {
+            this.navigateToSection(target);
+          }
         }
         navToggle.classList.remove(CSS_CLASSES.ACTIVE);
         navMenu.classList.remove(CSS_CLASSES.ACTIVE);
@@ -514,6 +525,34 @@ class Portfolio {
     this.openModal('Resume', tempProject);
   }
 
+  private openResumeModal(): void {
+    const modal = DOMUtils.getElement('modal-overlay') as HTMLElement;
+    const modalContainer = DOMUtils.getElement('modal-container') as HTMLElement;
+    const modalTitle = DOMUtils.getElement('modal-title') as HTMLElement;
+    const modalContent = DOMUtils.getElement('modal-content') as HTMLElement;
+
+    if (!modal || !modalContainer || !modalTitle || !modalContent) {
+      return;
+    }
+
+    const config = this.dataService.getConfig();
+    const resumeUrl = config?.resumeUrl || 'https://www.marcuscjh.com/marcuscjh-resume';
+
+    // Add special class for resume modal to make it full-size
+    modalContainer.classList.add('resume-modal');
+    modalTitle.textContent = 'Resume';
+    modalContent.innerHTML = `
+      <iframe 
+        src="${resumeUrl}" 
+        style="width: 100%; height: 100%; border: none; border-radius: 10px;"
+        allowfullscreen>
+      </iframe>
+    `;
+
+    modal.classList.add(CSS_CLASSES.ACTIVE);
+    document.body.style.overflow = 'hidden';
+  }
+
   private generateModalContent(content: ModalContent): string {
     let html = '';
 
@@ -648,8 +687,25 @@ class Portfolio {
 
   public closeModal(): void {
     const modal = DOMUtils.getElement('modal-overlay') as HTMLElement;
-    modal?.classList.remove(CSS_CLASSES.ACTIVE);
+    const modalContainer = DOMUtils.getElement('modal-container') as HTMLElement;
+
+    if (!modal) {
+      return;
+    }
+
+    const isResumeModal = modalContainer?.classList.contains('resume-modal');
+
+    // Remove active class to trigger closing animation
+    modal.classList.remove(CSS_CLASSES.ACTIVE);
     document.body.style.overflow = 'auto';
+
+    // Wait for transition to complete before removing resume-modal class
+    // This ensures smooth closing animation (0.5s matches transition-bounce duration)
+    if (isResumeModal) {
+      setTimeout(() => {
+        modalContainer?.classList.remove('resume-modal');
+      }, 500);
+    }
   }
 
   private getTimelineIcon(category: string): string {

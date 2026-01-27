@@ -1361,6 +1361,30 @@ body {
   overflow-y: auto;
 }
 
+/* Resume Modal - Full Browser Size */
+.resume-modal {
+  width: 95vw !important;
+  max-width: 95vw !important;
+  height: 95vh !important;
+  max-height: 95vh !important;
+  display: flex;
+  flex-direction: column;
+  transition:
+    width var(--transition-bounce),
+    height var(--transition-bounce),
+    max-width var(--transition-bounce),
+    max-height var(--transition-bounce);
+}
+
+.resume-modal .modal-content {
+  padding: 0;
+  max-height: calc(95vh - 80px);
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Loading Screen */
 .loading-screen {
   position: fixed;

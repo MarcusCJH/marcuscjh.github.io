@@ -63,6 +63,8 @@ export interface Config {
   subtitle: string;
   typedMessages: string[];
   cvDriveId?: string;
+  resumeUrl?: string;
+  favicon?: string;
 }
 
 export interface SEOMeta {

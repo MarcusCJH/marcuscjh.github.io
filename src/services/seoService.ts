@@ -110,4 +110,25 @@ export class SEOService {
 
     link.setAttribute('href', href);
   }
+
+  /**
+   * Set favicon from config
+   */
+  public static setFavicon(faviconPath: string | undefined): void {
+    if (!faviconPath) {
+      return;
+    }
+
+    // Find existing favicon link or create new one
+    let faviconLink = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
+
+    if (!faviconLink) {
+      faviconLink = document.createElement('link');
+      faviconLink.setAttribute('rel', 'icon');
+      faviconLink.setAttribute('type', 'image/svg+xml');
+      document.head.appendChild(faviconLink);
+    }
+
+    faviconLink.setAttribute('href', faviconPath);
+  }
 }

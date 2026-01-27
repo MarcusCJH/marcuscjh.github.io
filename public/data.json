@@ -16,6 +16,7 @@
     "summary": "Experienced IT Professional with 8+ years delivering scalable cloud-native solutions across multiple industries. Proven expertise in AWS and Alibaba Cloud with specialization in serverless architecture, DevOps automation, and full-stack development. Certified in AWS, Alibaba Cloud, and Google Cloud. Strong background in big data analytics, enterprise application development, and cloud infrastructure with hands-on experience from research to production systems.",
     "email": "marcuschanjh@gmail.com",
     "website": "https://marcuscjh.com",
+    "favicon": "/favicon.svg",
     "typedMessages": [
       "whoami",
       "cat /etc/skills",
@@ -23,7 +24,8 @@
       "git status",
       "npm run deploy"
     ],
-    "cvDriveId": "16eXxJWLCsUib7gZKX48jhT85myOxqh0_"
+    "cvDriveId": "16eXxJWLCsUib7gZKX48jhT85myOxqh0_",
+    "resumeUrl": "https://www.marcuscjh.com/marcuscjh-resume"
   },
   "seo": {
     "defaults": {
@@ -606,6 +608,12 @@
       "enabled": false,
       "title": "resume",
       "icon": "fas fa-file-code"
+    },
+    {
+      "id": "resume",
+      "enabled": true,
+      "title": "resume",
+      "icon": "fas fa-file-alt"
     }
   ]
 }
