@@ -75,7 +75,7 @@
       "id": "amazon-connect-poc",
       "title": "Amazon Connect Incident Response",
       "backgroundImage": "./showcase/amazon-connect-poc/amazon-connect-bg.png",
-      "technologies": ["Lambda", "Amazon Connect", "DynamoDB", "SNS", "Python"],
+      "technologies": ["Python", "AWS", "DynamoDB"],
       "modalContent": {
         "title": "Real-Time Incident Response System",
         "description": "An automated incident response system built with Amazon Connect that triggers escalation calls when alerts are received. The system uses AWS Lambda to orchestrate outbound calls, with automatic escalation to secondary contacts if the first contact doesn't respond. Features include call status monitoring, DynamoDB logging, and SNS integration for alert management.",
@@ -91,7 +91,7 @@
       "id": "endless-jumper",
       "title": "Endless Jumper",
       "backgroundImage": "./showcase/endlessJumper/6_Final.gif",
-      "technologies": ["Python", "Pygame", "Amazon Q"],
+      "technologies": ["Python", "Amazon Q"],
       "modalContent": {
         "title": "Endless Jumper Game",
         "description": "A fun endless runner game built in just 2 hours using Amazon Q AI assistant. Features include power-ups, increasing difficulty, and smooth gameplay mechanics. The game demonstrates rapid prototyping and AI-assisted development.",
@@ -112,7 +112,7 @@
       "id": "datav-webinar",
       "title": "Alibaba Cloud: DataV Webinar",
       "backgroundImage": "./showcase/webinar/DataV-bg.PNG",
-      "technologies": ["DataV", "Alibaba Cloud"],
+      "technologies": ["Alibaba Cloud", "Data Visualization"],
       "modalContent": {
         "title": "ApsaraChat Live: Real-time monitoring of COVID-19 with DataV",
         "description": "A webinar where I was invited to speak about utilizing Alibaba Cloud's DataV for real-time data visualization and monitoring.",
@@ -132,7 +132,7 @@
       "id": "slackbot",
       "title": "Slack Bot",
       "backgroundImage": "./showcase/slackbot/slackbot-bg.png",
-      "technologies": ["Python", "Slack API", "AWS"],
+      "technologies": ["Python", "AWS"],
       "modalContent": {
         "title": "Slack Bot",
         "description": "A custom Slack bot built to automate workspace tasks and streamline team workflows using Python, Slack API, and AWS services.",
@@ -164,7 +164,7 @@
       "id": "portfolio",
       "title": "Portfolio Website",
       "backgroundImage": "./showcase/marcuscjh/marcuscjh-bg.PNG",
-      "technologies": ["TypeScript", "Vite", "HTML", "CSS", "JavaScript"],
+      "technologies": ["TypeScript", "JavaScript", "HTML", "CSS"],
       "modalContent": {
         "title": "Personal Portfolio",
         "description": "A dynamic personal portfolio website built with TypeScript, Vite, and modern web technologies. Features include interactive timeline, project showcase, and dynamic content loading from JSON configuration.",
@@ -200,7 +200,7 @@
       "id": "lulzcloud",
       "title": "LULZ CLOUD",
       "backgroundImage": "./showcase/lulzcloud/lulzcloud.png",
-      "technologies": ["Spark", "Cassandra", "Docker", "Nginx", "PHP", "Scala"],
+      "technologies": ["Apache Spark", "Cassandra", "Docker", "Scala"],
       "modalContent": {
         "title": "INFS3208/INFS7208 Cloud Computing Project",
         "description": "University of Queensland cloud computing project implementing a scalable web application using Cassandra NoSQL database, Spark Job Server for data processing, and Docker + Nginx for containerized deployment. Awarded Project Excellence Award (Best Project Demo) by Prof Xue Li in Oct 2018.",
@@ -214,12 +214,15 @@
     }
   ],
   "skills": {
-    "languages": ["TypeScript", "Python", "JavaScript", "C#", "Java", "SQL"],
-    "cloud": ["AWS", "Alibaba Cloud", "Google Cloud Platform"],
-    "backend": ["Node.js", "Django", "GraphQL", "Microservices", "Event-Driven Architecture"],
-    "devops": ["Terraform", "Docker", "CI/CD Automation", "Observability", "IaC"],
-    "data & ai": ["Databricks", "Apache Spark", "DynamoDB", "Generative AI", "LLM Integration"],
-    "management": ["Technical Leadership", "Agile/Scrum (CSM/CSPO)", "Project Delivery"]
+    "languages": ["Python", "JavaScript", "Java", "C#", "SQL"],
+    "cloud": ["AWS", "Alibaba Cloud"],
+    "aws": ["Lambda", "AppSync", "CDK", "DynamoDB", "Amplify", "Bedrock"],
+    "alibabaCloud": ["Dataphin", "DataWorks", "QuickBI", "DataV"],
+    "backend": ["Django", "GraphQL", "REST APIs", "Serverless"],
+    "devops": ["Terraform", "Docker", "CI/CD", "Git", "Linux"],
+    "databases": ["DynamoDB", "MySQL"],
+    "ai": ["Generative AI", "Amazon Q", "Amazon Bedrock"],
+    "management": ["Agile/Scrum", "Technical Leadership", "Project Delivery"]
   },
   "timeline": [
     {
