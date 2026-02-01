@@ -65,17 +65,17 @@
     "not dead"
   ],
   "devDependencies": {
-    "@types/node": "^25.0.8",
-    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@types/node": "^25.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
     "@typescript-eslint/parser": "^8.53.0",
-    "@vitest/coverage-v8": "^4.0.17",
+    "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9.39.2",
     "gh-pages": "^6.3.0",
     "jiti": "^2.6.1",
     "jsdom": "^27.4.0",
-    "prettier": "^3.8.0",
+    "prettier": "^3.8.1",
     "rimraf": "^6.1.2",
-    "terser": "^5.44.1",
+    "terser": "^5.46.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vitest": "^4.0.17"
