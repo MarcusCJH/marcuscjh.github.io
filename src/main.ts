@@ -550,6 +550,10 @@ class Portfolio {
       html += this.generateDetailsHTML(content.details);
     }
 
+    if (content.awards && content.awards.length > 0) {
+      html += this.generateAwardsHTML(content.awards);
+    }
+
     if (content.links && content.links.length > 0) {
       html += this.generateLinksHTML(content.links);
     }
@@ -587,6 +591,26 @@ class Portfolio {
     });
 
     html += '</div>';
+    return html;
+  }
+
+  private generateAwardsHTML(
+    awards: { title: string; date?: string; description?: string }[]
+  ): string {
+    let html =
+      '<div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">';
+    html +=
+      '<h3 style="color: var(--primary-color); margin-bottom: 0.8rem; font-size: 1.1rem;"><i class="fas fa-trophy" style="margin-right: 0.5rem;"></i>Awards during this time</h3>';
+    html +=
+      '<ul style="margin: 0; padding-left: 1.25rem; line-height: 1.7; color: var(--text-primary);">';
+    awards.forEach(award => {
+      const dateStr = award.date
+        ? ` <span style="color: var(--text-muted); font-size: 0.9em;">(${award.date})</span>`
+        : '';
+      const desc = award.description ? ` — ${award.description}` : '';
+      html += `<li style="margin-bottom: 0.4rem;">${award.title}${dateStr}${desc}</li>`;
+    });
+    html += '</ul></div>';
     return html;
   }
 
