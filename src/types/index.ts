@@ -32,6 +32,12 @@ export interface ShowcaseProject {
   modalContent?: ModalContent;
 }
 
+export interface ModalContentAward {
+  title: string;
+  date?: string;
+  description?: string;
+}
+
 export interface ModalContent {
   title?: string;
   subtitle?: string;
@@ -44,6 +50,7 @@ export interface ModalContent {
   iframe?: string;
   description?: string;
   details?: string[];
+  awards?: ModalContentAward[];
   links?: {
     text: string;
     url: string;
