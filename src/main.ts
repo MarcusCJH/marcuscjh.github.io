@@ -595,20 +595,26 @@ class Portfolio {
   }
 
   private generateAwardsHTML(
-    awards: { title: string; date?: string; description?: string }[]
+    awards: { title: string; date?: string; issuer?: string; description?: string }[]
   ): string {
     let html =
       '<div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">';
     html +=
-      '<h3 style="color: var(--primary-color); margin-bottom: 0.8rem; font-size: 1.1rem;"><i class="fas fa-trophy" style="margin-right: 0.5rem;"></i>Awards during this time</h3>';
-    html +=
-      '<ul style="margin: 0; padding-left: 1.25rem; line-height: 1.7; color: var(--text-primary);">';
+      '<h3 style="color: var(--primary-color); margin-bottom: 0.6rem; font-size: 1rem;"><i class="fas fa-trophy" style="margin-right: 0.5rem;"></i>Awards</h3>';
+    html += '<ul style="margin: 0; padding-left: 0; list-style: none;">';
     awards.forEach(award => {
-      const dateStr = award.date
-        ? ` <span style="color: var(--text-muted); font-size: 0.9em;">(${award.date})</span>`
+      const parts: string[] = [award.title];
+      if (award.date) {
+        parts.push(award.date);
+      }
+      if (award.issuer) {
+        parts.push(award.issuer);
+      }
+      const line = parts.join(' · ');
+      const desc = award.description
+        ? ` <span style="color: var(--text-muted); font-size: 0.9em;">— ${award.description}</span>`
         : '';
-      const desc = award.description ? ` — ${award.description}` : '';
-      html += `<li style="margin-bottom: 0.4rem;">${award.title}${dateStr}${desc}</li>`;
+      html += `<li style="margin-bottom: 0.5rem; font-size: 0.95rem;">${line}${desc}</li>`;
     });
     html += '</ul></div>';
     return html;

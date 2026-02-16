@@ -35,6 +35,7 @@ export interface ShowcaseProject {
 export interface ModalContentAward {
   title: string;
   date?: string;
+  issuer?: string;
   description?: string;
 }
 

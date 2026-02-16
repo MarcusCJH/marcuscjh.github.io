@@ -257,10 +257,10 @@
         "location": "Singapore",
         "details": [],
         "awards": [
-          { "title": "POL-ITE 2013 DB22 – 3rd Position", "date": "Jan 2013", "description": "Annual POL-ITE Dragonboat race (POL-ITE Games)" },
-          { "title": "PA Paddle Championship 2013 (IHL Men 12 Crew) – 3rd Position", "date": "Jan 2013", "description": "PA Water-Venture; competed with NP, TP, SMU, ITE" },
-          { "title": "Director's List", "date": "Jan 2013", "description": "Excellent Performance in AY2012/2013, School of Informatics & IT" },
-          { "title": "CCA Merit Award for Sports", "date": "Jun 2014", "description": "Commitment and contribution to Temasek Polytechnic Dragonboat Team" }
+          { "title": "POL-ITE 2013 DB22 – 3rd", "date": "Jan 2013", "issuer": "POL-ITE Games" },
+          { "title": "PA Paddle Championship 2013 – 3rd (IHL Men 12 Crew)", "date": "Jan 2013", "issuer": "PA Water-Venture" },
+          { "title": "Director's List", "date": "Jan 2013", "issuer": "Temasek Polytechnic" },
+          { "title": "CCA Merit Award for Sports", "date": "Jun 2014", "issuer": "Temasek Polytechnic" }
         ]
       }
     },
@@ -304,8 +304,8 @@
           "Ensured operational readiness and rapid response capabilities for security incidents"
         ],
         "awards": [
-          { "title": "Best in Professional Studies", "date": "Feb 2015", "description": "Police Officer Basic Course" },
-          { "title": "Best Trainee", "date": "Feb 2015", "description": "Police Officer Basic Course" }
+          { "title": "Best in Professional Studies", "date": "Feb 2015", "issuer": "Singapore Police Force" },
+          { "title": "Best Trainee", "date": "Feb 2015", "issuer": "Singapore Police Force" }
         ]
       }
     },
@@ -322,7 +322,7 @@
         "location": "Singapore",
         "details": [],
         "awards": [
-          { "title": "Penang International Dragon Boat Festival 2016 – 3rd & 4th Position", "date": "Jan 2016", "description": "Penang State Tourism Development & Culture" }
+          { "title": "Penang International Dragon Boat Festival 2016 – 3rd & 4th", "date": "Jan 2016", "issuer": "Penang State Tourism Development & Culture" }
         ]
       }
     },
@@ -357,8 +357,8 @@
         "location": "Brisbane, Australia",
         "details": [],
         "awards": [
-          { "title": "EAIT International Scholarship", "date": "Feb 2018" },
-          { "title": "Cloud Computing INFS3208/INFS7208 Project Excellence Award (Best Project Demo)", "date": "Oct 2018", "description": "Outstanding performance in Cloud Computing Group Project competition; issued by Prof Xue Li" }
+          { "title": "EAIT International Scholarship", "date": "Feb 2018", "issuer": "The University of Queensland" },
+          { "title": "Project Excellence Award (Best Project Demo)", "date": "Oct 2018", "issuer": "Prof Xue Li, UQ" }
         ]
       }
     },
@@ -417,7 +417,7 @@
           "  • Joined Whale Cloud Singapore through IMDA Company-Led Training Programme, achieving permanent staff conversion based on exceptional performance"
         ],
         "awards": [
-          { "title": "Alibaba Cloud MVP 2020", "date": "Mar 2020", "description": "Awarded in Big Data; MVP for thought leaders devoted to helping others use Alibaba Cloud technologies" }
+          { "title": "Alibaba Cloud MVP 2020", "date": "Mar 2020", "issuer": "Alibaba Cloud" }
         ]
       }
     },
