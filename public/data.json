@@ -72,6 +72,27 @@
   ],
   "showcase": [
     {
+      "id": "wifi-qr",
+      "title": "WiFi QR Generator",
+      "backgroundImage": "./showcase/wifi-qr/wifi-qr-bg.gif",
+      "technologies": ["HTML", "CSS", "JavaScript"],
+      "modalContent": {
+        "title": "WiFi QR Generator",
+        "description": "Generate a QR code for your WiFi so guests can print or share the qr code as a image. Enter network name, password, and security type; download as PNG or print (full page with credentials). Deployed to GitHub Pages.",
+        "image": "./showcase/wifi-qr/wifi-qr-bg.gif",
+        "links": [
+          {
+            "text": "Try it Live",
+            "url": "https://marcuscjh.github.io/wifi-qr/"
+          },
+          {
+            "text": "View Source Code",
+            "url": "https://github.com/MarcusCJH/wifi-qr"
+          }
+        ]
+      }
+    },
+    {
       "id": "amazon-connect-poc",
       "title": "Amazon Connect Incident Response",
       "backgroundImage": "./showcase/amazon-connect-poc/amazon-connect-bg.png",
