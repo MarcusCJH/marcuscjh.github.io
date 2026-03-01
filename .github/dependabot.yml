@@ -8,12 +8,18 @@ updates:
     groups:
       # Group all dependency updates into a single PR (major, minor, patch)
       all:
+        applies-to: version-updates
         patterns:
           - "*"
         update-types:
           - "major"
           - "minor"
           - "patch"
+      # Group security fixes into one PR
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
     reviewers:
       - "MarcusCJH"
     assignees:
