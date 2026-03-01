@@ -6,19 +6,14 @@ updates:
       interval: "monthly"
     open-pull-requests-limit: 5
     groups:
-      # Group all minor and patch updates together
-      minor-and-patch:
-        patterns:
-          - "*"
-        update-types:
-          - "minor"
-          - "patch"
-      # Group all major updates together (more risky, so separate)
-      major:
+      # Group all dependency updates into a single PR (major, minor, patch)
+      all:
         patterns:
           - "*"
         update-types:
           - "major"
+          - "minor"
+          - "patch"
     reviewers:
       - "MarcusCJH"
     assignees:
