@@ -78,6 +78,7 @@
       "technologies": ["FastAPI", "Next.js", "TypeScript", "Ollama"],
       "modalContent": {
         "title": "BouncerBot",
+        "image": "./showcase/bouncerbot/bouncerbot-bg.png",
         "description": "An email validation tool that answers whether an email looks like it belongs to a real human or a bot—beyond basic @ checks. Uses AI (Ollama) plus traditional validation to evaluate domain legitimacy, username patterns, and name–email coherence. Three modes: AI-only, Non-AI only, and Hybrid (recommended). Supports single-email analysis and batch CSV processing for whitelist/blacklist decisions. Built with FastAPI, Next.js, TypeScript, and local Ollama. For local use only.",
         "links": []
       }
@@ -110,6 +111,7 @@
       "technologies": ["Python", "AWS", "DynamoDB"],
       "modalContent": {
         "title": "Real-Time Incident Response System",
+        "image": "./showcase/amazon-connect-poc/amazon-connect-bg.png",
         "description": "An automated incident response system built with Amazon Connect that triggers escalation calls when alerts are received. The system uses AWS Lambda to orchestrate outbound calls, with automatic escalation to secondary contacts if the first contact doesn't respond. Features include call status monitoring, DynamoDB logging, and SNS integration for alert management.",
         "links": [
           {
@@ -147,6 +149,7 @@
       "technologies": ["Alibaba Cloud", "Data Visualization"],
       "modalContent": {
         "title": "ApsaraChat Live: Real-time monitoring of COVID-19 with DataV",
+        "image": "./showcase/webinar/DataV-bg.PNG",
         "description": "A webinar where I was invited to speak about utilizing Alibaba Cloud's DataV for real-time data visualization and monitoring.",
         "video": {
           "src": "https://alicloud-common.oss-ap-southeast-1.aliyuncs.com/video/DataV%20COMPLETE.mp4",
@@ -167,6 +170,7 @@
       "technologies": ["Python", "AWS"],
       "modalContent": {
         "title": "Slack Bot",
+        "image": "./showcase/slackbot/slackbot-bg.png",
         "description": "A custom Slack bot built to automate workspace tasks and streamline team workflows using Python, Slack API, and AWS services.",
         "links": []
       }
@@ -199,6 +203,7 @@
       "technologies": ["TypeScript", "JavaScript", "HTML", "CSS"],
       "modalContent": {
         "title": "Personal Portfolio",
+        "image": "./showcase/marcuscjh/marcuscjh-bg.PNG",
         "description": "A dynamic personal portfolio website built with TypeScript, Vite, and modern web technologies. Features include interactive timeline, project showcase, and dynamic content loading from JSON configuration.",
         "links": [
           {
@@ -219,6 +224,7 @@
       "technologies": ["Python", "Django", "HTML", "JavaScript", "Bootstrap"],
       "modalContent": {
         "title": "ShareShed: Library of Things",
+        "image": "./showcase/shareshed/shareshed.png",
         "description": "A Brisbane-based 'Library of Things' platform enabling members to borrow items with annual membership. Built as part of DECO3801 course using Django, replacing third-party system limitations with a responsive, role-based web application. Features include membership management, catalogue browsing, lending/returns, operating hours configuration, and admin dashboard.",
         "links": [
           {
@@ -235,6 +241,7 @@
       "technologies": ["Apache Spark", "Cassandra", "Docker", "Scala"],
       "modalContent": {
         "title": "INFS3208/INFS7208 Cloud Computing Project",
+        "image": "./showcase/lulzcloud/lulzcloud.png",
         "description": "University of Queensland cloud computing project implementing a scalable web application using Cassandra NoSQL database, Spark Job Server for data processing, and Docker + Nginx for containerized deployment. Awarded Project Excellence Award (Best Project Demo) by Prof Xue Li in Oct 2018.",
         "links": [
           {
