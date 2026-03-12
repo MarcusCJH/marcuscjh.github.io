@@ -22,6 +22,8 @@ export class DataService {
           icon: 'fab fa-linkedin',
         },
         { name: 'Telegram', url: 'https://t.me/marcuscjh', icon: 'fab fa-telegram' },
+        { name: 'Medium', url: 'https://marcuscjh.medium.com', icon: 'fab fa-medium' },
+        { name: 'Dev.To', url: 'https://dev.to/marcuscjh', icon: 'fab fa-dev' },
       ],
       navigation: [],
       showcase: [],

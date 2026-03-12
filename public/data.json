@@ -68,6 +68,16 @@
       "platform": "Telegram",
       "icon": "fab fa-telegram",
       "url": "https://t.me/marcuscjh"
+    },
+    {
+      "platform": "Medium",
+      "icon": "fab fa-medium",
+      "url": "https://marcuscjh.medium.com"
+    },
+    {
+      "platform": "Dev.To",
+      "icon": "fab fa-dev",
+      "url": "https://dev.to/marcuscjh"
     }
   ],
   "showcase": [
