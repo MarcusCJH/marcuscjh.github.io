@@ -18,15 +18,14 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@/lib/*": ["src/lib/*"],
-      "@/services/*": ["src/services/*"],
-      "@/components/*": ["src/components/*"],
-      "@/types/*": ["src/types/*"],
-      "@/styles/*": ["src/styles/*"],
-      "@/assets/*": ["src/assets/*"]
+      "@/*": ["./src/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/services/*": ["./src/services/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/styles/*": ["./src/styles/*"],
+      "@/assets/*": ["./src/assets/*"]
     }
   },
   "include": [
