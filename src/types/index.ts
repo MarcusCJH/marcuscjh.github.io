@@ -60,8 +60,12 @@ export interface ModalContent {
 
 export interface Config {
   name: string;
+  real_name?: string;
   title: string;
   subtitle: string;
+  summary?: string;
+  email?: string;
+  website?: string;
   typedMessages: string[];
   cvDriveId?: string;
 }

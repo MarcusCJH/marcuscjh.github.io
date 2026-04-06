@@ -1,0 +1,17 @@
+{
+    "name": "Marcus Chan | Full Stack Engineer & Cloud Architect",
+    "short_name": "marcus.cjh",
+    "description": "Portfolio of Marcus Chan — Full Stack Engineer & Cloud Architect specializing in AWS, cloud technologies, and data engineering. Based in Singapore.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0a",
+    "theme_color": "#00ff88",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}

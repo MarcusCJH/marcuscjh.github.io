@@ -51,10 +51,11 @@ class Portfolio {
 
     const data = await dataPromise;
 
-    // Apply SEO configuration from data.json
+    // Apply SEO configuration and structured data from data.json
     if (data.seo) {
       SEOService.applySEO(data.seo);
     }
+    SEOService.applyStructuredData(data);
 
     this.initializeComponents();
     this.setupEventListeners();
@@ -568,8 +569,7 @@ class Portfolio {
     let parsedData: TimelineItem | ShowcaseProject;
     try {
       parsedData = typeof data === 'string' ? JSON.parse(data.replace(/&quot;/g, '"')) : data;
-    } catch (e) {
-      console.warn('Failed to parse modal data:', e);
+    } catch {
       return;
     }
 

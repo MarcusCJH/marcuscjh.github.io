@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="theme-color" content="#00ff88">
     <meta name="google-site-verification" content="9uLWJUwdMi1ZP3xka1tror2bPKaC6dqVj9WxmA6kRBk" />
-    <title>marcus.cjh | Full Stack Engineer</title>
+    <title>Marcus Chan | Full Stack Engineer & Cloud Architect</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -47,8 +47,10 @@
     <!-- Alternate URLs (for www subdomain if configured) -->
     <link rel="alternate" href="https://www.marcuscjh.com/" hreflang="en">
     
-    <!-- Favicon -->
+    <!-- Favicon & App Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.json">
     
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -56,111 +58,21 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     
-    <!-- Structured Data -->
+    <!-- WebSite Schema (static — Person + Projects schemas are injected dynamically from data.json) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Marcus Chan",
-        "alternateName": "marcus.cjh",
+        "@type": "WebSite",
+        "name": "Marcus Chan — Portfolio",
         "url": "https://marcuscjh.com",
-        "jobTitle": "Custom Software Engineering Specialist",
-        "description": "Experienced Software Engineer specializing in cloud technologies, data engineering, and full-stack development. Certified in AWS, GCP, Alibaba Cloud, Databricks, Terraform, and more.",
-        "knowsAbout": [
-            "Cloud Computing", 
-            "AWS", 
-            "GCP", 
-            "Alibaba Cloud", 
-            "Data Engineering", 
-            "Full Stack Development",
-            "Databricks",
-            "Terraform",
-            "Scrum",
-            "ITIL",
-            "PEGA"
-        ],
-        "alumniOf": [
-            {
-                "@type": "EducationalOrganization",
-                "name": "The University of Queensland"
-            },
-            {
-                "@type": "EducationalOrganization", 
-                "name": "Singapore Management University"
-            },
-            {
-                "@type": "EducationalOrganization",
-                "name": "Temasek Polytechnic"
-            }
-        ],
-        "hasCredential": [
-            {
-                "@type": "EducationalOccupationalCredential",
-                "name": "AWS Certified Cloud Practitioner",
-                "credentialCategory": "Professional Certification",
-                "recognizedBy": "Amazon Web Services"
-            },
-            {
-                "@type": "EducationalOccupationalCredential",
-                "name": "Google Cloud Digital Leader",
-                "credentialCategory": "Professional Certification",
-                "recognizedBy": "Google Cloud"
-            },
-            {
-                "@type": "EducationalOccupationalCredential",
-                "name": "Alibaba Cloud Professional - Cloud Computing",
-                "credentialCategory": "Professional Certification",
-                "recognizedBy": "Alibaba Cloud"
-            },
-            {
-                "@type": "EducationalOccupationalCredential",
-                "name": "Databricks Certified Data Engineer Associate",
-                "credentialCategory": "Professional Certification",
-                "recognizedBy": "Databricks"
-            },
-            {
-                "@type": "EducationalOccupationalCredential",
-                "name": "HashiCorp Terraform Associate",
-                "credentialCategory": "Professional Certification",
-                "recognizedBy": "HashiCorp"
-            },
-            {
-                "@type": "EducationalOccupationalCredential",
-                "name": "Certified Scrum Master",
-                "credentialCategory": "Professional Certification",
-                "recognizedBy": "Scrum Alliance"
-            },
-            {
-                "@type": "EducationalOccupationalCredential",
-                "name": "Certified Scrum Product Owner",
-                "credentialCategory": "Professional Certification",
-                "recognizedBy": "Scrum Alliance"
-            },
-            {
-                "@type": "EducationalOccupationalCredential",
-                "name": "ITIL v4 Foundation",
-                "credentialCategory": "Professional Certification",
-                "recognizedBy": "Axelos"
-            },
-            {
-                "@type": "EducationalOccupationalCredential",
-                "name": "PEGA Certified System Architect",
-                "credentialCategory": "Professional Certification",
-                "recognizedBy": "Pegasystems"
-            }
-        ],
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Accenture",
-            "url": "https://www.accenture.com"
-        },
-        "sameAs": [
-            "https://github.com/MarcusCJH",
-            "https://www.linkedin.com/in/marcuschanjh",
-            "https://t.me/marcuscjh"
-        ]
+        "description": "Personal portfolio of Marcus Chan, Full Stack Engineer & Cloud Architect based in Singapore.",
+        "author": {
+            "@type": "Person",
+            "name": "Marcus Chan"
+        }
     }
     </script>
+
 </head>
 
 <body>
@@ -263,29 +175,6 @@
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-                <!-- Static content for SEO -->
-                <noscript>
-                    <div class="timeline-item">
-                        <h3>Custom Software Engineering Specialist at Accenture</h3>
-                        <p>Full Stack Engineer specializing in serverless applications, cloud architecture, and scalable digital solutions.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Singapore Management University</h3>
-                        <p>Bachelor of Science in Information Systems with focus on software engineering and data analytics</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>AWS Certified Cloud Practitioner</h3>
-                        <p>Professional cloud architecture certification demonstrating expertise in designing distributed systems on AWS</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Google Cloud Digital Leader</h3>
-                        <p>Google Cloud Platform certification for enterprise-grade cloud solutions and architecture</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Alibaba Cloud Professional</h3>
-                        <p>Certified in Alibaba Cloud services and solutions for enterprise cloud computing</p>
-                    </div>
-                </noscript>
             </div>
         </section>
 

@@ -32,7 +32,7 @@
       "description": "Experienced Software Engineer specializing in cloud technologies, data engineering, and full-stack development. Certified in AWS, Alibaba Cloud, and Google Cloud.",
       "image": "https://marcuscjh.com/assets/showcase/marcuscjh/marcuscjh-bg.PNG",
       "author": "Marcus Chan",
-      "robots": "index, follow",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
       "openGraph": {
         "type": "website"
       },
@@ -41,8 +41,8 @@
       }
     },
     "meta": {
-      "title": "Marcus Chan | Software Engineer",
-      "keywords": "Software Engineer, Cloud Computing, AWS, Alibaba Cloud, Data Engineering, Full Stack Developer, Singapore"
+      "title": "Marcus Chan | Full Stack Engineer & Cloud Architect",
+      "keywords": "Marcus Chan, Software Engineer, Full Stack Engineer, Cloud Architect, Cloud Computing, AWS, GCP, Alibaba Cloud, Data Engineering, Databricks, Terraform, Singapore, Accenture"
     },
     "openGraph": {},
     "twitter": {},
