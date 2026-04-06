@@ -1,9 +1,11 @@
 // Matrix background animation component
+import { APP_CONFIG } from '@/lib/constants';
 
 export class MatrixBackground {
   private canvas: HTMLCanvasElement | null = null;
   private ctx: CanvasRenderingContext2D | null = null;
   private animationId: number | null = null;
+  private lastFrameTime = 0;
   private chars: string[] = [];
   private drops: number[] = [];
   private fontSize = 14;
@@ -58,10 +60,14 @@ export class MatrixBackground {
       return;
     }
 
-    // Use setInterval exactly like the original implementation
-    this.animationId = setInterval(() => {
-      this.drawMatrix();
-    }, 50) as unknown as number;
+    const animate = (timestamp: number) => {
+      if (timestamp - this.lastFrameTime >= APP_CONFIG.MATRIX_ANIMATION_INTERVAL) {
+        this.drawMatrix();
+        this.lastFrameTime = timestamp;
+      }
+      this.animationId = window.requestAnimationFrame(animate);
+    };
+    this.animationId = window.requestAnimationFrame(animate);
   }
 
   private drawMatrix(): void {
@@ -101,8 +107,8 @@ export class MatrixBackground {
    * Destroy the matrix background animation
    */
   public destroy(): void {
-    if (this.animationId) {
-      clearInterval(this.animationId);
+    if (this.animationId !== null) {
+      window.cancelAnimationFrame(this.animationId);
       this.animationId = null;
     }
   }

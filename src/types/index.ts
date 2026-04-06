@@ -119,28 +119,9 @@ export interface PortfolioData {
   showcase: ShowcaseProject[];
 }
 
-export interface CachedElements {
-  [key: string]: HTMLElement | null;
-}
-
-export interface LoadingState {
-  progress: number;
-  messages: string[];
-  currentMessageIndex: number;
-  interval?: NodeJS.Timeout;
-}
-
 export interface TimelineState {
   currentFilter: string;
   currentSearch: string;
-  currentIndex: number;
   filteredItems: TimelineItem[];
   isScrolling: boolean;
-}
-
-export interface TypedTextState {
-  messageIndex: number;
-  charIndex: number;
-  isDeleting: boolean;
-  messages: string[];
 }

@@ -12,7 +12,7 @@ import { TypedText } from './components/TypedText';
 // Import utilities
 import { DOMUtils } from './lib/dom';
 import { debounce } from './lib/utils';
-import { APP_CONFIG, CSS_CLASSES, SELECTORS } from './lib/constants';
+import { APP_CONFIG, BREAKPOINTS, CSS_CLASSES, SELECTORS } from './lib/constants';
 
 // Import types
 import type {
@@ -27,10 +27,10 @@ import type {
 class Portfolio {
   private dataService: DataService;
   private loadingService: LoadingService;
+  private snapTimer: number | undefined;
   private timelineState: TimelineState = {
     currentFilter: 'all',
     currentSearch: '',
-    currentIndex: 0,
     filteredItems: [],
     isScrolling: false,
   };
@@ -283,7 +283,7 @@ class Portfolio {
       window.addEventListener('resize', debouncedTimelineScroll);
 
       // Drag-to-scroll with momentum (desktop only)
-      const isDesktop = window.innerWidth > 768;
+      const isDesktop = window.innerWidth > BREAKPOINTS.MOBILE;
 
       if (isDesktop) {
         let velocity = 0;
@@ -373,8 +373,8 @@ class Portfolio {
               disableSnap();
               timelineWrapper.scrollLeft += e.deltaY;
               // Brief delay before snap restores so it doesn't snap on each tick
-              clearTimeout((timelineWrapper as HTMLElement & { _snapTimer?: number })._snapTimer);
-              (timelineWrapper as HTMLElement & { _snapTimer?: number })._snapTimer = window.setTimeout(restoreSnap, 150);
+              clearTimeout(this.snapTimer);
+              this.snapTimer = window.setTimeout(restoreSnap, 150);
             }
           },
           { passive: false }
@@ -427,7 +427,7 @@ class Portfolio {
       return;
     }
 
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= BREAKPOINTS.MOBILE;
 
     if (isMobile) {
       const rect = timelineWrapper.getBoundingClientRect();
@@ -568,7 +568,8 @@ class Portfolio {
     let parsedData: TimelineItem | ShowcaseProject;
     try {
       parsedData = typeof data === 'string' ? JSON.parse(data.replace(/&quot;/g, '"')) : data;
-    } catch {
+    } catch (e) {
+      console.warn('Failed to parse modal data:', e);
       return;
     }
 
