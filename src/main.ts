@@ -226,7 +226,7 @@ class Portfolio {
       timelineContainer.innerHTML = this.timelineState.filteredItems
         .map(
           (item, index) => `
-        <div class="timeline-item visible" data-category="${item.category}" data-index="${index}" data-timeline-item>
+        <div class="timeline-item visible" data-category="${item.category}" data-index="${index}" data-timeline-item style="--item-index: ${index}">
           <div class="timeline-dot ${item.category}">
             <i class="${this.getTimelineIcon(item.category)}"></i>
           </div>
@@ -282,48 +282,137 @@ class Portfolio {
       window.addEventListener('scroll', debouncedTimelineScroll);
       window.addEventListener('resize', debouncedTimelineScroll);
 
-      // Drag-to-scroll functionality (desktop only)
+      // Drag-to-scroll with momentum (desktop only)
       const isDesktop = window.innerWidth > 768;
 
       if (isDesktop) {
+        let velocity = 0;
+        let lastX = 0;
+        let lastMoveTime = 0;
+        let momentumRafId = 0;
+
+        // Disable scroll snap while dragging/coasting so it doesn't fight the gesture
+        const disableSnap = () => {
+          timelineWrapper.style.scrollSnapType = 'none';
+        };
+        const restoreSnap = () => {
+          timelineWrapper.style.scrollSnapType = '';
+        };
+
+        const applyMomentum = () => {
+          if (Math.abs(velocity) < 0.3) {
+            velocity = 0;
+            restoreSnap();
+            return;
+          }
+          timelineWrapper.scrollLeft += velocity;
+          velocity *= 0.88;
+          momentumRafId = window.requestAnimationFrame(applyMomentum);
+        };
+
         // Mouse down - start drag
         timelineWrapper.addEventListener('mousedown', e => {
           isDragging = true;
+          velocity = 0;
+          window.cancelAnimationFrame(momentumRafId);
+          disableSnap();
           timelineWrapper.style.cursor = 'grabbing';
           timelineWrapper.style.userSelect = 'none';
           startX = e.pageX - timelineWrapper.offsetLeft;
           scrollLeft = timelineWrapper.scrollLeft;
+          lastX = e.pageX;
+          lastMoveTime = window.performance.now();
         });
 
-        // Mouse move - drag scroll
+        // Mouse move - 1:1 drag, track velocity via EMA
         timelineWrapper.addEventListener('mousemove', e => {
           if (!isDragging) {
             return;
           }
           e.preventDefault();
           const x = e.pageX - timelineWrapper.offsetLeft;
-          const walk = (x - startX) * 2; // Scroll speed multiplier
-          timelineWrapper.scrollLeft = scrollLeft - walk;
+          // 1:1 drag — no amplification multiplier
+          timelineWrapper.scrollLeft = scrollLeft - (x - startX);
+          const now = window.performance.now();
+          const dt = now - lastMoveTime || 1;
+          const rawVelocity = ((lastX - e.pageX) / dt) * 16;
+          // Exponential moving average to smooth noisy samples
+          velocity = velocity * 0.6 + rawVelocity * 0.4;
+          lastX = e.pageX;
+          lastMoveTime = now;
         });
 
-        // Mouse up - end drag
-        timelineWrapper.addEventListener('mouseup', () => {
+        const endDrag = () => {
+          if (!isDragging) {
+            return;
+          }
           isDragging = false;
           timelineWrapper.style.cursor = 'grab';
           timelineWrapper.style.userSelect = 'none';
-        });
+          window.cancelAnimationFrame(momentumRafId);
+          // Cap momentum so a fast flick doesn't fly too far
+          velocity = Math.max(-40, Math.min(40, velocity));
+          momentumRafId = window.requestAnimationFrame(applyMomentum);
+        };
 
-        // Mouse leave - end drag
-        timelineWrapper.addEventListener('mouseleave', () => {
-          isDragging = false;
-          timelineWrapper.style.cursor = 'grab';
-          timelineWrapper.style.userSelect = 'none';
-        });
+        timelineWrapper.addEventListener('mouseup', endDrag);
+        timelineWrapper.addEventListener('mouseleave', endDrag);
 
         // Prevent default drag behavior
         timelineWrapper.addEventListener('dragstart', e => {
           e.preventDefault();
         });
+
+        // Wheel → horizontal scroll conversion
+        timelineWrapper.addEventListener(
+          'wheel',
+          e => {
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+              e.preventDefault();
+              window.cancelAnimationFrame(momentumRafId);
+              disableSnap();
+              timelineWrapper.scrollLeft += e.deltaY;
+              // Brief delay before snap restores so it doesn't snap on each tick
+              clearTimeout((timelineWrapper as HTMLElement & { _snapTimer?: number })._snapTimer);
+              (timelineWrapper as HTMLElement & { _snapTimer?: number })._snapTimer = window.setTimeout(restoreSnap, 150);
+            }
+          },
+          { passive: false }
+        );
+
+        // Touch swipe support (touch-screen desktops / iPads in desktop mode)
+        let touchStartX = 0;
+        let touchScrollLeft = 0;
+        timelineWrapper.addEventListener(
+          'touchstart',
+          e => {
+            touchStartX = e.touches[0].pageX;
+            touchScrollLeft = timelineWrapper.scrollLeft;
+            velocity = 0;
+            window.cancelAnimationFrame(momentumRafId);
+            disableSnap();
+          },
+          { passive: true }
+        );
+
+        timelineWrapper.addEventListener(
+          'touchmove',
+          e => {
+            const dx = touchStartX - e.touches[0].pageX;
+            timelineWrapper.scrollLeft = touchScrollLeft + dx;
+          },
+          { passive: true }
+        );
+
+        timelineWrapper.addEventListener(
+          'touchend',
+          e => {
+            const dx = touchStartX - e.changedTouches[0].pageX;
+            velocity = Math.max(-40, Math.min(40, dx * 0.2));
+            momentumRafId = window.requestAnimationFrame(applyMomentum);
+          },
+          { passive: true }
+        );
       }
     }
 
