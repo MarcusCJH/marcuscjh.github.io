@@ -11,9 +11,9 @@
   "config": {
     "name": "marcus.cjh",
     "real_name": "Marcus Chan",
-    "title": "Full Stack Engineer & Cloud Architect",
+    "title": "Lead Full Stack Engineer & Cloud Architect",
     "subtitle": "Transforming ideas into scalable digital solutions",
-    "summary": "Experienced IT Professional with 8+ years delivering scalable cloud-native solutions across multiple industries. Proven expertise in AWS and Alibaba Cloud with specialization in serverless architecture, DevOps automation, and full-stack development. Certified in AWS, Alibaba Cloud, and Google Cloud. Strong background in big data analytics, enterprise application development, and cloud infrastructure with hands-on experience from research to production systems.",
+    "summary": "Lead Full Stack Engineer and Cloud Architect with 10+ years delivering scalable, cloud-native solutions across financial services, public sector, healthcare, and travel. Proven in leading engineering teams, driving technical strategy, and translating complex business requirements into production-ready systems. Certified across AWS, Alibaba Cloud, Google Cloud, data engineering, and infrastructure automation — spanning serverless architecture, DevOps, and enterprise application development.",
     "email": "marcuschanjh@gmail.com",
     "website": "https://marcuscjh.com",
     "typedMessages": [
@@ -28,8 +28,8 @@
   "seo": {
     "defaults": {
       "url": "https://marcuscjh.com/",
-      "title": "Marcus Chan | Full Stack Engineer & Cloud Architect",
-      "description": "Experienced Software Engineer specializing in cloud technologies, data engineering, and full-stack development. Certified in AWS, Alibaba Cloud, and Google Cloud.",
+      "title": "Marcus Chan | Lead Full Stack Engineer & Cloud Architect",
+      "description": "Lead Full Stack Engineer and Cloud Architect specialising in cloud-native solutions, team leadership, and full-stack development. Certified across AWS, Alibaba Cloud, Google Cloud, Databricks, and Terraform.",
       "image": "https://marcuscjh.com/assets/showcase/marcuscjh/marcuscjh-bg.PNG",
       "author": "Marcus Chan",
       "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
@@ -41,8 +41,8 @@
       }
     },
     "meta": {
-      "title": "Marcus Chan | Full Stack Engineer & Cloud Architect",
-      "keywords": "Marcus Chan, Software Engineer, Full Stack Engineer, Cloud Architect, Cloud Computing, AWS, GCP, Alibaba Cloud, Data Engineering, Databricks, Terraform, Singapore, Accenture"
+      "title": "Marcus Chan | Lead Full Stack Engineer & Cloud Architect",
+      "keywords": "Marcus Chan, Technical Lead, Lead Full Stack Engineer, Lead Engineer, Cloud Architect, Software Engineer, Cloud Computing, AWS, GCP, Alibaba Cloud, Data Engineering, Databricks, Terraform, Singapore, Accenture"
     },
     "openGraph": {},
     "twitter": {},
@@ -89,7 +89,7 @@
       "modalContent": {
         "title": "BouncerBot",
         "image": "./showcase/bouncerbot/bouncerbot-bg.png",
-        "description": "An email validation tool that answers whether an email looks like it belongs to a real human or a bot—beyond basic @ checks. Uses AI (Ollama) plus traditional validation to evaluate domain legitimacy, username patterns, and name–email coherence. Three modes: AI-only, Non-AI only, and Hybrid (recommended). Supports single-email analysis and batch CSV processing for whitelist/blacklist decisions. Built with FastAPI, Next.js, TypeScript, and local Ollama. For local use only.",
+        "description": "An email validation tool that answers whether an email looks like it belongs to a real human or a bot — beyond basic @ checks. Uses AI (Ollama) plus traditional validation to evaluate domain legitimacy, username patterns, and name–email coherence. Three modes: AI-only, Non-AI only, and Hybrid (recommended). Supports single-email analysis and batch CSV processing for whitelist/blacklist decisions. Built with FastAPI, Next.js, TypeScript, and local Ollama. For local use only.",
         "links": []
       }
     },
@@ -100,7 +100,7 @@
       "technologies": ["HTML", "CSS", "JavaScript"],
       "modalContent": {
         "title": "WiFi QR Generator",
-        "description": "Generate a QR code for your WiFi so guests can print or share the qr code as a image. Enter network name, password, and security type; download as PNG or print (full page with credentials). Deployed to GitHub Pages.",
+        "description": "Generate a QR code for your WiFi so guests can print or share the QR code as an image. Enter network name, password, and security type; download as PNG or print (full page with credentials). Deployed to GitHub Pages.",
         "image": "./showcase/wifi-qr/wifi-qr-bg.gif",
         "links": [
           {
@@ -122,7 +122,7 @@
       "modalContent": {
         "title": "Real-Time Incident Response System",
         "image": "./showcase/amazon-connect-poc/amazon-connect-bg.png",
-        "description": "An automated incident response system built with Amazon Connect that triggers escalation calls when alerts are received. The system uses AWS Lambda to orchestrate outbound calls, with automatic escalation to secondary contacts if the first contact doesn't respond. Features include call status monitoring, DynamoDB logging, and SNS integration for alert management.",
+        "description": "An automated incident response system built with Amazon Connect that triggers escalation calls when alerts are received. The system uses AWS Lambda to orchestrate outbound calls, with automatic escalation to secondary contacts if the first contact does not respond. Features include call status monitoring, DynamoDB logging, and SNS integration for alert management.",
         "links": [
           {
             "text": "Read Development Story",
@@ -160,7 +160,7 @@
       "modalContent": {
         "title": "ApsaraChat Live: Real-time monitoring of COVID-19 with DataV",
         "image": "./showcase/webinar/DataV-bg.PNG",
-        "description": "A webinar where I was invited to speak about utilizing Alibaba Cloud's DataV for real-time data visualization and monitoring.",
+        "description": "A webinar where I was invited to speak about utilising Alibaba Cloud's DataV for real-time data visualisation and monitoring.",
         "video": {
           "src": "https://alicloud-common.oss-ap-southeast-1.aliyuncs.com/video/DataV%20COMPLETE.mp4",
           "type": "video/mp4"
@@ -252,7 +252,7 @@
       "modalContent": {
         "title": "INFS3208/INFS7208 Cloud Computing Project",
         "image": "./showcase/lulzcloud/lulzcloud.png",
-        "description": "University of Queensland cloud computing project implementing a scalable web application using Cassandra NoSQL database, Spark Job Server for data processing, and Docker + Nginx for containerized deployment. Awarded Project Excellence Award (Best Project Demo) by Prof Xue Li in Oct 2018.",
+        "description": "University of Queensland cloud computing project implementing a scalable web application using Cassandra NoSQL database, Spark Job Server for data processing, and Docker + Nginx for containerised deployment. Awarded Project Excellence Award (Best Project Demo) by Prof Xue Li in Oct 2018.",
         "links": [
           {
             "text": "View Source Code",
@@ -305,14 +305,14 @@
         "location": "Singapore & Yokohama, Japan",
         "details": [
           "Research & Development Center - Singapore",
-          "  • Built Taxi Simulator application using HTML, Java, JavaScript, and Google Maps API to model real-world transportation patterns",
-          "  • Integrated Open Source Routing Machine (OSRM) to simulate taxi interactions and optimize passenger demand forecasting",
-          "  • Created data visualization dashboards analyzing taxi sharing efficiency and route optimization using historical traffic data",
+          "  • Built a Taxi Simulator application using HTML, Java, JavaScript, and Google Maps API to model real-world transportation patterns",
+          "  • Integrated Open Source Routing Machine (OSRM) to simulate taxi interactions and optimise passenger demand forecasting",
+          "  • Created data visualisation dashboards analysing taxi sharing efficiency and route optimisation using historical traffic data",
           "",
           "Yokohama Research Lab - Yokohama, Japan",
-          "  • Developed scalable Big Data Graph Visualizer web application using Apache Solr and Apache Hadoop for large-scale data processing",
-          "  • Developed Java backend services and JavaScript frontend components enabling interactive exploration of complex graph datasets",
-          "  • Performed performance benchmarking of graph algorithms on distributed Linux systems, identifying optimal solutions for production use"
+          "  • Developed a scalable Big Data Graph Visualiser web application using Apache Solr and Apache Hadoop for large-scale data processing",
+          "  • Built Java backend services and JavaScript frontend components enabling interactive exploration of complex graph datasets",
+          "  • Conducted performance benchmarking of graph algorithms on distributed Linux systems, identifying optimal configurations for production use"
         ]
       }
     },
@@ -328,8 +328,9 @@
         "subtitle": "Sep 2014 - Sep 2016",
         "location": "Singapore",
         "details": [
+          "National Service — mandatory two-year military enlistment for Singapore male citizens.",
           "Led patrol teams across public transportation networks to maintain security and public safety",
-          "Ensured operational readiness and rapid response capabilities for security incidents"
+          "Maintained operational readiness and rapid response capabilities for security incidents"
         ],
         "awards": [
           { "title": "Best in Professional Studies", "date": "Feb 2015", "issuer": "Singapore Police Force" },
@@ -343,12 +344,14 @@
       "startDate": "2016",
       "endDate": "2017",
       "company": "Singapore Management University",
-      "title": "Bachelor of Science (Information Systems) - Incomplete",
+      "title": "Bachelor of Science (Information Systems)",
       "modalContent": {
         "title": "Singapore Management University",
         "subtitle": "2016 - 2017",
         "location": "Singapore",
-        "details": [],
+        "details": [
+          "Left after one year to pursue industry experience directly. Subsequently earned the EAIT International Scholarship to complete a degree at the University of Queensland."
+        ],
         "awards": [
           { "title": "Penang International Dragon Boat Festival 2016 – 3rd & 4th", "date": "Jan 2016", "issuer": "Penang State Tourism Development & Culture" }
         ]
@@ -367,7 +370,7 @@
         "location": "Singapore",
         "details": [
           "Developed interactive e-learning content using Articulate 360, JavaScript, and Adobe Creative Suite (Premiere Pro, After Effects, Illustrator, Audition)",
-          "Enhanced content accessibility by implementing audio transcription and multi-language subtitles across all courseware",
+          "Improved content accessibility by implementing audio transcription and multi-language subtitles across all courseware",
           "Streamlined production workflows through systematic content reviews, version control, and asset management processes"
         ]
       }
@@ -409,7 +412,7 @@
     {
       "category": "certification",
       "order": 7,
-      "startDate": "Jun 2019",
+      "startDate": "Dec 2019",
       "company": "Alibaba Cloud",
       "title": "Alibaba Cloud Professional - Cloud Computing",
       "modalContent": {
@@ -435,14 +438,15 @@
         "location": "Singapore",
         "details": [
           "Software Delivery Engineer - (2020 - 2021)",
-          "  • Delivered enterprise-grade Business Intelligence dashboards using Alibaba Cloud ecosystem (Dataphin, DataWorks, QuickBI, DataV) for multiple client engagements",
-          "  • Recognized by Alibaba Cloud as subject matter expert, invited to conduct technical sharing sessions on DataV platform capabilities",
-          "  • Led end-to-end UAT cycles and QA processes, ensuring 100% reliability and alignment with business requirements",
+          "  • Delivered enterprise-grade Business Intelligence dashboards using Alibaba Cloud ecosystem (Dataphin, DataWorks, QuickBI, DataV) across multiple client engagements",
+          "  • Recognised by Alibaba Cloud as a subject matter expert; invited to conduct technical sharing sessions on DataV platform capabilities",
+          "  • Led end-to-end UAT cycles and QA processes, achieving zero post-release defects across client deliverables",
           "  • Managed POC development initiatives as technical product manager, accelerating time-to-market for new solutions",
-          "  • Executed comprehensive big data implementations including infrastructure upgrades, ETL pipeline development, and advanced SQL analytics",
           "",
           "Software Engineer - (2019 - 2020)",
-          "  • Joined Whale Cloud Singapore through IMDA Company-Led Training Programme, achieving permanent staff conversion based on exceptional performance"
+          "  • Joined Whale Cloud Singapore through the IMDA Company-Led Training Programme and converted to permanent staff within 12 months",
+          "  • Built and supported big data implementations including ETL pipeline development, advanced SQL analytics, and BI dashboard configuration",
+          "  • Contributed to Alibaba Cloud DataWorks and Dataphin deployments, supporting data engineering and UAT activities across client projects"
         ],
         "awards": [
           { "title": "Alibaba Cloud MVP 2020", "date": "Mar 2020", "issuer": "Alibaba Cloud" }
@@ -605,27 +609,27 @@
         "subtitle": "Apr 2021 - Present",
         "location": "Singapore",
         "details": [
-          "Full Stack Engineer - Travel Services (2024 - Present)",
-          "  • Deployed and customized enterprise-scale serverless applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify) at client sites",
-          "  • Collaborated with travel industry stakeholders to translate business requirements into scalable technical solutions",
-          "  • Designed and developed full-stack solutions including RFID showcase systems, mobile wayfinding applications, and e-commerce platforms",
-          "  • Acted as technical liaison between engineering and business teams, ensuring alignment with operational requirements and passenger experience goals",
-          "  • Led infrastructure automation, CI/CD pipeline implementation, and knowledge transfer initiatives to enable client self-sufficiency",
+          "Technical Lead - Travel Services (2024 - Present)",
+          "  • Led the architecture and delivery of enterprise-scale serverless applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify) at client sites",
+          "  • Drove technical strategy and engineering decisions, translating travel industry business requirements into scalable production systems",
+          "  • Designed and delivered full-stack solutions including RFID showcase systems, mobile wayfinding applications, and e-commerce platforms",
+          "  • Served as primary technical liaison between engineering and business teams, aligning delivery with operational requirements and passenger experience goals",
+          "  • Spearheaded infrastructure automation, CI/CD pipeline implementation, and knowledge transfer programmes to enable client self-sufficiency",
+          "  • Mentored junior engineers and conducted code reviews to uphold engineering standards across the team",
           "",
           "Site Reliability Engineer - Public Services (2022 - 2024)",
-          "  • Designed and deployed enterprise chatbot solution, reducing service request processing time by 65-70%",
-          "  • Implemented comprehensive monitoring and alerting frameworks across multi-tier applications and infrastructure",
-          "  • Streamlined tenant onboarding processes for seamless and secure platform integration",
-          "  • Strengthened security posture through proactive vulnerability remediation and system hardening",
+          "  • Designed and deployed an enterprise chatbot solution that reduced service request processing time by 65–70%",
+          "  • Implemented monitoring and alerting frameworks across multi-tier applications and infrastructure",
+          "  • Streamlined tenant onboarding processes for secure and repeatable platform integration",
+          "  • Hardened system security through proactive vulnerability remediation and configuration governance",
           "",
           "Software Development Engineer - Financial Services (2022)",
-          "  • Developed and integrated mission-critical APIs using Django framework for enterprise financial services platform",
-          "  • Managed full software development lifecycle from requirements gathering through production deployment",
-          "  • Showcased Accenture's technical capabilities at Singapore FinTech Festival 2022",
+          "  • Built backend Django REST APIs for an enterprise financial services platform, partnering directly with SMEs to translate complex financial calculation logic into reliable, maintainable code",
+          "  • Represented Accenture's engineering capabilities at Singapore FinTech Festival 2022, demonstrating the platform to senior client stakeholders and industry partners",
           "",
           "Application Engineer - Healthcare Services (2021 - 2022)",
           "  • Automated complex reporting workflows through data analysis and SSRS/SSIS pipeline development",
-          "  • Resolved critical service requests and platform issues across SSRS/SSIS and Pega systems, maintaining 99.9% system uptime",
+          "  • Resolved critical service requests across SSRS/SSIS and Pega systems, maintaining 99.9% system uptime",
           "  • Delivered operational support to healthcare stakeholders, ensuring continuous service availability"
         ]
       }
