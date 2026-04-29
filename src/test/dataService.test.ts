@@ -46,8 +46,8 @@ describe('DataService', () => {
     (fetch as MockedFunction<typeof fetch>).mockRejectedValueOnce(new Error('Network error'));
 
     const result = await dataService.loadData();
-    expect(result.config.name).toBe('Marcus Chan');
-    expect(result.config.title).toBe('Full Stack Engineer & Cloud Architect');
+    expect(result.config.name).toBe('marcus.cjh');
+    expect(result.config.title).toBe('Lead Full Stack Engineer & Cloud Architect');
   });
 
   it('should return config data', () => {

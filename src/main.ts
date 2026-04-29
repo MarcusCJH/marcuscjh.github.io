@@ -91,11 +91,39 @@ class Portfolio {
       new TypedText(config.typedMessages);
     }
 
+    this.initHero();
     this.initNavigation();
     this.initSocials();
     this.initTimeline();
     this.initShowcase();
     this.initScrollAnimations();
+  }
+
+  private initHero(): void {
+    const config = this.dataService.getConfig();
+    if (!config) {
+      return;
+    }
+
+    const setGlitch = (el: HTMLElement | null, value: string) => {
+      if (!el) {
+        return;
+      }
+      el.textContent = value;
+      el.setAttribute('data-text', value);
+    };
+
+    setGlitch(document.querySelector('.brand-text'), config.name);
+    setGlitch(document.querySelector('.hero-title'), config.name);
+    setGlitch(document.querySelector('.loading-logo .glitch'), config.name);
+
+    const heroDesc = document.querySelector('.hero-description') as HTMLElement | null;
+    if (heroDesc) {
+      heroDesc.innerHTML = `
+        <p class="fade-in-up">${config.title}</p>
+        <p class="fade-in-up delay-1">${config.subtitle}</p>
+      `;
+    }
   }
 
   private initNavigation(): void {

@@ -76,6 +76,10 @@ export interface SEOMeta {
   keywords?: string;
   author?: string;
   robots?: string;
+  themeColor?: string;
+  backgroundColor?: string;
+  googlebot?: string;
+  bingbot?: string;
 }
 
 export interface OpenGraph {
@@ -84,6 +88,11 @@ export interface OpenGraph {
   title?: string;
   description?: string;
   image?: string;
+  site_name?: string;
+  locale?: string;
+  imageWidth?: string;
+  imageHeight?: string;
+  imageType?: string;
 }
 
 export interface TwitterCard {
@@ -92,6 +101,8 @@ export interface TwitterCard {
   title?: string;
   description?: string;
   image?: string;
+  creator?: string;
+  site?: string;
 }
 
 export interface SEODefaults {
@@ -105,6 +116,11 @@ export interface SEODefaults {
   twitter?: Partial<TwitterCard>;
 }
 
+export interface AlternateUrl {
+  href: string;
+  hreflang: string;
+}
+
 export interface SEOConfig {
   defaults?: SEODefaults;
   meta?: SEOMeta;
@@ -112,6 +128,7 @@ export interface SEOConfig {
   twitter?: TwitterCard;
   canonical?: string;
   googleSiteVerification?: string;
+  alternateUrls?: AlternateUrl[];
 }
 
 export interface PortfolioData {

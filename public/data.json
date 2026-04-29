@@ -30,7 +30,7 @@
       "url": "https://marcuscjh.com/",
       "title": "Marcus Chan | Lead Full Stack Engineer & Cloud Architect",
       "description": "Lead Full Stack Engineer and Cloud Architect specialising in cloud-native solutions, team leadership, and full-stack development. Certified across AWS, Alibaba Cloud, Google Cloud, Databricks, and Terraform.",
-      "image": "https://marcuscjh.com/assets/showcase/marcuscjh/marcuscjh-bg.PNG",
+      "image": "https://marcuscjh.com/showcase/marcuscjh/marcuscjh-bg.PNG",
       "author": "Marcus Chan",
       "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
       "openGraph": {
@@ -42,10 +42,27 @@
     },
     "meta": {
       "title": "Marcus Chan | Lead Full Stack Engineer & Cloud Architect",
-      "keywords": "Marcus Chan, Technical Lead, Lead Full Stack Engineer, Lead Engineer, Cloud Architect, Software Engineer, Cloud Computing, AWS, GCP, Alibaba Cloud, Data Engineering, Databricks, Terraform, Singapore, Accenture"
+      "description": "Lead Full Stack Engineer and Cloud Architect specialising in cloud-native solutions, team leadership, and full-stack development. Certified across AWS, Alibaba Cloud, Google Cloud, Databricks, and Terraform.",
+      "keywords": "Marcus Chan, Lead Full Stack Engineer, Lead Engineer, Technical Lead, Cloud Architect, Software Engineer, Cloud Computing, AWS, Amazon Web Services, GCP, Google Cloud Platform, Alibaba Cloud, Data Engineering, Databricks, Terraform, Serverless Architecture, DevOps, Singapore, Accenture, Full Stack Developer, TypeScript, Python, Java, Node.js, React, microservices, enterprise software",
+      "themeColor": "#00ff88",
+      "backgroundColor": "#0a0a0a",
+      "googlebot": "index, follow",
+      "bingbot": "index, follow"
     },
-    "openGraph": {},
-    "twitter": {},
+    "openGraph": {
+      "site_name": "Marcus Chan — Portfolio",
+      "locale": "en_US",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageType": "image/png"
+    },
+    "twitter": {
+      "creator": "@marcuscjh",
+      "site": "@marcuscjh"
+    },
+    "alternateUrls": [
+      { "href": "https://www.marcuscjh.com/", "hreflang": "en" }
+    ],
     "googleSiteVerification": "9uLWJUwdMi1ZP3xka1tror2bPKaC6dqVj9WxmA6kRBk"
   },
   "social": [

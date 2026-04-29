@@ -9,10 +9,17 @@ export class DataService {
   private constructor() {
     this.fallbackData = {
       config: {
-        name: 'Marcus Chan',
-        title: 'Full Stack Engineer & Cloud Architect',
-        subtitle: 'Building the future with modern technologies',
-        typedMessages: ['Full Stack Engineer', 'Cloud Architect', 'Problem Solver'],
+        name: 'marcus.cjh',
+        real_name: 'Marcus Chan',
+        title: 'Lead Full Stack Engineer & Cloud Architect',
+        subtitle: 'Transforming ideas into scalable digital solutions',
+        typedMessages: [
+          'whoami',
+          'cat /etc/skills',
+          'ls -la projects/',
+          'git status',
+          'npm run deploy',
+        ],
       },
       social: [
         { name: 'GitHub', url: 'https://github.com/MarcusCJH', icon: 'fab fa-github' },
