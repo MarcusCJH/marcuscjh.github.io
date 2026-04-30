@@ -1,7 +1,5 @@
-// Import CSS for Vite
 import './styles/style.css';
 
-// Import services and components
 import { DataService } from './services/dataService';
 import { LoadingService } from './services/loadingService';
 import { SEOService } from './services/seoService';
@@ -9,12 +7,10 @@ import { MatrixBackground } from './components/MatrixBackground';
 import { ParticleSystem } from './components/ParticleSystem';
 import { TypedText } from './components/TypedText';
 
-// Import utilities
 import { DOMUtils } from './lib/dom';
 import { debounce } from './lib/utils';
 import { APP_CONFIG, BREAKPOINTS, CSS_CLASSES, SELECTORS } from './lib/constants';
 
-// Import types
 import type {
   TimelineItem,
   ShowcaseProject,
@@ -23,7 +19,6 @@ import type {
   NavigationItem,
 } from './types';
 
-// Simplified Portfolio Class - KISS Principle
 class Portfolio {
   private dataService: DataService;
   private loadingService: LoadingService;
@@ -32,7 +27,6 @@ class Portfolio {
     currentFilter: 'all',
     currentSearch: '',
     filteredItems: [],
-    isScrolling: false,
   };
 
   constructor() {
@@ -72,7 +66,7 @@ class Portfolio {
   }
 
   private hideMainContent(): void {
-    const mainContainer = document.querySelector(SELECTORS.MAIN_CONTAINER) as HTMLElement;
+    const mainContainer = document.querySelector<HTMLElement>(SELECTORS.MAIN_CONTAINER);
     if (mainContainer) {
       mainContainer.style.opacity = '0';
       mainContainer.style.visibility = 'hidden';
@@ -117,7 +111,7 @@ class Portfolio {
     setGlitch(document.querySelector('.hero-title'), config.name);
     setGlitch(document.querySelector('.loading-logo .glitch'), config.name);
 
-    const heroDesc = document.querySelector('.hero-description') as HTMLElement | null;
+    const heroDesc = document.querySelector<HTMLElement>('.hero-description');
     if (heroDesc) {
       heroDesc.innerHTML = `
         <p class="fade-in-up">${config.title}</p>
@@ -127,8 +121,8 @@ class Portfolio {
   }
 
   private initNavigation(): void {
-    const navMenu = DOMUtils.getElement('nav-menu') as HTMLElement;
-    const navToggle = DOMUtils.getElement('nav-toggle') as HTMLElement;
+    const navMenu = DOMUtils.getElement('nav-menu');
+    const navToggle = DOMUtils.getElement('nav-toggle');
     const navigation = this.dataService.getNavigation();
 
     if (!navigation || !navMenu) {
@@ -153,7 +147,7 @@ class Portfolio {
     const navItems = DOMUtils.getElements('.nav-item');
 
     navToggle?.addEventListener('click', () => {
-      navToggle.classList.toggle(CSS_CLASSES.ACTIVE);
+      navToggle?.classList.toggle(CSS_CLASSES.ACTIVE);
       navMenu.classList.toggle(CSS_CLASSES.ACTIVE);
     });
 
@@ -163,7 +157,7 @@ class Portfolio {
         if (target) {
           this.navigateToSection(target);
         }
-        navToggle.classList.remove(CSS_CLASSES.ACTIVE);
+        navToggle?.classList.remove(CSS_CLASSES.ACTIVE);
         navMenu.classList.remove(CSS_CLASSES.ACTIVE);
       });
     });
@@ -171,8 +165,9 @@ class Portfolio {
     // Scroll spy
     const debouncedScrollHandler = debounce(() => {
       const scrollY = window.scrollY;
-      const nav = document.querySelector(SELECTORS.NAV_CONTAINER) as HTMLElement;
-      nav?.classList.toggle(CSS_CLASSES.SCROLLED, scrollY > 50);
+      document
+        .querySelector<HTMLElement>(SELECTORS.NAV_CONTAINER)
+        ?.classList.toggle(CSS_CLASSES.SCROLLED, scrollY > 50);
     }, APP_CONFIG.DEBOUNCE_DELAY);
 
     window.addEventListener('scroll', debouncedScrollHandler);
@@ -222,10 +217,10 @@ class Portfolio {
   }
 
   private initTimeline(): void {
-    const timelineContainer = DOMUtils.getElement('timeline-items') as HTMLElement;
+    const timelineContainer = DOMUtils.getElement('timeline-items');
     const filterButtons = DOMUtils.getElements('.filter-btn');
-    const searchInput = DOMUtils.getElement('timeline-search') as HTMLInputElement;
-    const timelineWrapper = DOMUtils.getElement('timeline-wrapper') as HTMLElement;
+    const searchInput = DOMUtils.getElement('timeline-search');
+    const timelineWrapper = DOMUtils.getElement('timeline-wrapper');
     const timeline = this.dataService.getTimeline();
 
     if (!timeline || !timelineContainer) {
@@ -449,8 +444,8 @@ class Portfolio {
   }
 
   private updateTimelineProgress(): void {
-    const timelineWrapper = DOMUtils.getElement('timeline-wrapper') as HTMLElement;
-    const progressBar = DOMUtils.getElement('timeline-progress') as HTMLElement;
+    const timelineWrapper = DOMUtils.getElement('timeline-wrapper');
+    const progressBar = DOMUtils.getElement('timeline-progress');
 
     if (!timelineWrapper || !progressBar) {
       return;
@@ -483,7 +478,7 @@ class Portfolio {
   }
 
   private initShowcase(): void {
-    const showcaseContainer = DOMUtils.getElement('showcase-grid') as HTMLElement;
+    const showcaseContainer = DOMUtils.getElement('showcase-grid');
     const showcase = this.dataService.getShowcase();
 
     if (!showcase || !showcaseContainer) {
@@ -547,18 +542,16 @@ class Portfolio {
 
   private setupEventListeners(): void {
     // CV Preview click
-    const cvPreview = DOMUtils.getElement('cv-preview') as HTMLElement;
-    cvPreview?.addEventListener('click', () => this.openCVModal());
+    DOMUtils.getElement('cv-preview')?.addEventListener('click', () => this.openCVModal());
 
     // Scroll indicator
-    const scrollArrow = document.querySelector('.scroll-arrow') as HTMLElement;
-    scrollArrow?.addEventListener('click', () => {
+    document.querySelector<HTMLElement>('.scroll-arrow')?.addEventListener('click', () => {
       document.getElementById('timeline-section')?.scrollIntoView({ behavior: 'smooth' });
     });
 
     // Modal close
-    const modalClose = DOMUtils.getElement('modal-close') as HTMLElement;
-    const modalOverlay = DOMUtils.getElement('modal-overlay') as HTMLElement;
+    const modalClose = DOMUtils.getElement('modal-close');
+    const modalOverlay = DOMUtils.getElement('modal-overlay');
 
     modalClose?.addEventListener('click', () => this.closeModal());
 
@@ -585,37 +578,26 @@ class Portfolio {
     });
   }
 
-  public openModal(title: string, data: string | TimelineItem | ShowcaseProject): void {
-    const modal = DOMUtils.getElement('modal-overlay') as HTMLElement;
-    const modalTitle = DOMUtils.getElement('modal-title') as HTMLElement;
-    const modalContent = DOMUtils.getElement('modal-content') as HTMLElement;
+  private openModal(title: string, data: TimelineItem | ShowcaseProject): void {
+    const modal = DOMUtils.getElement('modal-overlay');
+    const modalTitle = DOMUtils.getElement('modal-title');
+    const modalContent = DOMUtils.getElement('modal-content');
 
     if (!modal || !modalTitle || !modalContent) {
       return;
     }
 
-    let parsedData: TimelineItem | ShowcaseProject;
-    try {
-      parsedData = typeof data === 'string' ? JSON.parse(data.replace(/&quot;/g, '"')) : data;
-    } catch {
-      return;
-    }
-
     modalTitle.textContent = title;
-
-    if (parsedData.modalContent) {
-      modalContent.innerHTML = this.generateModalContent(parsedData.modalContent);
-    } else {
-      modalContent.innerHTML = '<p>No additional information available.</p>';
-    }
+    modalContent.innerHTML = data.modalContent
+      ? this.generateModalContent(data.modalContent)
+      : '<p>No additional information available.</p>';
 
     modal.classList.add(CSS_CLASSES.ACTIVE);
     document.body.style.overflow = 'hidden';
   }
 
   private openCVModal(): void {
-    const cvElement = document.getElementById('cv-preview');
-    const cvDriveId = cvElement?.dataset.cvDriveId || '16eXxJWLCsUib7gZKX48jhT85myOxqh0_';
+    const cvDriveId = this.dataService.getConfig().cvDriveId ?? '16eXxJWLCsUib7gZKX48jhT85myOxqh0_';
     const modalContent: ModalContent = {
       title: 'Resume / CV',
       description: 'View my complete resume and professional background.',
@@ -746,24 +728,7 @@ class Portfolio {
         link.text.toLowerCase().includes('live') || link.text.toLowerCase().includes('view')
           ? 'fa-external-link-alt'
           : 'fa-code';
-      html += `
-        <a href="${link.url}" target="_blank" style="
-          display: flex; 
-          align-items: center; 
-          gap: 0.5rem; 
-          padding: 0.8rem 1.5rem; 
-          background: var(--glass-bg); 
-          border: 1px solid var(--glass-border); 
-          border-radius: 25px; 
-          color: var(--text-primary); 
-          text-decoration: none; 
-          transition: var(--transition-smooth);
-          backdrop-filter: blur(10px);
-        " onmouseover="this.style.background='rgba(0, 255, 136, 0.1)'; this.style.borderColor='var(--primary-color)'; this.style.color='var(--primary-color)';" onmouseout="this.style.background='var(--glass-bg)'; this.style.borderColor='var(--glass-border)'; this.style.color='var(--text-primary)';">
-          <i class="fas ${icon}"></i>
-          ${link.text}
-        </a>
-      `;
+      html += `<a href="${link.url}" target="_blank" class="modal-link"><i class="fas ${icon}"></i>${link.text}</a>`;
     });
 
     html += '</div>';
@@ -771,8 +736,7 @@ class Portfolio {
   }
 
   public closeModal(): void {
-    const modal = DOMUtils.getElement('modal-overlay') as HTMLElement;
-    modal?.classList.remove(CSS_CLASSES.ACTIVE);
+    DOMUtils.getElement('modal-overlay')?.classList.remove(CSS_CLASSES.ACTIVE);
     document.body.style.overflow = 'auto';
   }
 
@@ -786,31 +750,6 @@ class Portfolio {
   }
 }
 
-// Global portfolio instance for onclick handlers
-declare global {
-  interface Window {
-    portfolio: Portfolio;
-  }
-}
-
-// Initialize the portfolio when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  window.portfolio = new Portfolio();
+  new Portfolio();
 });
-
-// Handle window resize for canvas elements
-window.addEventListener('resize', () => {
-  const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement;
-  if (canvas) {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-});
-
-// Smooth scroll polyfill for older browsers
-if (!('scrollBehavior' in document.documentElement.style)) {
-  const smoothScrollPolyfill = document.createElement('script');
-  smoothScrollPolyfill.src =
-    'https://cdn.jsdelivr.net/gh/iamdustan/smoothscroll@master/src/smoothscroll.js';
-  document.head.appendChild(smoothScrollPolyfill);
-}

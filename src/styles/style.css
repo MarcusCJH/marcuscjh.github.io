@@ -1403,6 +1403,26 @@ body {
   overflow-y: auto;
 }
 
+.modal-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(10px);
+}
+
+.modal-link:hover {
+  background: rgba(0, 255, 136, 0.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
 /* Loading Screen */
 .loading-screen {
   position: fixed;

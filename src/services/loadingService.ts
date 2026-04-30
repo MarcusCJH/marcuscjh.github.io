@@ -6,7 +6,7 @@ export interface LoadingState {
   progress: number;
   messages: string[];
   currentMessageIndex: number;
-  interval?: NodeJS.Timeout;
+  interval?: ReturnType<typeof setInterval>;
 }
 
 export class LoadingService {

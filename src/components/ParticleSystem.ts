@@ -4,7 +4,7 @@ import { APP_CONFIG } from '@/lib/constants';
 
 export class ParticleSystem {
   private container: HTMLElement | null = null;
-  private intervalId: NodeJS.Timeout | null = null;
+  private intervalId: ReturnType<typeof setInterval> | null = null;
 
   constructor() {
     this.init();

@@ -17,7 +17,7 @@ export class TypedText {
     isDeleting: false,
     messages: [],
   };
-  private timeoutId: NodeJS.Timeout | null = null;
+  private timeoutId: ReturnType<typeof setTimeout> | null = null;
 
   constructor(messages: string[]) {
     this.state.messages = messages;
@@ -30,10 +30,6 @@ export class TypedText {
       return;
     }
 
-    this.startTyping();
-  }
-
-  private startTyping(): void {
     this.typeText();
   }
 
@@ -70,9 +66,7 @@ export class TypedText {
     }, typeSpeed);
   }
 
-  /**
-   * Update messages and restart typing
-   */
+  // Resets loop state (index, char position, deleting flag) and restarts typing from scratch.
   public updateMessages(messages: string[]): void {
     this.state.messages = messages;
     this.state.messageIndex = 0;
@@ -83,19 +77,9 @@ export class TypedText {
       clearTimeout(this.timeoutId);
     }
 
-    this.startTyping();
+    this.typeText();
   }
 
-  /**
-   * Get current state
-   */
-  public getState(): TypedTextState {
-    return { ...this.state };
-  }
-
-  /**
-   * Destroy the typed text component
-   */
   public destroy(): void {
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);

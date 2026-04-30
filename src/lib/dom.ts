@@ -1,15 +1,19 @@
 // DOM utility functions
 export class DOMUtils {
-  private static cachedElements: Map<string, HTMLElement | null> = new Map();
+  private static cachedElements: Map<string, HTMLElement> = new Map();
 
   /**
    * Get DOM element by ID with caching for better performance
    */
   static getElement(id: string): HTMLElement | null {
     if (!this.cachedElements.has(id)) {
-      this.cachedElements.set(id, document.getElementById(id));
+      const el = document.getElementById(id);
+      if (el) {
+        this.cachedElements.set(id, el);
+      }
+      return el;
     }
-    return this.cachedElements.get(id) || null;
+    return this.cachedElements.get(id) ?? null;
   }
 
   /**

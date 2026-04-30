@@ -144,5 +144,4 @@ export interface TimelineState {
   currentFilter: string;
   currentSearch: string;
   filteredItems: TimelineItem[];
-  isScrolling: boolean;
 }

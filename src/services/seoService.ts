@@ -6,10 +6,6 @@ export class SEOService {
    * Apply SEO configuration to the page
    */
   public static applySEO(seo: SEOConfig): void {
-    if (!seo) {
-      return;
-    }
-
     // Get default values from meta or defaults section
     const defaults = seo.defaults || {};
     const baseUrl = defaults.url || '';
