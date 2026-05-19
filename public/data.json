@@ -99,6 +99,27 @@
   ],
   "showcase": [
     {
+      "id": "invoice-app",
+      "title": "SG Invoice",
+      "backgroundImage": "./showcase/invoice-app/invoice-app-bg.png",
+      "technologies": ["TypeScript", "Vite", "HTML", "CSS"],
+      "modalContent": {
+        "title": "SG Invoice",
+        "image": "./showcase/invoice-app/invoice-app-bg.png",
+        "description": "A Singapore-focused invoice web app for small and home-based businesses. Create standard invoices, tax invoices, simplified tax invoices, receipts, and credit notes with GST calculations aligned to IRAS guidance. Features business profiles, PayNow QR codes, line-item discounts, dark/light theme, live print/PDF preview, and local-only storage with JSON export/import. Runs entirely in the browser — deployed to GitHub Pages.",
+        "links": [
+          {
+            "text": "Try it Live",
+            "url": "https://marcuscjh.com/invoice-app/"
+          },
+          {
+            "text": "View Source Code",
+            "url": "https://github.com/MarcusCJH/invoice-app"
+          }
+        ]
+      }
+    },
+    {
       "id": "bouncerbot",
       "title": "BouncerBot",
       "backgroundImage": "./showcase/bouncerbot/bouncerbot-bg.png",
