@@ -137,7 +137,7 @@ export class LoadingService {
           mainContainer.style.opacity = '1';
           mainContainer.style.visibility = 'visible';
         }
-      }, 500); // Match the CSS transition duration
+      }, 500);
     }, 500);
   }
 

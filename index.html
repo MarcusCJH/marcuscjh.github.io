@@ -40,11 +40,11 @@
             <div class="nav-menu" id="nav-menu">
                 <!-- Navigation items will be dynamically loaded from data.json -->
             </div>
-            <div class="nav-toggle" id="nav-toggle">
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
 
         <!-- Hero Section -->
@@ -85,7 +85,7 @@
             </div>
             <div class="timeline-container">
                 <div class="timeline-search">
-                    <input type="text" id="timeline-search" placeholder="Search timeline entries (e.g., Marcus Chan, Accenture, AWS)...">
+                    <input type="text" id="timeline-search" aria-label="Search timeline entries" placeholder="Search timeline entries (e.g., Marcus Chan, Accenture, AWS)...">
                 </div>
                 <div class="timeline-filters">
                     <button class="filter-btn active" data-filter="all">
@@ -110,17 +110,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline-nav">
-                    <button class="timeline-nav-btn" id="timeline-prev">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="timeline-indicator" id="timeline-indicator">
-                        <!-- Navigation dots will be dynamically generated -->
-                    </div>
-                    <button class="timeline-nav-btn" id="timeline-next">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
             </div>
         </section>
 
@@ -144,7 +133,7 @@
                 </h2>
             </div>
             <div class="cv-container">
-                <div class="cv-preview" id="cv-preview">
+                <div class="cv-preview" id="cv-preview" role="button" tabindex="0" aria-label="View resume">
                     <div class="cv-placeholder">
                         <i class="fas fa-file-pdf"></i>
                         <p>Click to view resume</p>
@@ -156,10 +145,10 @@
 
     <!-- Modal Container -->
     <div class="modal-overlay" id="modal-overlay">
-        <div class="modal-container" id="modal-container">
+        <div class="modal-container" id="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <div class="modal-header">
                 <h3 class="modal-title" id="modal-title"></h3>
-                <button class="modal-close" id="modal-close">
+                <button class="modal-close" id="modal-close" type="button" aria-label="Close dialog">
                     <i class="fas fa-times"></i>
                 </button>
             </div>

@@ -23,6 +23,7 @@ class Portfolio {
   private dataService: DataService;
   private loadingService: LoadingService;
   private snapTimer: number | undefined;
+  private lastFocusedElement: HTMLElement | null = null;
   private timelineState: TimelineState = {
     currentFilter: 'all',
     currentSearch: '',
@@ -39,16 +40,11 @@ class Portfolio {
   private async init(): Promise<void> {
     this.loadingService.startLoading();
 
-    const dataPromise = this.dataService.loadData();
-    const minLoadingTime = APP_CONFIG.MIN_LOADING_TIME;
     const startTime = Date.now();
+    const data = await this.dataService.loadData();
 
-    const data = await dataPromise;
-
-    // Apply SEO configuration and structured data from data.json
-    if (data.seo) {
-      SEOService.applySEO(data.seo);
-    }
+    // Static meta tags are injected at build time (vite.config.ts);
+    // only the data-driven structured data schemas are applied at runtime.
     SEOService.applyStructuredData(data);
 
     this.initializeComponents();
@@ -56,8 +52,7 @@ class Portfolio {
     this.startAnimations();
 
     const elapsedTime = Date.now() - startTime;
-    const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
-
+    const remainingTime = Math.max(0, APP_CONFIG.MIN_LOADING_TIME - elapsedTime);
     if (remainingTime > 0) {
       await new Promise(resolve => setTimeout(resolve, remainingTime));
     }
@@ -75,14 +70,23 @@ class Portfolio {
   }
 
   private initializeComponents(): void {
-    // Initialize background effects
-    new MatrixBackground();
-    new ParticleSystem();
-
-    // Initialize typed text
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const config = this.dataService.getConfig();
-    if (config?.typedMessages) {
-      new TypedText(config.typedMessages);
+
+    if (!prefersReducedMotion) {
+      new MatrixBackground();
+      new ParticleSystem();
+    }
+
+    if (config?.typedMessages?.length) {
+      if (prefersReducedMotion) {
+        const typedElement = DOMUtils.getElement('typed-text');
+        if (typedElement) {
+          typedElement.textContent = config.typedMessages[0];
+        }
+      } else {
+        new TypedText(config.typedMessages);
+      }
     }
 
     this.initHero();
@@ -136,10 +140,10 @@ class Portfolio {
       .filter(nav => nav.enabled)
       .map(
         nav => `
-        <div class="nav-item" data-nav-id="${nav.id}">
-          <i class="${nav.icon}"></i>
+        <button class="nav-item" type="button" data-nav-id="${nav.id}">
+          <i class="${nav.icon}" aria-hidden="true"></i>
           <span>${nav.title}</span>
-        </div>
+        </button>
       `
       )
       .join('');
@@ -147,8 +151,9 @@ class Portfolio {
     const navItems = DOMUtils.getElements('.nav-item');
 
     navToggle?.addEventListener('click', () => {
-      navToggle?.classList.toggle(CSS_CLASSES.ACTIVE);
-      navMenu.classList.toggle(CSS_CLASSES.ACTIVE);
+      const isOpen = navMenu.classList.toggle(CSS_CLASSES.ACTIVE);
+      navToggle.classList.toggle(CSS_CLASSES.ACTIVE, isOpen);
+      navToggle.setAttribute('aria-expanded', String(isOpen));
     });
 
     navItems.forEach(item => {
@@ -158,6 +163,7 @@ class Portfolio {
           this.navigateToSection(target);
         }
         navToggle?.classList.remove(CSS_CLASSES.ACTIVE);
+        navToggle?.setAttribute('aria-expanded', 'false');
         navMenu.classList.remove(CSS_CLASSES.ACTIVE);
       });
     });
@@ -182,17 +188,32 @@ class Portfolio {
     }
 
     const socialHtml = socialLinks
-      .map(
-        social => `
-        <a href="${social.url}" target="_blank" class="social-link" title="${social.platform || social.name || ''}">
-          <i class="${social.icon}"></i>
+      .map(social => {
+        const label = social.platform || social.name || '';
+        return `
+        <a href="${social.url}" target="_blank" rel="noopener noreferrer" class="social-link" title="${label}" aria-label="${label}">
+          <i class="${social.icon}" aria-hidden="true"></i>
         </a>
-      `
-      )
+      `;
+      })
       .join('');
 
     socialLinksContainers.forEach(container => {
       container.innerHTML = socialHtml;
+    });
+  }
+
+  /**
+   * Make a non-native element activatable by mouse and keyboard (Enter/Space).
+   */
+  private static onActivate(element: Element, handler: () => void): void {
+    element.addEventListener('click', handler);
+    element.addEventListener('keydown', e => {
+      const key = (e as KeyboardEvent).key;
+      if (key === 'Enter' || key === ' ') {
+        e.preventDefault();
+        handler();
+      }
     });
   }
 
@@ -250,9 +271,9 @@ class Portfolio {
       timelineContainer.innerHTML = this.timelineState.filteredItems
         .map(
           (item, index) => `
-        <div class="timeline-item visible" data-category="${item.category}" data-index="${index}" data-timeline-item style="--item-index: ${index}">
+        <div class="timeline-item visible" role="button" tabindex="0" aria-label="${item.company} — ${item.title}" data-category="${item.category}" data-index="${index}" data-timeline-item style="--item-index: ${index}">
           <div class="timeline-dot ${item.category}">
-            <i class="${this.getTimelineIcon(item.category)}"></i>
+            <i class="${this.getTimelineIcon(item.category)}" aria-hidden="true"></i>
           </div>
           <div class="timeline-content">
             <div class="timeline-date">${item.startDate}${item.endDate ? ` - ${item.endDate}` : ''}</div>
@@ -264,10 +285,9 @@ class Portfolio {
         )
         .join('');
 
-      // Add click handlers
       timelineContainer.querySelectorAll('[data-timeline-item]').forEach(item => {
-        item.addEventListener('click', e => {
-          const index = parseInt((e.currentTarget as HTMLElement).dataset.index || '0');
+        Portfolio.onActivate(item, () => {
+          const index = parseInt((item as HTMLElement).dataset.index || '0');
           const timelineItem = this.timelineState.filteredItems[index];
           if (timelineItem) {
             this.openModal(timelineItem.company, timelineItem);
@@ -306,10 +326,11 @@ class Portfolio {
       window.addEventListener('scroll', debouncedTimelineScroll);
       window.addEventListener('resize', debouncedTimelineScroll);
 
-      // Drag-to-scroll with momentum (desktop only)
-      const isDesktop = window.innerWidth > BREAKPOINTS.MOBILE;
+      // Drag-to-scroll with momentum (desktop only).
+      // Evaluated per-event so resizing across the breakpoint behaves correctly.
+      const isDesktop = () => window.innerWidth > BREAKPOINTS.MOBILE;
 
-      if (isDesktop) {
+      {
         let velocity = 0;
         let lastX = 0;
         let lastMoveTime = 0;
@@ -336,6 +357,9 @@ class Portfolio {
 
         // Mouse down - start drag
         timelineWrapper.addEventListener('mousedown', e => {
+          if (!isDesktop()) {
+            return;
+          }
           isDragging = true;
           velocity = 0;
           window.cancelAnimationFrame(momentumRafId);
@@ -391,7 +415,7 @@ class Portfolio {
         timelineWrapper.addEventListener(
           'wheel',
           e => {
-            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            if (isDesktop() && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
               e.preventDefault();
               window.cancelAnimationFrame(momentumRafId);
               disableSnap();
@@ -407,9 +431,14 @@ class Portfolio {
         // Touch swipe support (touch-screen desktops / iPads in desktop mode)
         let touchStartX = 0;
         let touchScrollLeft = 0;
+        let touchActive = false;
         timelineWrapper.addEventListener(
           'touchstart',
           e => {
+            touchActive = isDesktop();
+            if (!touchActive) {
+              return;
+            }
             touchStartX = e.touches[0].pageX;
             touchScrollLeft = timelineWrapper.scrollLeft;
             velocity = 0;
@@ -422,6 +451,9 @@ class Portfolio {
         timelineWrapper.addEventListener(
           'touchmove',
           e => {
+            if (!touchActive) {
+              return;
+            }
             const dx = touchStartX - e.touches[0].pageX;
             timelineWrapper.scrollLeft = touchScrollLeft + dx;
           },
@@ -431,6 +463,10 @@ class Portfolio {
         timelineWrapper.addEventListener(
           'touchend',
           e => {
+            if (!touchActive) {
+              return;
+            }
+            touchActive = false;
             const dx = touchStartX - e.changedTouches[0].pageX;
             velocity = Math.max(-40, Math.min(40, dx * 0.2));
             momentumRafId = window.requestAnimationFrame(applyMomentum);
@@ -488,7 +524,7 @@ class Portfolio {
     showcaseContainer.innerHTML = showcase
       .map(
         project => `
-      <div class="showcase-card" data-showcase-item data-project-id="${project.id}">
+      <div class="showcase-card" role="button" tabindex="0" aria-label="View project: ${project.title}" data-showcase-item data-project-id="${project.id}">
         <div class="showcase-image" style="background-image: url('${project.backgroundImage}')">
           <div class="showcase-overlay"></div>
         </div>
@@ -509,10 +545,9 @@ class Portfolio {
       )
       .join('');
 
-    // Add click handlers
     showcaseContainer.querySelectorAll('[data-showcase-item]').forEach(item => {
-      item.addEventListener('click', e => {
-        const projectId = (e.currentTarget as HTMLElement).dataset.projectId;
+      Portfolio.onActivate(item, () => {
+        const projectId = (item as HTMLElement).dataset.projectId;
         const project = showcase.find(p => p.id === projectId);
         if (project) {
           this.openModal(project.title, project);
@@ -541,8 +576,10 @@ class Portfolio {
   }
 
   private setupEventListeners(): void {
-    // CV Preview click
-    DOMUtils.getElement('cv-preview')?.addEventListener('click', () => this.openCVModal());
+    const cvPreview = DOMUtils.getElement('cv-preview');
+    if (cvPreview) {
+      Portfolio.onActivate(cvPreview, () => this.openCVModal());
+    }
 
     // Scroll indicator
     document.querySelector<HTMLElement>('.scroll-arrow')?.addEventListener('click', () => {
@@ -561,12 +598,48 @@ class Portfolio {
       }
     });
 
-    // Escape key to close modal
+    // Modal keyboard handling: Escape closes, Tab is trapped inside the dialog
     document.addEventListener('keydown', e => {
+      const modal = DOMUtils.getElement('modal-overlay');
+      if (!modal?.classList.contains(CSS_CLASSES.ACTIVE)) {
+        return;
+      }
+
       if (e.key === 'Escape') {
         this.closeModal();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        this.trapModalFocus(e);
       }
     });
+  }
+
+  private trapModalFocus(e: KeyboardEvent): void {
+    const container = DOMUtils.getElement('modal-container');
+    if (!container) {
+      return;
+    }
+
+    const focusable = container.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), iframe, video, input, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) {
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+
+    if (e.shiftKey && (active === first || !container.contains(active))) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && (active === last || !container.contains(active))) {
+      e.preventDefault();
+      first.focus();
+    }
   }
 
   private startAnimations(): void {
@@ -592,12 +665,43 @@ class Portfolio {
       ? this.generateModalContent(data.modalContent)
       : '<p>No additional information available.</p>';
 
+    this.lastFocusedElement = document.activeElement as HTMLElement | null;
     modal.classList.add(CSS_CLASSES.ACTIVE);
     document.body.style.overflow = 'hidden';
+    this.focusModalClose(modal);
+  }
+
+  /**
+   * Move focus to the modal's close button once the open transition finishes.
+   * Several elements in the modal use `transition: all`, which also transitions
+   * the inherited `visibility` — until that completes the button computes as
+   * hidden and is unfocusable. A timeout acts as a fallback in case no
+   * transition fires.
+   */
+  private focusModalClose(modal: HTMLElement): void {
+    const closeButton = DOMUtils.getElement('modal-close');
+    if (!closeButton) {
+      return;
+    }
+
+    let focused = false;
+    const tryFocus = () => {
+      if (focused || !modal.classList.contains(CSS_CLASSES.ACTIVE)) {
+        return;
+      }
+      focused = true;
+      closeButton.focus();
+    };
+
+    modal.addEventListener('transitionend', tryFocus, { once: true });
+    window.setTimeout(tryFocus, 400);
   }
 
   private openCVModal(): void {
-    const cvDriveId = this.dataService.getConfig().cvDriveId ?? '16eXxJWLCsUib7gZKX48jhT85myOxqh0_';
+    const cvDriveId = this.dataService.getConfig().cvDriveId;
+    if (!cvDriveId) {
+      return;
+    }
     const modalContent: ModalContent = {
       title: 'Resume / CV',
       description: 'View my complete resume and professional background.',
@@ -618,20 +722,20 @@ class Portfolio {
     let html = '';
 
     if (content.subtitle) {
-      html += `<h2 style="color: var(--secondary-color); margin-bottom: 1rem;">${content.subtitle}</h2>`;
+      html += `<h2 class="modal-subtitle">${content.subtitle}</h2>`;
     }
 
     if (content.location) {
-      html += `<p style="color: var(--text-muted); margin-bottom: 1rem;"><i class="fas fa-map-marker-alt"></i> ${content.location}</p>`;
+      html += `<p class="modal-location"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> ${content.location}</p>`;
     }
 
     if (content.image) {
-      html += `<img src="${content.image}" alt="${content.title}" style="width: 100%; border-radius: 10px; margin-bottom: 1rem;">`;
+      html += `<img class="modal-media" src="${content.image}" alt="${content.title}">`;
     }
 
     if (content.video) {
       html += `
-        <video controls style="width: 100%; border-radius: 10px; margin-bottom: 1rem;">
+        <video class="modal-media" controls>
           <source src="${content.video.src}" type="${content.video.type}">
           Your browser does not support the video tag.
         </video>
@@ -639,11 +743,11 @@ class Portfolio {
     }
 
     if (content.iframe) {
-      html += `<iframe src="${content.iframe}" style="width: 100%; height: 500px; border: none; border-radius: 10px; margin-bottom: 1rem;"></iframe>`;
+      html += `<iframe class="modal-iframe" src="${content.iframe}" title="${content.title}"></iframe>`;
     }
 
     if (content.description) {
-      html += `<p style="margin-bottom: 1rem; line-height: 1.6;">${content.description}</p>`;
+      html += `<p class="modal-description">${content.description}</p>`;
     }
 
     if (content.details && content.details.length > 0) {
@@ -662,7 +766,7 @@ class Portfolio {
   }
 
   private generateDetailsHTML(details: string[]): string {
-    let html = '<div style="margin-bottom: 1rem; font-family: monospace; line-height: 1.8;">';
+    let html = '<div class="modal-details">';
 
     details.forEach(detail => {
       const trimmedDetail = detail.trim();
@@ -673,19 +777,15 @@ class Portfolio {
       } else if (leadingSpaces > 0) {
         const indentLevel = Math.floor(leadingSpaces / 2);
         const indentStyle = `margin-left: ${indentLevel * 1.5}rem;`;
-
-        if (trimmedDetail.startsWith('•')) {
-          html += `<div style="${indentStyle} margin-bottom: 0.3rem; color: var(--text-secondary);">${trimmedDetail}</div>`;
-        } else {
-          html += `<div style="${indentStyle} margin-bottom: 0.3rem; color: var(--text-primary);">${trimmedDetail}</div>`;
-        }
+        const lineClass = trimmedDetail.startsWith('•') ? 'detail-bullet' : 'detail-line';
+        html += `<div class="${lineClass}" style="${indentStyle}">${trimmedDetail}</div>`;
       } else {
         if (trimmedDetail.includes('(') && trimmedDetail.includes(')')) {
-          html += `<h3 style="color: var(--primary-color); margin: 1.5rem 0 0.8rem 0; font-size: 1.2rem; font-weight: 600;">${trimmedDetail}</h3>`;
+          html += `<h3 class="detail-heading">${trimmedDetail}</h3>`;
         } else if (trimmedDetail.endsWith(':')) {
-          html += `<h4 style="color: var(--secondary-color); margin: 1rem 0 0.5rem 0; font-size: 1rem; font-weight: 500;">${trimmedDetail}</h4>`;
+          html += `<h4 class="detail-subheading">${trimmedDetail}</h4>`;
         } else {
-          html += `<div style="margin-bottom: 0.5rem; color: var(--text-primary);">${trimmedDetail}</div>`;
+          html += `<div class="detail-text">${trimmedDetail}</div>`;
         }
       }
     });
@@ -697,11 +797,10 @@ class Portfolio {
   private generateAwardsHTML(
     awards: { title: string; date?: string; issuer?: string; description?: string }[]
   ): string {
-    let html =
-      '<div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">';
+    let html = '<div class="modal-awards">';
     html +=
-      '<h3 style="color: var(--primary-color); margin-bottom: 0.6rem; font-size: 1rem;"><i class="fas fa-trophy" style="margin-right: 0.5rem;"></i>Awards</h3>';
-    html += '<ul style="margin: 0; padding-left: 0; list-style: none;">';
+      '<h3 class="modal-awards-title"><i class="fas fa-trophy" aria-hidden="true"></i>Awards</h3>';
+    html += '<ul class="modal-awards-list">';
     awards.forEach(award => {
       const parts: string[] = [award.title];
       if (award.date) {
@@ -712,23 +811,23 @@ class Portfolio {
       }
       const line = parts.join(' · ');
       const desc = award.description
-        ? ` <span style="color: var(--text-muted); font-size: 0.9em;">— ${award.description}</span>`
+        ? ` <span class="award-description">— ${award.description}</span>`
         : '';
-      html += `<li style="margin-bottom: 0.5rem; font-size: 0.95rem;">${line}${desc}</li>`;
+      html += `<li>${line}${desc}</li>`;
     });
     html += '</ul></div>';
     return html;
   }
 
   private generateLinksHTML(links: { text: string; url: string }[]): string {
-    let html = '<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">';
+    let html = '<div class="modal-links">';
 
     links.forEach(link => {
       const icon =
         link.text.toLowerCase().includes('live') || link.text.toLowerCase().includes('view')
           ? 'fa-external-link-alt'
           : 'fa-code';
-      html += `<a href="${link.url}" target="_blank" class="modal-link"><i class="fas ${icon}"></i>${link.text}</a>`;
+      html += `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="modal-link"><i class="fas ${icon}" aria-hidden="true"></i>${link.text}</a>`;
     });
 
     html += '</div>';
@@ -738,6 +837,8 @@ class Portfolio {
   public closeModal(): void {
     DOMUtils.getElement('modal-overlay')?.classList.remove(CSS_CLASSES.ACTIVE);
     document.body.style.overflow = 'auto';
+    this.lastFocusedElement?.focus();
+    this.lastFocusedElement = null;
   }
 
   private getTimelineIcon(category: string): string {

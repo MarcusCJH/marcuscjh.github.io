@@ -18,10 +18,9 @@ npm run test
 
 # Build for production
 npm run build
-
-# Deploy to GitHub Pages
-npm run deploy
 ```
+
+Deployment to GitHub Pages happens automatically via GitHub Actions on push to `master`/`main`.
 
 ## 📁 Project Structure
 

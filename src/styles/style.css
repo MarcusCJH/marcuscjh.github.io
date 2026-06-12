@@ -171,6 +171,11 @@ body {
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: var(--transition-smooth);
+  /* Reset native button styles (nav items are <button> for keyboard access) */
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
 }
 
 /* Removed navigation highlight effect */
@@ -188,6 +193,9 @@ body {
   flex-direction: column;
   cursor: pointer;
   gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .nav-toggle span {
@@ -998,77 +1006,6 @@ body {
   }
 }
 
-/* Timeline Navigation - Hidden for drag-to-scroll experience */
-.timeline-nav {
-  display: none;
-}
-
-.timeline-nav-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-}
-
-.timeline-nav-btn:hover {
-  background: rgba(0, 255, 136, 0.1);
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-  transform: scale(1.1);
-}
-
-.timeline-nav-btn:disabled,
-.timeline-nav-btn.disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  transform: none;
-  background: var(--glass-bg);
-  border-color: var(--glass-border);
-  color: var(--text-muted);
-}
-
-.timeline-nav-btn.scrolling {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
-  background: rgba(0, 255, 136, 0.1);
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-}
-
-.timeline-indicator {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.timeline-dot-indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--glass-border);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.timeline-dot-indicator.active {
-  background: var(--primary-color);
-  transform: scale(1.2);
-}
-
-.timeline-dot-indicator:hover {
-  background: var(--secondary-color);
-}
-
 /* Timeline Search */
 .timeline-search {
   display: flex;
@@ -1339,12 +1276,17 @@ body {
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: var(--transition-smooth);
+  /* Delay visibility change until the fade-out completes */
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
 }
 
 .modal-overlay.active {
   opacity: 1;
   visibility: visible;
+  /* Become visible immediately so contents are focusable on open */
+  transition: opacity 0.3s ease;
 }
 
 .modal-container {
@@ -1356,7 +1298,9 @@ body {
   width: 800px;
   overflow: hidden;
   transform: scale(0.8);
-  transition: var(--transition-bounce);
+  /* Transition transform only: transitioning `all` would also transition the
+     inherited visibility, leaving modal contents unfocusable while opening */
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .modal-overlay.active .modal-container {
@@ -1421,6 +1365,110 @@ body {
   background: rgba(0, 255, 136, 0.1);
   border-color: var(--primary-color);
   color: var(--primary-color);
+}
+
+/* Modal generated content */
+.modal-subtitle {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.modal-location {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.modal-media {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.modal-iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.modal-description {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.modal-details {
+  margin-bottom: 1rem;
+  font-family: monospace;
+  line-height: 1.8;
+}
+
+.modal-details .detail-heading {
+  color: var(--primary-color);
+  margin: 1.5rem 0 0.8rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.modal-details .detail-subheading {
+  color: var(--secondary-color);
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.modal-details .detail-text {
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.modal-details .detail-line {
+  margin-bottom: 0.3rem;
+  color: var(--text-primary);
+}
+
+.modal-details .detail-bullet {
+  margin-bottom: 0.3rem;
+  color: var(--text-secondary);
+}
+
+.modal-awards {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.modal-awards-title {
+  color: var(--primary-color);
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+}
+
+.modal-awards-title i {
+  margin-right: 0.5rem;
+}
+
+.modal-awards-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.modal-awards-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.award-description {
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+.modal-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 /* Loading Screen */
@@ -2178,4 +2226,30 @@ body {
 ::selection {
   background: rgba(0, 255, 136, 0.3);
   color: var(--text-primary);
+}
+
+/* Keyboard focus indicators */
+.nav-item:focus-visible,
+.nav-toggle:focus-visible,
+.filter-btn:focus-visible,
+.social-link:focus-visible,
+.modal-link:focus-visible,
+.modal-close:focus-visible,
+.timeline-item:focus-visible,
+.showcase-card:focus-visible,
+.cv-preview:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 3px;
+}
+
+/* Reduced motion: disable decorative animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

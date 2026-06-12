@@ -23,7 +23,6 @@ export const CSS_CLASSES = {
   ACTIVE: 'active',
   VISIBLE: 'visible',
   SCROLLED: 'scrolled',
-  SCROLLING: 'scrolling',
 } as const;
 
 export const SELECTORS = {
