@@ -128,7 +128,12 @@
         "title": "BouncerBot",
         "image": "./showcase/bouncerbot/bouncerbot-bg.png",
         "description": "An email validation tool that answers whether an email looks like it belongs to a real human or a bot — beyond basic @ checks. Uses AI (Ollama) plus traditional validation to evaluate domain legitimacy, username patterns, and name–email coherence. Three modes: AI-only, Non-AI only, and Hybrid (recommended). Supports single-email analysis and batch CSV processing for whitelist/blacklist decisions. Built with FastAPI, Next.js, TypeScript, and local Ollama. For local use only.",
-        "links": []
+        "links": [
+          {
+            "text": "Read Development Story",
+            "url": "https://medium.com/@marcuscjh/i-built-bouncerbot-without-knowing-what-email-validation-even-was-2200cf603aca"
+          }
+        ]
       }
     },
     {
