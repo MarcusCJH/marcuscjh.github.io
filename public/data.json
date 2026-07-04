@@ -99,6 +99,27 @@
   ],
   "showcase": [
     {
+      "id": "splitsia",
+      "title": "Splitsia",
+      "backgroundImage": "./showcase/splitsia/splitsia-bg.png",
+      "technologies": ["TypeScript", "Vite", "PWA", "OCR"],
+      "modalContent": {
+        "title": "Splitsia — Scan. Review. Split fairly.",
+        "image": "./showcase/splitsia/splitsia-bg.png",
+        "description": "A mobile-first Progressive Web App for splitting bills without the hassle. Scan a receipt with your camera, review and edit the line items, assign them to people in your group, and get a per-person breakdown instantly — no login required. Designed as an installable PWA with a clean 4-step flow: Scan → Review → Split → Results.",
+        "links": [
+          {
+            "text": "Try it Live",
+            "url": "https://marcuscjh.com/splitsia/"
+          },
+          {
+            "text": "View Source Code",
+            "url": "https://github.com/MarcusCJH/splitsia"
+          }
+        ]
+      }
+    },
+    {
       "id": "invoice-app",
       "title": "SG Invoice",
       "backgroundImage": "./showcase/invoice-app/invoice-app-bg.png",
