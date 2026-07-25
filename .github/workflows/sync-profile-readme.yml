@@ -1,0 +1,25 @@
+name: Sync Profile README
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - public/data.json
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 0' # Every Sunday at 02:00 UTC
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate and push profile README
+        env:
+          PROFILE_README_TOKEN: ${{ secrets.PROFILE_README_TOKEN }}
+        run: python scripts/generate_readme.py
