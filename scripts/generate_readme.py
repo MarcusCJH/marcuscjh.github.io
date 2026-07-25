@@ -49,35 +49,35 @@ CERT_CFG = {
 }
 
 TECH_CFG = {
-    # Languages
-    "TypeScript":  {"color": "3178C6", "logo": "typescript"},
-    "JavaScript":  {"color": "323330", "logo": "javascript"},
-    "Python":      {"color": "3776AB", "logo": "python"},
-    "Java":        {"color": "ED8B00", "logo": "openjdk"},
-    "C#":          {"color": "239120", "logo": "csharp"},
-    "SQL":         {"color": "4479A1", "logo": "postgresql"},
+    # Languages — colors/logos from md-badges (github.com/inttter/md-badges)
+    "Python":      {"color": "3776AB",   "logo": "python"},
+    "JavaScript":  {"color": "323330",   "logo": "javascript",       "logo_color": "%23F7DF1E"},
+    "TypeScript":  {"color": "3178C6",   "logo": "typescript"},
+    "Java":        {"color": "ED8B00",   "logo": "openjdk"},
+    "C#":          {"color": "239120",   "logo": "cshrp",             "domain": "custom-icon-badges.demolab.com"},
+    "SQL":         {"color": "4479A1",   "logo": "postgresql"},
     # AWS
-    "AWS":         {"color": "FF9900", "logo": "amazon-aws"},
-    "DynamoDB":    {"color": "4053D6", "logo": "amazondynamodb"},
+    "AWS":         {"color": "FF9900",   "logo": "aws",               "domain": "custom-icon-badges.demolab.com"},
+    "DynamoDB":    {"color": "4053D6",   "logo": None},
     # Backend / frameworks
-    "Node.js":     {"color": "339933", "logo": "node.js"},
-    "Next.js":     {"color": "000000", "logo": "next.js"},
-    "FastAPI":     {"color": "009688", "logo": "fastapi"},
-    "GraphQL":     {"color": "E10098", "logo": "graphql"},
-    "Django":      {"color": "092E20", "logo": "django"},
+    "Node.js":     {"color": "6DA55F",   "logo": "node.js"},
+    "Next.js":     {"color": "000000",   "logo": "next.js"},
+    "FastAPI":     {"color": "009485",   "logo": "fastapi"},
+    "GraphQL":     {"color": "E10098",   "logo": "graphql"},
+    "Django":      {"color": "092E20",   "logo": "django"},
     # DevOps / infra
-    "Terraform":   {"color": "7B42BC", "logo": "terraform"},
-    "Docker":      {"color": "2496ED", "logo": "docker"},
-    "Git":         {"color": "F05032", "logo": "git"},
-    "Linux":       {"color": "FCC624", "logo": "linux"},
+    "Terraform":   {"color": "844FBA",   "logo": "terraform"},
+    "Docker":      {"color": "2496ED",   "logo": "docker"},
+    "Git":         {"color": "F05033",   "logo": "git"},
+    "Linux":       {"color": "FCC624",   "logo": "linux",             "logo_color": "black"},
     # Data
-    "Databricks":  {"color": "FF3621", "logo": "databricks"},
+    "Databricks":  {"color": "FF3621",   "logo": "databricks"},
     # Other
-    "Vite":        {"color": "646CFF", "logo": "vite"},
-    "PWA":         {"color": "5A0FC8", "logo": "pwa"},
-    "Alibaba Cloud": {"color": "FF6A00", "logo": "alibabacloud"},
-    "Amazon Q":    {"color": "FF9900", "logo": "amazon-aws"},
-    "Ollama":      {"color": "000000", "logo": None},
+    "Vite":        {"color": "646CFF",   "logo": "vite"},
+    "PWA":         {"color": "5A0FC8",   "logo": "pwa"},
+    "Alibaba Cloud": {"color": "FF6701", "logo": "alibabacloud"},
+    "Amazon Q":    {"color": "FF9900",   "logo": "amazon-aws"},
+    "Ollama":      {"color": "000000",   "logo": None},
 }
 
 VENDOR_ORDER = [
@@ -99,6 +99,8 @@ SKILL_CATEGORIES = ["languages", "devops"]
 # ---------------------------------------------------------------------------
 
 def shield_enc(s: str) -> str:
+    # Characters that need percent-encoding in a shields.io path segment
+    _ENCODE = set('#%?&=+')
     result = []
     for c in s:
         if c in ("-", "–", "—"):
@@ -107,7 +109,7 @@ def shield_enc(s: str) -> str:
             result.append("__")
         elif c == " ":
             result.append("_")
-        elif ord(c) > 127:
+        elif ord(c) > 127 or c in _ENCODE:
             result.append(urllib.parse.quote(c, safe=""))
         else:
             result.append(c)
@@ -126,9 +128,11 @@ def make_badge(label: str, message: str, color: str, logo: str | None = None) ->
 
 def tech_badge(name: str) -> str:
     cfg = TECH_CFG.get(name, {"color": "444444", "logo": None})
+    domain = cfg.get("domain", "img.shields.io")
+    logo_color = cfg.get("logo_color", "white")
     url = (
-        f"https://img.shields.io/badge/{shield_enc(name)}-{cfg['color']}"
-        f"?style=flat-square&logoColor=white"
+        f"https://{domain}/badge/{shield_enc(name)}-{cfg['color']}"
+        f"?style=flat-square&logoColor={logo_color}"
     )
     if cfg.get("logo"):
         url += f"&logo={cfg['logo']}"
@@ -201,7 +205,8 @@ def generate_readme(data: dict) -> str:
     )
     current_role = ""
     if work and work[0].get("endDate", "").lower() in ("present", ""):
-        current_role = f"{work[0]['title']} @ {work[0]['company']}"
+        company = work[0]["company"]
+        current_role = f"{config['title']} @ {company}"
 
     # ── About Me ─────────────────────────────────────────────────────────────
     summary = config.get("summary", "")
@@ -252,7 +257,7 @@ def generate_readme(data: dict) -> str:
     table_rows = []
     for proj in showcase[:6]:
         modal  = proj.get("modalContent", {})
-        title  = modal.get("title", proj.get("title", ""))
+        title  = proj.get("title", modal.get("title", ""))
         techs  = " · ".join(proj.get("technologies", []))
         links  = modal.get("links", [])
         first_url = links[0]["url"] if links else "https://marcuscjh.com"
@@ -275,6 +280,7 @@ def generate_readme(data: dict) -> str:
 ### {config['title']} · Singapore
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcuschanjh)
+[![GitHub](https://img.shields.io/badge/GitHub-%23181717.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/MarcusCJH)
 [![Telegram](https://img.shields.io/badge/Telegram-%232CA5E0.svg?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/marcuscjh)
 [![Portfolio](https://img.shields.io/badge/Portfolio-000000.svg?style=for-the-badge&logo=about.me&logoColor=white)](https://marcuscjh.com)
 
@@ -307,17 +313,6 @@ def generate_readme(data: dict) -> str:
 {projects_table}
 
 <div align="right"><a href="https://marcuscjh.com">View all projects →</a></div>
-
----
-
-## GitHub Stats
-
-<div align="center">
-
-[![GitHub Stats](https://readme-stats-fast.vercel.app/api?username=marcuscjh&show_icons=true&theme=default&hide_border=true)](https://github.com/marcuscjh)
-[![Top Langs](https://readme-stats-fast.vercel.app/api/top-langs/?username=marcuscjh&layout=compact&theme=default&hide_border=true)](https://github.com/marcuscjh)
-
-</div>
 
 ---
 

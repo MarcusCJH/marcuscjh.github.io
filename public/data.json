@@ -327,7 +327,7 @@
     }
   ],
   "skills": {
-    "languages": ["Python", "JavaScript", "Java", "C#", "SQL"],
+    "languages": ["TypeScript", "Python", "JavaScript", "Java", "C#", "SQL"],
     "aws": ["Lambda", "AppSync", "CDK", "DynamoDB", "Amplify", "Bedrock", "Q", "SNS", "SQS", "Cognito", "CloudWatch"],
     "alicloud": ["Dataphin", "DataWorks", "QuickBI", "DataV"],
     "backend": ["Django", "GraphQL", "REST APIs", "Serverless"],
