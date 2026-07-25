@@ -662,8 +662,25 @@
       }
     },
     {
-      "category": "work",
+      "category": "certification",
       "order": 18,
+      "startDate": "Jul 2026",
+      "company": "Amazon Web Services",
+      "title": "AWS Certified Developer – Associate",
+      "modalContent": {
+        "title": "AWS Certified Developer – Associate",
+        "subtitle": "Jul 2026",
+        "location": "Online",
+        "details": [
+          "Developing, deploying, and debugging cloud-based applications on AWS",
+          "AWS SDK, CLI, and service APIs including Lambda, DynamoDB, S3, and API Gateway",
+          "CI/CD pipelines, infrastructure as code, and serverless application patterns"
+        ]
+      }
+    },
+    {
+      "category": "work",
+      "order": 19,
       "startDate": "Apr 2021",
       "endDate": "Present",
       "company": "Accenture",
