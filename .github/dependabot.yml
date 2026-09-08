@@ -13,12 +13,12 @@ updates:
       - dependency-name: "jsdom"
         versions: [">=30.0.0"]
     groups:
-      # Safe routine bumps stay in one PR; majors open individually for review.
-      non-major:
+      all:
         applies-to: version-updates
         patterns:
           - "*"
         update-types:
+          - "major"
           - "minor"
           - "patch"
       security:
@@ -39,11 +39,12 @@ updates:
       interval: "monthly"
     open-pull-requests-limit: 5
     groups:
-      non-major:
+      all:
         applies-to: version-updates
         patterns:
           - "*"
         update-types:
+          - "major"
           - "minor"
           - "patch"
       security:
