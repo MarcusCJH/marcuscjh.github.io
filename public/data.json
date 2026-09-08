@@ -13,7 +13,7 @@
     "real_name": "Marcus Chan",
     "title": "Lead Full Stack Engineer & Cloud Architect",
     "subtitle": "Transforming ideas into scalable digital solutions",
-    "summary": "Lead Full Stack Engineer and Cloud Architect with 10+ years delivering scalable, cloud-native solutions across financial services, public sector, healthcare, and travel. Proven in leading engineering teams, driving technical strategy, and translating complex business requirements into production-ready systems. Certified across AWS, Alibaba Cloud, Google Cloud, data engineering, and infrastructure automation — spanning serverless architecture, DevOps, and enterprise application development.",
+    "summary": "Lead Full Stack Engineer and Cloud Architect with 10+ years delivering scalable, cloud-native solutions across financial services, public sector, healthcare, and aviation. Proven in leading engineering teams, driving technical strategy, and translating complex business requirements into production-ready systems. Certified across AWS, Alibaba Cloud, Google Cloud, data engineering, and infrastructure automation — spanning serverless architecture, DevOps, and enterprise application development.",
     "email": "marcuschanjh@gmail.com",
     "website": "https://marcuscjh.com",
     "typedMessages": [
@@ -690,9 +690,9 @@
         "subtitle": "Apr 2021 - Present",
         "location": "Singapore",
         "details": [
-          "Technical Lead - Travel Services (2024 - Present)",
+          "Technical Lead - Aviation (2024 - Present)",
           "  • Led the architecture and delivery of enterprise-scale serverless applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify) at client sites",
-          "  • Drove technical strategy and engineering decisions, translating travel industry business requirements into scalable production systems",
+          "  • Drove technical strategy and engineering decisions, translating aviation business requirements into scalable production systems",
           "  • Designed and delivered full-stack solutions including RFID showcase systems, mobile wayfinding applications, and e-commerce platforms",
           "  • Served as primary technical liaison between engineering and business teams, aligning delivery with operational requirements and passenger experience goals",
           "  • Spearheaded infrastructure automation, CI/CD pipeline implementation, and knowledge transfer programmes to enable client self-sufficiency",
