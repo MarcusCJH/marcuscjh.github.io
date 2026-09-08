@@ -5,17 +5,47 @@ updates:
     schedule:
       interval: "monthly"
     open-pull-requests-limit: 5
+    # Block ecosystem-incompatible majors until tooling catches up.
+    # Remove when typescript-eslint supports TS 7.1+ and CI Node meets jsdom 30 engines.
+    ignore:
+      - dependency-name: "typescript"
+        versions: [">=7.0.0"]
+      - dependency-name: "jsdom"
+        versions: [">=30.0.0"]
     groups:
-      # Group all dependency updates into a single PR (major, minor, patch)
-      all:
+      # Safe routine bumps stay in one PR; majors open individually for review.
+      non-major:
         applies-to: version-updates
         patterns:
           - "*"
         update-types:
-          - "major"
           - "minor"
           - "patch"
-      # Group security fixes into one PR
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+    reviewers:
+      - "MarcusCJH"
+    assignees:
+      - "MarcusCJH"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    groups:
+      non-major:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
       security:
         applies-to: security-updates
         patterns:
