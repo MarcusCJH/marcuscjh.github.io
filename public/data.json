@@ -691,9 +691,9 @@
         "location": "Singapore",
         "details": [
           "Technical Lead - Aviation (2024 - Present)",
-          "  • Led the architecture and delivery of enterprise-scale serverless applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify) at client sites",
+          "  • Led the architecture and delivery of enterprise-scale serverless and generative AI applications on AWS (Lambda, AppSync, CDK, DynamoDB, Amplify, Bedrock, SageMaker) at client sites",
           "  • Drove technical strategy and engineering decisions, translating aviation business requirements into scalable production systems",
-          "  • Designed and delivered full-stack solutions including RFID showcase systems, mobile wayfinding applications, and e-commerce platforms",
+          "  • Designed and delivered full-stack solutions including an LLM-based document classification pipeline, RFID showcase systems, mobile wayfinding applications, and e-commerce platforms",
           "  • Served as primary technical liaison between engineering and business teams, aligning delivery with operational requirements and passenger experience goals",
           "  • Spearheaded infrastructure automation, CI/CD pipeline implementation, and knowledge transfer programmes to enable client self-sufficiency",
           "  • Mentored junior engineers and conducted code reviews to uphold engineering standards across the team",
