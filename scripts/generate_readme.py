@@ -92,7 +92,7 @@ VENDOR_ORDER = [
 ]
 
 # Skills categories to show as tech badges, in order
-SKILL_CATEGORIES = ["languages", "devops"]
+SKILL_CATEGORIES = ["languages", "platform"]
 
 # ---------------------------------------------------------------------------
 # Helpers

@@ -13,7 +13,7 @@
     "real_name": "Marcus Chan",
     "title": "Lead Full Stack Engineer & Cloud Architect",
     "subtitle": "Transforming ideas into scalable digital solutions",
-    "summary": "Lead Full Stack Engineer and Cloud Architect with 10+ years delivering scalable, cloud-native solutions across financial services, public sector, healthcare, and aviation. Proven in leading engineering teams, driving technical strategy, and translating complex business requirements into production-ready systems. Certified across AWS, Alibaba Cloud, Google Cloud, data engineering, and infrastructure automation — spanning serverless architecture, DevOps, and enterprise application development.",
+    "summary": "Lead Full Stack Engineer and Cloud Architect with 8+ years delivering scalable, cloud-native solutions across financial services, public sector, healthcare, and aviation. Proven in leading engineering teams, driving technical strategy, and translating complex business requirements into production-ready systems. Certified across AWS, Alibaba Cloud, Google Cloud, data engineering, and infrastructure automation — spanning serverless architecture, DevOps, and enterprise application development.",
     "email": "marcuschanjh@gmail.com",
     "website": "https://marcuscjh.com",
     "typedMessages": [
@@ -43,7 +43,7 @@
     "meta": {
       "title": "Marcus Chan | Lead Full Stack Engineer & Cloud Architect",
       "description": "Lead Full Stack Engineer and Cloud Architect specialising in cloud-native solutions, team leadership, and full-stack development. Certified across AWS, Alibaba Cloud, Google Cloud, Databricks, and Terraform.",
-      "keywords": "Marcus Chan, Lead Full Stack Engineer, Lead Engineer, Technical Lead, Cloud Architect, Software Engineer, Cloud Computing, AWS, Amazon Web Services, GCP, Google Cloud Platform, Alibaba Cloud, Data Engineering, Databricks, Terraform, Serverless Architecture, DevOps, Singapore, Accenture, Full Stack Developer, TypeScript, Python, Java, Node.js, React, microservices, enterprise software",
+      "keywords": "Marcus Chan, Lead Full Stack Engineer, Lead Engineer, Technical Lead, Cloud Architect, Software Engineer, Cloud Computing, AWS, Amazon Web Services, GCP, Google Cloud Platform, Alibaba Cloud, Data Engineering, Databricks, Terraform, Serverless Architecture, DevOps, Singapore, Accenture, Full Stack Developer, TypeScript, Python, Java, Next.js, Generative AI, Amazon Bedrock, enterprise software",
       "themeColor": "#00ff88",
       "backgroundColor": "#0a0a0a",
       "googlebot": "index, follow",
@@ -327,13 +327,12 @@
     }
   ],
   "skills": {
-    "languages": ["TypeScript", "Python", "JavaScript", "Java", "C#", "SQL"],
-    "aws": ["Lambda", "AppSync", "CDK", "DynamoDB", "Amplify", "Bedrock", "Q", "SNS", "SQS", "Cognito", "CloudWatch"],
-    "alicloud": ["Dataphin", "DataWorks", "QuickBI", "DataV"],
-    "backend": ["Django", "GraphQL", "REST APIs", "Serverless"],
-    "devops": ["Terraform", "Docker", "CI/CD", "Git", "Linux"],
-    "ai": ["Generative AI", "LLM Integration", "AI Agents", "Prompt Engineering"],
-    "management": ["Agile/Scrum", "Technical Leadership", "Project Delivery"]
+    "languages": ["TypeScript", "Python", "SQL", "Java"],
+    "fullstack": ["Next.js", "Vite / PWA", "Django", "FastAPI", "GraphQL"],
+    "cloud": ["AWS Serverless (Lambda, AppSync, DynamoDB)", "AWS CDK", "Amplify", "Event-driven & Observability (SNS, CloudWatch)", "Alibaba Cloud Data & BI (DataWorks, Dataphin, QuickBI, DataV)"],
+    "platform": ["Terraform", "Docker", "CI/CD & Automation", "Databricks"],
+    "ai": ["Amazon Bedrock", "SageMaker", "LLM Document Classification", "Enterprise Chatbots", "Local LLMs (Ollama)"],
+    "leadership": ["Technical Leadership", "Mentoring & Code Review","Agile / Scrum (CSM, CSPO)", "Jira"]
   },
   "timeline": [
     {
