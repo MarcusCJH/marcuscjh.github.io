@@ -12,8 +12,8 @@
     "name": "marcus.cjh",
     "real_name": "Marcus Chan",
     "title": "Lead Full Stack Engineer & Cloud Architect",
-    "subtitle": "Transforming ideas into scalable digital solutions",
-    "summary": "Lead Full Stack Engineer and Cloud Architect with 8+ years delivering scalable, cloud-native solutions across financial services, public sector, healthcare, and aviation. Proven in leading engineering teams, driving technical strategy, and translating complex business requirements into production-ready systems. Certified across AWS, Alibaba Cloud, Google Cloud, data engineering, and infrastructure automation — spanning serverless architecture, DevOps, and enterprise application development.",
+    "subtitle": "Building scalable, cloud-native systems",
+    "summary": "Lead Full Stack Engineer and Cloud Architect with 8+ years delivering scalable, cloud-native solutions across financial services, public sector, healthcare, and aviation. I lead engineering teams, set technical direction, and turn complex business requirements into production-ready systems. Certified across AWS, Alibaba Cloud, Google Cloud, data engineering, and infrastructure automation, with hands-on experience in serverless architecture, DevOps, and enterprise application development.",
     "email": "marcuschanjh@gmail.com",
     "website": "https://marcuscjh.com",
     "typedMessages": [
@@ -50,7 +50,7 @@
       "bingbot": "index, follow"
     },
     "openGraph": {
-      "site_name": "Marcus Chan — Portfolio",
+      "site_name": "Marcus Chan | Portfolio",
       "locale": "en_US",
       "imageWidth": "1200",
       "imageHeight": "630",
@@ -104,13 +104,17 @@
       "backgroundImage": "./showcase/splitleh/splitleh-bg.png",
       "technologies": ["TypeScript", "Vite", "PWA", "OCR"],
       "modalContent": {
-        "title": "SplitLeh — Scan. Review. Split fairly.",
+        "title": "SplitLeh: Scan. Review. Split fairly.",
         "image": "./showcase/splitleh/splitleh-bg.png",
-        "description": "A mobile-first Progressive Web App for splitting bills without the hassle. Scan a receipt with your camera — OCR runs entirely on-device — then review and edit line items, assign them to people in your group, and get a per-person breakdown instantly. Fully static: no backend, no login, no server. Clean flow: Scan → Review → Split → Results.",
+        "description": "A mobile-first Progressive Web App for splitting bills without the hassle. Scan a receipt with your camera (OCR runs entirely on-device), then review and edit line items, assign them to people in your group, and get a per-person breakdown instantly. Fully static: no backend, no login, no server. Clean flow: Scan → Review → Split → Results.",
         "links": [
           {
             "text": "Try it Live",
             "url": "https://marcuscjh.com/splitleh/"
+          },
+          {
+            "text": "Read Development Story",
+            "url": "https://medium.com/@marcuscjh/i-built-a-receipt-splitter-because-i-was-too-lazy-to-do-the-math-myself-159677f6b566"
           },
           {
             "text": "View Source Code",
@@ -127,7 +131,7 @@
       "modalContent": {
         "title": "SG Invoice",
         "image": "./showcase/invoice-app/invoice-app-bg.png",
-        "description": "A Singapore-focused invoice web app for small and home-based businesses. Create standard invoices, tax invoices, simplified tax invoices, receipts, and credit notes with GST calculations aligned to IRAS guidance. Features business profiles, PayNow QR codes, line-item discounts, dark/light theme, live print/PDF preview, and local-only storage with JSON export/import. Runs entirely in the browser — deployed to GitHub Pages.",
+        "description": "A Singapore-focused invoice web app for small and home-based businesses. Create standard invoices, tax invoices, simplified tax invoices, receipts, and credit notes with GST calculations aligned to IRAS guidance. Features business profiles, PayNow QR codes, line-item discounts, dark/light theme, live print/PDF preview, and local-only storage with JSON export/import. Runs entirely in the browser and is deployed to GitHub Pages.",
         "links": [
           {
             "text": "Try it Live",
@@ -148,7 +152,7 @@
       "modalContent": {
         "title": "BouncerBot",
         "image": "./showcase/bouncerbot/bouncerbot-bg.png",
-        "description": "An email validation tool that answers whether an email looks like it belongs to a real human or a bot — beyond basic @ checks. Uses AI (Ollama) plus traditional validation to evaluate domain legitimacy, username patterns, and name–email coherence. Three modes: AI-only, Non-AI only, and Hybrid (recommended). Supports single-email analysis and batch CSV processing for whitelist/blacklist decisions. Built with FastAPI, Next.js, TypeScript, and local Ollama. For local use only.",
+        "description": "An email validation tool that answers whether an email looks like it belongs to a real human or a bot, going beyond basic @ checks. Uses AI (Ollama) plus traditional validation to evaluate domain legitimacy, username patterns, and name–email coherence. Three modes: AI-only, Non-AI only, and Hybrid (recommended). Supports single-email analysis and batch CSV processing for whitelist/blacklist decisions. Built with FastAPI, Next.js, TypeScript, and local Ollama. For local use only.",
         "links": [
           {
             "text": "Read Development Story",
@@ -391,7 +395,7 @@
         "subtitle": "Sep 2014 - Sep 2016",
         "location": "Singapore",
         "details": [
-          "National Service — mandatory two-year military enlistment for Singapore male citizens.",
+          "National Service: mandatory two-year military enlistment for Singapore male citizens.",
           "Led patrol teams across public transportation networks to maintain security and public safety",
           "Maintained operational readiness and rapid response capabilities for security incidents"
         ],
