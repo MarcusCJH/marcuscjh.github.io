@@ -11,8 +11,8 @@ export class SEOService {
   public static applyStructuredData(data: PortfolioData): void {
     // Remove previously injected dynamic schemas
     document.querySelectorAll('script[data-dynamic-schema]').forEach(el => el.remove());
-    this.injectSchema(this.buildPersonSchema(data));
-    this.injectSchema(this.buildProjectsSchema(data));
+    this.injectSchema('person', this.buildPersonSchema(data));
+    this.injectSchema('projects', this.buildProjectsSchema(data));
   }
 
   private static buildPersonSchema(data: PortfolioData): object {
@@ -35,60 +35,82 @@ export class SEOService {
         name: t.title,
         credentialCategory: 'Professional Certification',
         recognizedBy: { '@type': 'Organization', name: t.company },
-        ...(t.startDate ? { dateCreated: t.startDate } : {}),
       }));
 
     const sameAs = social.filter(s => s.url && !s.url.startsWith('mailto:')).map(s => s.url);
+    const knowsAbout = [...new Set(Object.values(data.skills ?? {}).flat())];
 
     return {
       '@context': 'https://schema.org',
       '@type': 'Person',
+      ...(baseUrl ? { '@id': `${baseUrl.replace(/\/$/, '')}/#person` } : {}),
       name,
       alternateName: config.name,
       url: baseUrl,
       ...(config.email ? { email: config.email } : {}),
       ...(config.title ? { jobTitle: config.title } : {}),
       ...(config.summary ? { description: config.summary } : {}),
-      ...(seo?.defaults?.image ? { image: seo.defaults.image } : {}),
       alumniOf,
       hasCredential,
       ...(currentWork ? { worksFor: { '@type': 'Organization', name: currentWork.company } } : {}),
+      knowsAbout,
       sameAs,
     };
   }
 
   private static buildProjectsSchema(data: PortfolioData): object {
-    const { showcase, config } = data;
+    const { showcase, config, seo } = data;
     const authorName = config.real_name || config.name;
+    const baseUrl = (seo?.defaults?.url || config.website || '').replace(/\/$/, '');
 
     return {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
+      ...(baseUrl ? { '@id': `${baseUrl}/#projects` } : {}),
       name: `${authorName}'s Software Projects`,
       description: `Software projects and applications developed by ${authorName}`,
       itemListElement: showcase.map((project, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         item: {
-          '@type': 'SoftwareApplication',
+          '@type': project.id === 'datav-webinar' ? 'CreativeWork' : 'SoftwareApplication',
           name: project.modalContent?.title || project.title,
           ...(project.modalContent?.description
             ? { description: project.modalContent.description }
             : {}),
-          applicationCategory: 'WebApplication',
-          ...(project.technologies?.length ? { programmingLanguage: project.technologies } : {}),
-          ...(project.modalContent?.links?.[0]?.url
-            ? { url: project.modalContent.links[0].url }
+          ...(project.id !== 'datav-webinar'
+            ? { applicationCategory: 'WebApplication', operatingSystem: 'Web' }
             : {}),
-          author: { '@type': 'Person', name: authorName },
+          ...(project.technologies?.length ? { keywords: project.technologies.join(', ') } : {}),
+          ...(baseUrl
+            ? {
+                url: `${baseUrl}/projects/${encodeURIComponent(project.id)}/`,
+                mainEntityOfPage: `${baseUrl}/projects/${encodeURIComponent(project.id)}/`,
+              }
+            : {}),
+          ...(project.backgroundImage && baseUrl
+            ? {
+                image: `${baseUrl}/${project.backgroundImage.replace(/^\.\//, '').replace(/^\//, '')}`,
+              }
+            : {}),
+          author: baseUrl
+            ? { '@id': `${baseUrl}/#person` }
+            : { '@type': 'Person', name: authorName },
         },
       })),
     };
   }
 
-  private static injectSchema(schema: object): void {
+  private static injectSchema(name: string, schema: object): void {
+    const existing = document.querySelector<HTMLScriptElement>(`script[data-schema="${name}"]`);
+    if (existing) {
+      existing.textContent = JSON.stringify(schema);
+      return;
+    }
+
     const script = document.createElement('script');
     script.type = 'application/ld+json';
+    script.setAttribute('data-schema', name);
     script.setAttribute('data-dynamic-schema', '');
     script.textContent = JSON.stringify(schema);
     document.head.appendChild(script);

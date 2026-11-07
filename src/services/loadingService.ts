@@ -1,6 +1,6 @@
 // Loading service for managing loading states
 import { DOMUtils } from '@/lib/dom';
-import { APP_CONFIG, SELECTORS } from '@/lib/constants';
+import { APP_CONFIG, DEFAULT_TEXT, SELECTORS } from '@/lib/constants';
 
 export interface LoadingState {
   progress: number;
@@ -11,6 +11,7 @@ export interface LoadingState {
 
 export class LoadingService {
   private static instance: LoadingService;
+  private readyMessage: string = DEFAULT_TEXT.loadingReady;
   private state: LoadingState = {
     progress: 0,
     messages: [],
@@ -18,13 +19,17 @@ export class LoadingService {
   };
 
   private constructor() {
-    this.state.messages = [
-      'Initializing systems...',
-      'Loading portfolio data...',
-      'Setting up components...',
-      'Preparing animations...',
-      'Almost ready...',
-    ];
+    this.state.messages = [...DEFAULT_TEXT.loadingMessages];
+  }
+
+  /** Replace the progress copy once data.json has loaded. */
+  public setMessages(messages?: string[], ready?: string): void {
+    if (messages?.length) {
+      this.state.messages = [...messages];
+    }
+    if (ready) {
+      this.readyMessage = ready;
+    }
   }
 
   public static getInstance(): LoadingService {
@@ -40,6 +45,7 @@ export class LoadingService {
   public startLoading(): void {
     const progressBar = DOMUtils.getElement('loading-progress') as HTMLElement;
     const loadingText = document.querySelector(SELECTORS.LOADING_TEXT) as HTMLElement;
+    const loadingCounter = document.querySelector('.loading-counter') as HTMLElement;
 
     if (!progressBar) {
       return;
@@ -52,18 +58,25 @@ export class LoadingService {
     if (loadingText) {
       loadingText.textContent = this.state.messages[0];
     }
+    if (loadingCounter) {
+      loadingCounter.textContent = '00%';
+    }
 
     this.state.interval = setInterval(() => {
-      this.updateProgress(progressBar, loadingText);
+      this.updateProgress(progressBar, loadingText, loadingCounter);
     }, APP_CONFIG.LOADING_UPDATE_INTERVAL);
   }
 
   /**
    * Update loading progress
    */
-  private updateProgress(progressBar: HTMLElement, loadingText: HTMLElement | null): void {
+  private updateProgress(
+    progressBar: HTMLElement,
+    loadingText: HTMLElement | null,
+    loadingCounter: HTMLElement | null
+  ): void {
     // More realistic progress increments
-    const increment = Math.random() * 8 + 2; // 2-10% increments
+    const increment = Math.random() * 14 + 8; // 8-22% increments
     this.state.progress += increment;
 
     // Update loading message based on progress
@@ -76,6 +89,10 @@ export class LoadingService {
       }
     }
     progressBar.style.width = `${this.state.progress}%`;
+    progressBar.parentElement?.setAttribute('aria-valuenow', `${Math.round(this.state.progress)}`);
+    if (loadingCounter) {
+      loadingCounter.textContent = `${Math.round(this.state.progress).toString().padStart(2, '0')}%`;
+    }
   }
 
   /**
@@ -110,6 +127,7 @@ export class LoadingService {
     const progressBar = DOMUtils.getElement('loading-progress') as HTMLElement;
     const loadingScreen = DOMUtils.getElement('loading-screen') as HTMLElement;
     const loadingText = document.querySelector(SELECTORS.LOADING_TEXT) as HTMLElement;
+    const loadingCounter = document.querySelector('.loading-counter') as HTMLElement;
     const mainContainer = document.querySelector(SELECTORS.MAIN_CONTAINER) as HTMLElement;
 
     // Update internal state to 100%
@@ -118,27 +136,32 @@ export class LoadingService {
     // Complete the progress bar to 100%
     if (progressBar) {
       progressBar.style.width = '100%';
+      progressBar.parentElement?.setAttribute('aria-valuenow', '100');
+    }
+    if (loadingCounter) {
+      loadingCounter.textContent = '100%';
     }
 
     // Show final message
     if (loadingText) {
-      loadingText.textContent = 'Ready!';
+      loadingText.textContent = this.readyMessage;
     }
 
-    // Wait a moment for the user to see 100% and "Ready!", then start transition
+    // Brief beat so the bar is seen reaching 100%, then hand over. Both
+    // delays are deliberately short — they sit directly in front of first
+    // meaningful paint.
     setTimeout(() => {
       if (loadingScreen) {
         loadingScreen.classList.add('hidden');
       }
 
-      // Wait for the CSS transition to complete before showing main content
       setTimeout(() => {
         if (mainContainer) {
           mainContainer.style.opacity = '1';
           mainContainer.style.visibility = 'visible';
         }
-      }, 500);
-    }, 500);
+      }, 160);
+    }, 180);
   }
 
   /**

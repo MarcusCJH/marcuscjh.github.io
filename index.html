@@ -1,177 +1,200 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Favicon & App Icons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/favicon.svg">
-    <link rel="manifest" href="/manifest.json">
-    
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    
+    <!--
+      Fonts: Archivo (variable width + weight, used condensed for display) and
+      JetBrains Mono (all data, labels and metadata). Loaded with <link> rather
+      than a CSS @import so the stylesheet is not blocked behind them.
+      The Font Awesome CDN stylesheet is gone — icons are inline SVG now.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@300..700&display=swap"
+    />
+  </head>
 
-</head>
+  <body>
+    <noscript>
+      <style>
+        .loading-screen {
+          display: none !important;
+        }
+      </style>
+    </noscript>
+    <!-- Ambient graphic: 12-column hairline grid + film grain. Pure CSS. -->
+    <div class="field" aria-hidden="true"></div>
 
-<body>
-    <!-- Matrix Background Animation -->
-    <canvas id="matrix-canvas"></canvas>
-    
-    <!-- Particle System -->
-    <div id="particles-container"></div>
-    
-    <!-- Main Container -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <div class="main-container">
-        <!-- Navigation -->
-        <nav class="nav-container">
-            <div class="nav-brand">
-                <span class="brand-text"></span>
-                <span class="brand-cursor">_</span>
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <!-- Navigation items will be dynamically loaded from data.json -->
-            </div>
-            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
+      <header class="nav-container">
+        <div class="nav-inner">
+          <a class="nav-brand" href="#hero-section">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text"></span><span class="brand-cursor" aria-hidden="true">_</span>
+          </a>
+          <nav class="nav-menu" id="nav-menu" aria-label="Sections">
+            <!-- Navigation items are loaded from data.json -->
+          </nav>
+          <button
+            class="nav-toggle"
+            id="nav-toggle"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
 
-        <!-- Hero Section -->
+      <main id="main">
         <section class="hero-section" id="hero-section">
-            <div class="hero-content">
-                <div class="glitch-container">
-                    <h1 class="hero-title glitch" data-text=""></h1>
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span class="typed-text" id="typed-text"></span>
-                        <span class="cursor-blink">|</span>
-                    </div>
-                </div>
-                
-                <div class="hero-description">
-                    <!-- populated from data.json config.title / config.subtitle by main.ts -->
-                </div>
+          <div class="hero-grid">
+            <div class="hero-primary">
+              <p class="eyebrow hero-handle"><span class="hero-handle-text"></span></p>
 
-                <div class="social-links fade-in-up delay-2">
-                    <!-- Social links will be dynamically loaded -->
-                </div>
+              <h1 class="hero-title"></h1>
 
-                <div class="scroll-indicator">
-                    <div class="scroll-arrow">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
+              <div class="hero-role">
+                <p class="hero-role-title"></p>
+                <p class="hero-role-sub"></p>
+              </div>
+
+              <p class="terminal-line">
+                <span class="prompt" aria-hidden="true">~</span>
+                <span class="typed-text" id="typed-text"></span>
+                <span class="cursor-blink" aria-hidden="true"></span>
+              </p>
             </div>
+
+            <div class="hero-secondary">
+              <p class="hero-lead"></p>
+
+              <div class="social-links fade-in-up">
+                <!-- Social links are loaded from data.json -->
+              </div>
+            </div>
+          </div>
+
+          <button class="scroll-arrow" type="button" aria-label="Scroll to timeline">scroll</button>
         </section>
 
-        <!-- Content Sections -->
-        <section class="content-section" id="timeline-section">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <span class="section-icon"><i class="fas fa-code-branch"></i></span>
-                    <span class="glitch" data-text="timeline">timeline</span>
-                </h2>
+        <section class="content-section shell" id="timeline-section">
+          <header class="section-header">
+            <h2 class="section-title">timeline</h2>
+            <p class="section-note">work · education · certification</p>
+          </header>
+          <div class="timeline-container">
+            <div class="timeline-search">
+              <input
+                type="search"
+                id="timeline-search"
+                aria-label="Search timeline entries"
+                placeholder="Search entries — e.g. Accenture, AWS"
+              />
             </div>
-            <div class="timeline-container">
-                <div class="timeline-search">
-                    <input type="text" id="timeline-search" aria-label="Search timeline entries" placeholder="Search timeline entries (e.g., Marcus Chan, Accenture, AWS)...">
-                </div>
-                <div class="timeline-filters">
-                    <button class="filter-btn active" data-filter="all">
-                        <i class="fas fa-asterisk"></i> All
-                    </button>
-                    <button class="filter-btn" data-filter="work">
-                        <i class="fas fa-briefcase"></i> Work
-                    </button>
-                    <button class="filter-btn" data-filter="education">
-                        <i class="fas fa-graduation-cap"></i> Education
-                    </button>
-                    <button class="filter-btn" data-filter="certification">
-                        <i class="fas fa-certificate"></i> Certs
-                    </button>
-                </div>
-                <div class="timeline-wrapper" id="timeline-wrapper">
-                    <div class="timeline-track">
-                        <div class="timeline-line"></div>
-                        <div class="timeline-progress" id="timeline-progress"></div>
-                        <div class="timeline-items" id="timeline-items">
-                            <!-- Timeline items will be dynamically loaded -->
-                        </div>
-                    </div>
-                </div>
+            <div class="timeline-controls">
+              <div class="timeline-filters" role="group" aria-label="Filter timeline by category">
+                <!-- Filter buttons are generated from data.json ui.timeline.filters -->
+              </div>
+              <p class="timeline-hint" aria-hidden="true">drag &middot; scroll &rarr;</p>
             </div>
+            <div class="timeline-wrapper" id="timeline-wrapper">
+              <div class="timeline-track">
+                <div class="timeline-line" aria-hidden="true"></div>
+                <div class="timeline-progress" id="timeline-progress" aria-hidden="true"></div>
+                <div class="timeline-items" id="timeline-items">
+                  <!-- Timeline items are loaded from data.json -->
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <section class="content-section" id="showcase-section">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <span class="section-icon"><i class="fas fa-rocket"></i></span>
-                    <span class="glitch" data-text="projects">projects</span>
-                </h2>
-            </div>
-            <div class="showcase-grid" id="showcase-grid">
-                <!-- Showcase items will be dynamically loaded -->
-            </div>
+        <section class="content-section shell" id="showcase-section">
+          <header class="section-header">
+            <h2 class="section-title">projects</h2>
+            <p class="section-note">selected work</p>
+          </header>
+          <div class="showcase-grid" id="showcase-grid">
+            <!-- Projects are loaded from data.json -->
+          </div>
         </section>
+      </main>
 
-        <section class="content-section" id="cv-section">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <span class="section-icon"><i class="fas fa-file-code"></i></span>
-                    <span class="glitch" data-text="resume">resume</span>
-                </h2>
-            </div>
-            <div class="cv-container">
-                <div class="cv-preview" id="cv-preview" role="button" tabindex="0" aria-label="View resume">
-                    <div class="cv-placeholder">
-                        <i class="fas fa-file-pdf"></i>
-                        <p>Click to view resume</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <footer class="site-footer">
+        <div class="site-footer-inner shell">
+          <span id="footer-brand"></span>
+          <span id="footer-meta"></span>
+        </div>
+      </footer>
     </div>
 
-    <!-- Modal Container -->
+    <!-- Modal -->
     <div class="modal-overlay" id="modal-overlay">
-        <div class="modal-container" id="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-title"></h3>
-                <button class="modal-close" id="modal-close" type="button" aria-label="Close dialog">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-content" id="modal-content">
-                <!-- Modal content will be dynamically loaded -->
-            </div>
+      <div
+        class="modal-container"
+        id="modal-container"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal-title"></h3>
+          <button
+            class="modal-close"
+            id="modal-close"
+            type="button"
+            aria-label="Close dialog"
+          ></button>
         </div>
+        <div class="modal-content" id="modal-content">
+          <!-- Modal content is rendered at open time -->
+        </div>
+      </div>
     </div>
 
     <!-- Loading Screen -->
     <div class="loading-screen" id="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <span class="glitch" data-text=""></span>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress" id="loading-progress"></div>
-            </div>
-            <div class="loading-text">Initializing systems...</div>
+      <div class="loading-content">
+        <div class="loading-head">
+          <div>
+            <p class="loading-kicker">Portfolio / System boot</p>
+            <p class="loading-logo"></p>
+          </div>
+          <p class="loading-counter" aria-hidden="true">00%</p>
         </div>
+        <div
+          class="loading-bar"
+          role="progressbar"
+          aria-label="Loading portfolio"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <div class="loading-progress" id="loading-progress"></div>
+        </div>
+        <div class="loading-footer">
+          <p class="loading-text" role="status" aria-live="polite">Initializing</p>
+          <p class="loading-index" aria-hidden="true">SYS.READY</p>
+        </div>
+      </div>
     </div>
 
-    <!-- Vite will inject the main.ts script here -->
     <script type="module" src="/src/main.ts"></script>
-</body>
+  </body>
 </html>

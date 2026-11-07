@@ -68,7 +68,40 @@ export interface Config {
   website?: string;
   typedMessages: string[];
   cvDriveId?: string;
+  resumeUrl?: string;
+
+  /**
+   * User-facing labels. Every one is optional: it falls back to DEFAULT_TEXT
+   * or to the copy already in index.html, so a partial config still renders.
+   */
+  sections?: Record<string, SectionText>;
+  scrollCue?: string;
+  searchLabel?: string;
+  searchPlaceholder?: string;
+  dragHint?: string;
+  emptyMessage?: string;
+  filters?: TimelineFilter[];
+  resumeTitle?: string;
+  loadingMessages?: string[];
+  loadingReady?: string;
 }
+
+export interface TimelineFilter {
+  /** Matches TimelineItem.category, or 'all'. */
+  id: string;
+  /** Text on the filter button. */
+  label: string;
+  /** Text on a card's category tag; defaults to `id`. */
+  tag?: string;
+}
+
+export interface SectionText {
+  title?: string;
+  note?: string;
+}
+
+/** Free-form groups of tools, keyed by domain (`cloud`, `platform`, ...). */
+export type SkillGroups = Record<string, string[]>;
 
 export interface SEOMeta {
   title?: string;
@@ -138,6 +171,7 @@ export interface PortfolioData {
   navigation: NavigationItem[];
   timeline: TimelineItem[];
   showcase: ShowcaseProject[];
+  skills?: SkillGroups;
 }
 
 export interface TimelineState {

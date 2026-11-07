@@ -28,8 +28,8 @@ Deployment to GitHub Pages happens automatically via GitHub Actions on push to `
 ├── src/
 │   ├── main.ts               # Main application entry
 │   ├── services/             # Data & loading services
-│   ├── components/           # UI components (Matrix, Particles, TypedText)
-│   ├── lib/                  # Utilities & constants
+│   ├── components/           # UI components (TypedText)
+│   ├── lib/                  # Utilities, constants, inline SVG icon set
 │   ├── styles/               # CSS with modern features
 │   └── test/                 # Unit tests (76% coverage)
 ├── public/data.json          # Site content & configuration
@@ -50,7 +50,7 @@ Edit `public/data.json` to update:
 - **Vite** - Fast build tool & dev server
 - **Vitest** - Modern testing framework
 - **ESLint + Prettier** - Code quality & formatting
-- **CSS3** - Modern styling with custom properties
+- **CSS3** - Cascade layers, container queries, `color-mix()`, scroll-driven animation
 - **GitHub Actions** - Automated CI/CD
 
 

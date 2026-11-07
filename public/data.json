@@ -1,7 +1,7 @@
 {
   "_comment": "This file controls all content and navigation for the portfolio website. Simply modify values here to update the site.",
   "_instructions": {
-    "config": "Update personal information, typed messages, and CV settings",
+    "config": "Personal information, typed messages, resume settings, and every user-facing label (sections, filters, search, hints, loading). Omit a label to use its default",
     "seo": "Configure SEO meta tags, Open Graph, Twitter cards, canonical URL, and Google verification",
     "navigation": "Set 'enabled: false' to hide sections and navigation items",
     "social": "Add/remove social media links",
@@ -23,13 +23,59 @@
       "git status",
       "npm run deploy"
     ],
-    "cvDriveId": "16eXxJWLCsUib7gZKX48jhT85myOxqh0_"
+    "cvDriveId": "16eXxJWLCsUib7gZKX48jhT85myOxqh0_",
+    "resumeUrl": "https://www.marcuscjh.com/marcuscjh-resume",
+    "sections": {
+      "timeline": {
+        "title": "timeline",
+        "note": "work · education · certification"
+      },
+      "showcase": {
+        "title": "projects",
+        "note": "selected work"
+      }
+    },
+    "scrollCue": "scroll",
+    "searchLabel": "Search timeline entries",
+    "searchPlaceholder": "Search entries — e.g. Accenture, AWS",
+    "dragHint": "drag · scroll →",
+    "emptyMessage": "No entries match that filter.",
+    "filters": [
+      {
+        "id": "all",
+        "label": "All"
+      },
+      {
+        "id": "work",
+        "label": "Work",
+        "tag": "work"
+      },
+      {
+        "id": "education",
+        "label": "Education",
+        "tag": "education"
+      },
+      {
+        "id": "certification",
+        "label": "Certs",
+        "tag": "certification"
+      }
+    ],
+    "resumeTitle": "Resume / CV",
+    "loadingMessages": [
+      "Initializing",
+      "Fetching data",
+      "Building sections",
+      "Laying out",
+      "Almost there"
+    ],
+    "loadingReady": "Ready"
   },
   "seo": {
     "defaults": {
       "url": "https://marcuscjh.com/",
       "title": "Marcus Chan | Lead Full Stack Engineer & Cloud Architect",
-      "description": "Lead Full Stack Engineer and Cloud Architect specialising in cloud-native solutions, team leadership, and full-stack development. Certified across AWS, Alibaba Cloud, Google Cloud, Databricks, and Terraform.",
+      "description": "Lead Full Stack Engineer and Cloud Architect in Singapore, building cloud-native systems and leading enterprise delivery across AWS, Google Cloud, and Alibaba Cloud.",
       "image": "https://marcuscjh.com/showcase/marcuscjh/marcuscjh-bg.PNG",
       "author": "Marcus Chan",
       "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
@@ -42,27 +88,23 @@
     },
     "meta": {
       "title": "Marcus Chan | Lead Full Stack Engineer & Cloud Architect",
-      "description": "Lead Full Stack Engineer and Cloud Architect specialising in cloud-native solutions, team leadership, and full-stack development. Certified across AWS, Alibaba Cloud, Google Cloud, Databricks, and Terraform.",
-      "keywords": "Marcus Chan, Lead Full Stack Engineer, Lead Engineer, Technical Lead, Cloud Architect, Software Engineer, Cloud Computing, AWS, Amazon Web Services, GCP, Google Cloud Platform, Alibaba Cloud, Data Engineering, Databricks, Terraform, Serverless Architecture, DevOps, Singapore, Accenture, Full Stack Developer, TypeScript, Python, Java, Next.js, Generative AI, Amazon Bedrock, enterprise software",
-      "themeColor": "#00ff88",
-      "backgroundColor": "#0a0a0a",
+      "description": "Lead Full Stack Engineer and Cloud Architect in Singapore, building cloud-native systems and leading enterprise delivery across AWS, Google Cloud, and Alibaba Cloud.",
+      "themeColor": "#c6f24e",
+      "backgroundColor": "#08090a",
       "googlebot": "index, follow",
       "bingbot": "index, follow"
     },
     "openGraph": {
       "site_name": "Marcus Chan | Portfolio",
-      "locale": "en_US",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "locale": "en_SG",
+      "imageWidth": "520",
+      "imageHeight": "366",
       "imageType": "image/png"
     },
     "twitter": {
       "creator": "@marcuscjh",
       "site": "@marcuscjh"
     },
-    "alternateUrls": [
-      { "href": "https://www.marcuscjh.com/", "hreflang": "en" }
-    ],
     "googleSiteVerification": "9uLWJUwdMi1ZP3xka1tror2bPKaC6dqVj9WxmA6kRBk"
   },
   "social": [
@@ -102,7 +144,12 @@
       "id": "splitleh",
       "title": "SplitLeh",
       "backgroundImage": "./showcase/splitleh/splitleh-bg.png",
-      "technologies": ["TypeScript", "Vite", "PWA", "OCR"],
+      "technologies": [
+        "TypeScript",
+        "Vite",
+        "PWA",
+        "OCR"
+      ],
       "modalContent": {
         "title": "SplitLeh: Scan. Review. Split fairly.",
         "image": "./showcase/splitleh/splitleh-bg.png",
@@ -127,7 +174,12 @@
       "id": "invoice-app",
       "title": "SG Invoice",
       "backgroundImage": "./showcase/invoice-app/invoice-app-bg.png",
-      "technologies": ["TypeScript", "Vite", "HTML", "CSS"],
+      "technologies": [
+        "TypeScript",
+        "Vite",
+        "HTML",
+        "CSS"
+      ],
       "modalContent": {
         "title": "SG Invoice",
         "image": "./showcase/invoice-app/invoice-app-bg.png",
@@ -148,7 +200,12 @@
       "id": "bouncerbot",
       "title": "BouncerBot",
       "backgroundImage": "./showcase/bouncerbot/bouncerbot-bg.png",
-      "technologies": ["FastAPI", "Next.js", "TypeScript", "Ollama"],
+      "technologies": [
+        "FastAPI",
+        "Next.js",
+        "TypeScript",
+        "Ollama"
+      ],
       "modalContent": {
         "title": "BouncerBot",
         "image": "./showcase/bouncerbot/bouncerbot-bg.png",
@@ -165,7 +222,11 @@
       "id": "wifi-qr",
       "title": "WiFi QR Generator",
       "backgroundImage": "./showcase/wifi-qr/wifi-qr-bg.gif",
-      "technologies": ["HTML", "CSS", "JavaScript"],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
       "modalContent": {
         "title": "WiFi QR Generator",
         "description": "Generate a QR code for your WiFi so guests can print or share the QR code as an image. Enter network name, password, and security type; download as PNG or print (full page with credentials). Deployed to GitHub Pages.",
@@ -186,7 +247,11 @@
       "id": "amazon-connect-poc",
       "title": "Amazon Connect Incident Response",
       "backgroundImage": "./showcase/amazon-connect-poc/amazon-connect-bg.png",
-      "technologies": ["Python", "AWS", "DynamoDB"],
+      "technologies": [
+        "Python",
+        "AWS",
+        "DynamoDB"
+      ],
       "modalContent": {
         "title": "Real-Time Incident Response System",
         "image": "./showcase/amazon-connect-poc/amazon-connect-bg.png",
@@ -203,7 +268,10 @@
       "id": "endless-jumper",
       "title": "Endless Jumper",
       "backgroundImage": "./showcase/endlessJumper/6_Final.gif",
-      "technologies": ["Python", "Amazon Q"],
+      "technologies": [
+        "Python",
+        "Amazon Q"
+      ],
       "modalContent": {
         "title": "Endless Jumper Game",
         "description": "A fun endless runner game built in just 2 hours using Amazon Q AI assistant. Features include power-ups, increasing difficulty, and smooth gameplay mechanics. The game demonstrates rapid prototyping and AI-assisted development.",
@@ -224,7 +292,10 @@
       "id": "datav-webinar",
       "title": "Alibaba Cloud: DataV Webinar",
       "backgroundImage": "./showcase/webinar/DataV-bg.PNG",
-      "technologies": ["Alibaba Cloud", "Data Visualization"],
+      "technologies": [
+        "Alibaba Cloud",
+        "Data Visualization"
+      ],
       "modalContent": {
         "title": "ApsaraChat Live: Real-time monitoring of COVID-19 with DataV",
         "image": "./showcase/webinar/DataV-bg.PNG",
@@ -245,7 +316,10 @@
       "id": "slackbot",
       "title": "Slack Bot",
       "backgroundImage": "./showcase/slackbot/slackbot-bg.png",
-      "technologies": ["Python", "AWS"],
+      "technologies": [
+        "Python",
+        "AWS"
+      ],
       "modalContent": {
         "title": "Slack Bot",
         "image": "./showcase/slackbot/slackbot-bg.png",
@@ -257,7 +331,11 @@
       "id": "webcamtest",
       "title": "Webcam Test",
       "backgroundImage": "./showcase/webcamtest/webcamTest-bg.png",
-      "technologies": ["HTML", "JavaScript", "WebRTC"],
+      "technologies": [
+        "HTML",
+        "JavaScript",
+        "WebRTC"
+      ],
       "modalContent": {
         "title": "Webcam Test",
         "image": "./showcase/webcamtest/webcamDemo.PNG",
@@ -278,7 +356,12 @@
       "id": "portfolio",
       "title": "Portfolio Website",
       "backgroundImage": "./showcase/marcuscjh/marcuscjh-bg.PNG",
-      "technologies": ["TypeScript", "JavaScript", "HTML", "CSS"],
+      "technologies": [
+        "TypeScript",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
       "modalContent": {
         "title": "Personal Portfolio",
         "image": "./showcase/marcuscjh/marcuscjh-bg.PNG",
@@ -299,7 +382,13 @@
       "id": "shareshed",
       "title": "ShareShed",
       "backgroundImage": "./showcase/shareshed/shareshed.png",
-      "technologies": ["Python", "Django", "HTML", "JavaScript", "Bootstrap"],
+      "technologies": [
+        "Python",
+        "Django",
+        "HTML",
+        "JavaScript",
+        "Bootstrap"
+      ],
       "modalContent": {
         "title": "ShareShed: Library of Things",
         "image": "./showcase/shareshed/shareshed.png",
@@ -316,7 +405,12 @@
       "id": "lulzcloud",
       "title": "LULZ CLOUD",
       "backgroundImage": "./showcase/lulzcloud/lulzcloud.png",
-      "technologies": ["Apache Spark", "Cassandra", "Docker", "Scala"],
+      "technologies": [
+        "Apache Spark",
+        "Cassandra",
+        "Docker",
+        "Scala"
+      ],
       "modalContent": {
         "title": "INFS3208/INFS7208 Cloud Computing Project",
         "image": "./showcase/lulzcloud/lulzcloud.png",
@@ -331,12 +425,45 @@
     }
   ],
   "skills": {
-    "languages": ["TypeScript", "Python", "SQL", "Java"],
-    "fullstack": ["Next.js", "Vite / PWA", "Django", "FastAPI", "GraphQL"],
-    "cloud": ["AWS Serverless (Lambda, AppSync, DynamoDB)", "AWS CDK", "Amplify", "Event-driven & Observability (SNS, CloudWatch)", "Alibaba Cloud Data & BI (DataWorks, Dataphin, QuickBI, DataV)"],
-    "platform": ["Terraform", "Docker", "CI/CD & Automation", "Databricks"],
-    "ai": ["Amazon Bedrock", "SageMaker", "LLM Document Classification", "Enterprise Chatbots", "Local LLMs (Ollama)"],
-    "leadership": ["Technical Leadership", "Mentoring & Code Review","Agile / Scrum (CSM, CSPO)", "Jira"]
+    "languages": [
+      "TypeScript",
+      "Python",
+      "SQL",
+      "Java"
+    ],
+    "fullstack": [
+      "Next.js",
+      "Vite / PWA",
+      "Django",
+      "FastAPI",
+      "GraphQL"
+    ],
+    "cloud": [
+      "AWS Serverless (Lambda, AppSync, DynamoDB)",
+      "AWS CDK",
+      "Amplify",
+      "Event-driven & Observability (SNS, CloudWatch)",
+      "Alibaba Cloud Data & BI (DataWorks, Dataphin, QuickBI, DataV)"
+    ],
+    "platform": [
+      "Terraform",
+      "Docker",
+      "CI/CD & Automation",
+      "Databricks"
+    ],
+    "ai": [
+      "Amazon Bedrock",
+      "SageMaker",
+      "LLM Document Classification",
+      "Enterprise Chatbots",
+      "Local LLMs (Ollama)"
+    ],
+    "leadership": [
+      "Technical Leadership",
+      "Mentoring & Code Review",
+      "Agile / Scrum (CSM, CSPO)",
+      "Jira"
+    ]
   },
   "timeline": [
     {
@@ -352,10 +479,26 @@
         "location": "Singapore",
         "details": [],
         "awards": [
-          { "title": "POL-ITE 2013 DB22 – 3rd", "date": "Jan 2013", "issuer": "POL-ITE Games" },
-          { "title": "PA Paddle Championship 2013 – 3rd (IHL Men 12 Crew)", "date": "Jan 2013", "issuer": "PA Water-Venture" },
-          { "title": "Director's List", "date": "Jan 2013", "issuer": "Temasek Polytechnic" },
-          { "title": "CCA Merit Award for Sports", "date": "Jun 2014", "issuer": "Temasek Polytechnic" }
+          {
+            "title": "POL-ITE 2013 DB22 – 3rd",
+            "date": "Jan 2013",
+            "issuer": "POL-ITE Games"
+          },
+          {
+            "title": "PA Paddle Championship 2013 – 3rd (IHL Men 12 Crew)",
+            "date": "Jan 2013",
+            "issuer": "PA Water-Venture"
+          },
+          {
+            "title": "Director's List",
+            "date": "Jan 2013",
+            "issuer": "Temasek Polytechnic"
+          },
+          {
+            "title": "CCA Merit Award for Sports",
+            "date": "Jun 2014",
+            "issuer": "Temasek Polytechnic"
+          }
         ]
       }
     },
@@ -400,8 +543,16 @@
           "Maintained operational readiness and rapid response capabilities for security incidents"
         ],
         "awards": [
-          { "title": "Best in Professional Studies", "date": "Feb 2015", "issuer": "Singapore Police Force" },
-          { "title": "Best Trainee", "date": "Feb 2015", "issuer": "Singapore Police Force" }
+          {
+            "title": "Best in Professional Studies",
+            "date": "Feb 2015",
+            "issuer": "Singapore Police Force"
+          },
+          {
+            "title": "Best Trainee",
+            "date": "Feb 2015",
+            "issuer": "Singapore Police Force"
+          }
         ]
       }
     },
@@ -411,7 +562,7 @@
       "startDate": "2016",
       "endDate": "2017",
       "company": "Singapore Management University",
-      "title": "Bachelor of Science (Information Systems)",
+      "title": "Bachelor of Science (Information Systems) (Incomplete)",
       "modalContent": {
         "title": "Singapore Management University",
         "subtitle": "2016 - 2017",
@@ -420,7 +571,11 @@
           "Left after one year to pursue industry experience directly. Subsequently earned the EAIT International Scholarship to complete a degree at the University of Queensland."
         ],
         "awards": [
-          { "title": "Penang International Dragon Boat Festival 2016 – 3rd & 4th", "date": "Jan 2016", "issuer": "Penang State Tourism Development & Culture" }
+          {
+            "title": "Penang International Dragon Boat Festival 2016 – 3rd & 4th",
+            "date": "Jan 2016",
+            "issuer": "Penang State Tourism Development & Culture"
+          }
         ]
       }
     },
@@ -455,8 +610,16 @@
         "location": "Brisbane, Australia",
         "details": [],
         "awards": [
-          { "title": "EAIT International Scholarship", "date": "Feb 2018", "issuer": "The University of Queensland" },
-          { "title": "Project Excellence Award (Best Project Demo)", "date": "Oct 2018", "issuer": "Prof Xue Li, UQ" }
+          {
+            "title": "EAIT International Scholarship",
+            "date": "Feb 2018",
+            "issuer": "The University of Queensland"
+          },
+          {
+            "title": "Project Excellence Award (Best Project Demo)",
+            "date": "Oct 2018",
+            "issuer": "Prof Xue Li, UQ"
+          }
         ]
       }
     },
@@ -516,7 +679,11 @@
           "  • Contributed to Alibaba Cloud DataWorks and Dataphin deployments, supporting data engineering and UAT activities across client projects"
         ],
         "awards": [
-          { "title": "Alibaba Cloud MVP 2020", "date": "Mar 2020", "issuer": "Alibaba Cloud" }
+          {
+            "title": "Alibaba Cloud MVP 2020",
+            "date": "Mar 2020",
+            "issuer": "Alibaba Cloud"
+          }
         ]
       }
     },
@@ -739,10 +906,10 @@
       "icon": "fas fa-rocket"
     },
     {
-      "id": "cv",
-      "enabled": false,
+      "id": "resume",
+      "enabled": true,
       "title": "resume",
-      "icon": "fas fa-file-code"
+      "icon": "fas fa-file-alt"
     }
   ]
 }
