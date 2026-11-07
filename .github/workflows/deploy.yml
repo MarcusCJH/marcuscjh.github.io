@@ -1,9 +1,9 @@
 name: 🚀 CI/CD Pipeline
 
+# Master only. Validation of branches/PRs outside master lives in
+# merge-check.yml, which never deploys.
 on:
   push:
-    branches: [ master, main ]
-  pull_request:
     branches: [ master, main ]
   workflow_dispatch:
 
