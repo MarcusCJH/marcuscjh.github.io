@@ -146,6 +146,19 @@
     scroll-behavior: smooth;
     /* WCAG 2.2 "focus not obscured": keep anchored targets clear of the bar */
     scroll-padding-top: calc(var(--nav-h) + var(--s-5));
+    /* Sections are a screen tall, so a scroll gesture settles on one
+       instead of leaving two half-sections on screen. `mandatory`, not
+       `proximity`: proximity only tidies up a gesture that already ended
+       near an edge, so a short scroll still parked the reader mid-band,
+       which is the whole thing this is here to stop.
+       Mandatory is safe for the bands that outgrow a screen — the project
+       grid at narrow widths, the timeline once it stacks. A snap area
+       taller than the snapport has no single snap position, so the spec
+       relaxes it to "any offset where the area still covers the snapport",
+       and scrolling inside such a section stays free. The footer, which is
+       shorter than a screen and would otherwise be stranded between two
+       snap points, carries its own end-aligned one below. */
+    scroll-snap-type: y mandatory;
   }
 
   img,
@@ -399,6 +412,32 @@
      timeline rail) from blowing out the 1fr track. */
   .content-section > :last-child {
     min-height: 0;
+  }
+
+  /* The top edge of every band is a snap point, so the page comes to rest
+     on a section instead of showing two halves at once.
+
+     The resting place is a short range rather than a single offset. A band
+     is exactly one screen tall, which makes its snap area taller than the
+     snapport — the viewport less the scroll-padding above — and the spec
+     relaxes an oversized area to "any offset where it still covers the
+     snapport". So a band scrolled up into sits flush with the top and one
+     scrolled down into sits a scroll-padding lower. Both frame the whole
+     section; at worst a sliver of the previous one shows above, and the
+     bar covers most of that. Do not try to collapse the range with a
+     negative scroll-margin-block-end: it works, and it also stops
+     scrollIntoView moving the page at all, which kills every nav link. */
+  .hero-section,
+  .content-section {
+    scroll-snap-align: start;
+  }
+
+  /* The footer is a strip after the last band, not a band of its own, so it
+     gets no start snap point. Without an end one, though, the bottom of the
+     document is not a snap position and scrolling to it was pulled back to
+     the projects band, putting the footer permanently out of reach. */
+  .site-footer {
+    scroll-snap-align: end;
   }
 
   /* Section header: mono index, condensed title, rule to the right margin. */
@@ -2297,6 +2336,9 @@
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+      /* With smooth scrolling off, a snap would be an instant jump under
+         the reader's own gesture. Hand the scroll back entirely. */
+      scroll-snap-type: none;
     }
 
     *,
