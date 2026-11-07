@@ -158,7 +158,7 @@ describe('SEOService', () => {
       expect(personSchema.hasCredential).toHaveLength(1);
       expect(personSchema.hasCredential[0].name).toBe('AWS Certified Cloud Practitioner');
       expect(personSchema.hasCredential[0].recognizedBy.name).toBe('Amazon Web Services');
-      expect(personSchema.hasCredential[0].dateCreated).toBe('Mar 2022');
+      expect(personSchema.hasCredential[0].dateCreated).toBeUndefined();
     });
 
     it('should exclude mailto: links from sameAs', () => {
@@ -190,8 +190,10 @@ describe('SEOService', () => {
       const item = listSchema.itemListElement[0].item;
       expect(item.name).toBe('Project One Title');
       expect(item.description).toBe('Project one description.');
-      expect(item.programmingLanguage).toEqual(['TypeScript', 'React']);
-      expect(item.url).toBe('https://project1.com');
+      expect(item.keywords).toBe('TypeScript, React');
+      expect(item.operatingSystem).toBe('Web');
+      expect(item.url).toBe('https://example.com/projects/project1/');
+      expect(item.mainEntityOfPage).toBe('https://example.com/projects/project1/');
     });
 
     it('should fall back to project title when modalContent title is absent', () => {
@@ -206,13 +208,13 @@ describe('SEOService', () => {
       expect(listSchema.itemListElement[0].item.name).toBe('Raw Title');
     });
 
-    it('should omit url for projects with no links', () => {
+    it('should link projects without external links to their internal case study', () => {
       SEOService.applyStructuredData(mockData);
       const listSchema = JSON.parse(
         document.querySelectorAll('script[data-dynamic-schema]')[1].textContent!
       );
       const item = listSchema.itemListElement[1].item;
-      expect(item.url).toBeUndefined();
+      expect(item.url).toBe('https://example.com/projects/project2/');
     });
 
     it('should remove old schemas and inject fresh ones when called again', () => {
@@ -220,6 +222,23 @@ describe('SEOService', () => {
       SEOService.applyStructuredData(mockData);
       const scripts = document.querySelectorAll('script[data-dynamic-schema]');
       expect(scripts).toHaveLength(2); // not 4
+    });
+
+    it('should update build-time schemas instead of creating duplicates', () => {
+      document.head.innerHTML = `
+        <script type="application/ld+json" data-schema="person">{}</script>
+        <script type="application/ld+json" data-schema="projects">{}</script>
+      `;
+
+      SEOService.applyStructuredData(mockData);
+
+      expect(document.querySelectorAll('script[data-schema="person"]')).toHaveLength(1);
+      expect(document.querySelectorAll('script[data-schema="projects"]')).toHaveLength(1);
+      expect(document.querySelectorAll('script[data-dynamic-schema]')).toHaveLength(0);
+      const personSchema = JSON.parse(
+        document.querySelector<HTMLScriptElement>('script[data-schema="person"]')!.textContent!
+      );
+      expect(personSchema.name).toBe('Marcus Chan');
     });
   });
 });
