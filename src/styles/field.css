@@ -1,0 +1,53 @@
+/* ----------------------------------------------------------------- field -- */
+/* The ambient graphic: a 12-column hairline grid plus film grain. This is
+   what replaced the matrix canvas and the particle system — same job, no
+   main-thread cost, and it reads as structure rather than costume. */
+@layer field {
+  .field {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    contain: strict;
+  }
+
+  /* The gradient is painted into the content box so `100% / 12` resolves
+     against the same measure the page's text uses — the first rule lands
+     exactly on the left edge of the copy rather than near it. */
+  .field::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: min(100%, var(--content-max));
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    background-origin: content-box;
+    background-clip: content-box;
+    /* The repeating layer draws a rule at the start of each of the twelve
+       columns, which leaves the right edge bare; the first layer closes it,
+       so the measure is framed symmetrically. This matters most on an
+       ultrawide display, where the column has to read as deliberate. */
+    background-image:
+      linear-gradient(to left, var(--line-faint) 0 1px, transparent 1px),
+      repeating-linear-gradient(to right, var(--line-faint) 0 1px, transparent 1px calc(100% / 12));
+  }
+
+  /* 12 columns reads as clutter on a phone; drop to 4. */
+  @media (max-width: 767px) {
+    .field::before {
+      background-image: repeating-linear-gradient(
+        to right,
+        var(--line-faint) 0 1px,
+        transparent 1px calc(100% / 4)
+      );
+    }
+  }
+
+  .field::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}

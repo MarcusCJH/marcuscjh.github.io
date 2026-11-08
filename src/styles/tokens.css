@@ -1,0 +1,119 @@
+/* ---------------------------------------------------------------- tokens -- */
+@layer tokens {
+  :root {
+    /* Ink ramp — cool neutral. Never pure black, never slate-blue. */
+    --ink-900: #08090a;
+    --ink-850: #0b0c0d;
+    --ink-800: #101213;
+    --ink-700: #1c2022;
+
+    /* Text */
+    --fg: #f2f4f4;
+    --fg-muted: #a3a8a9;
+    --fg-faint: #7c8183;
+
+    /* Rules — the decoration is the grid */
+    --line: rgb(242 244 244 / 0.09);
+    --line-faint: rgb(242 244 244 / 0.035);
+    --line-strong: rgb(242 244 244 / 0.17);
+
+    /* The single colour event */
+    --acid: #c6f24e;
+    --acid-dim: color-mix(in oklab, var(--acid) 38%, transparent);
+    --acid-wash: color-mix(in oklab, var(--acid) 9%, transparent);
+    --on-acid: #0a0d05;
+
+    /* Categorical — always paired with a text label and a distinct glyph */
+    --cat-work: #c6f24e;
+    --cat-education: #93b1f0;
+    --cat-certification: #e3a463;
+
+    /* Type */
+    --font-display: 'Archivo', ui-sans-serif, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+    --step--2: 0.6875rem;
+    --step--1: 0.8125rem;
+    --step-0: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+    --step-1: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+    --step-2: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+    --step-4: clamp(2.125rem, 1.5rem + 3vw, 3.5rem);
+    /* Purely fluid at the top end so the name keeps scaling with the canvas
+       instead of stalling at a fixed ceiling on a wide display. */
+    --step-5: clamp(2.875rem, 9vw, 20rem);
+
+    /* Space — 8px base */
+    --s-1: 4px;
+    --s-2: 8px;
+    --s-3: 12px;
+    --s-4: 16px;
+    --s-5: 24px;
+    --s-6: 32px;
+    --s-7: 48px;
+    --s-8: 64px;
+    --s-9: 96px;
+
+    /* Shape — near-zero radius is what defeats the templated look */
+    --r-1: 2px;
+
+    /* Structure.
+       Full-bleed: the layout takes the whole viewport and the gutters grow
+       with it, rather than stranding a fixed column in the middle of a wide
+       display. Individual prose blocks cap their own measure, which is what
+       actually keeps lines readable — a container cap would also shrink the
+       grids and the rail, which have no reason to stop widening. */
+    --content-max: 100%;
+    /* Zero: the layout runs edge to edge, with no page margin at all.
+       Structure — grid rules, card borders, the rail, section rules, the
+       nav bar and the footer — reaches both screen edges. Blocks that need
+       breathing room get it from their own padding, not from a page inset.
+       Set this to a length to put the margin back. */
+    --gutter: 0px;
+    /* Inset for things floating over the page rather than part of it. */
+    --overlay-pad: clamp(0px, 2vw, 32px);
+    --nav-h: 60px;
+    --section-pad: clamp(56px, 9vh, 128px);
+
+    /* Every band is a screen. The cap exists because a literal 100svh is
+       wrong on a very tall display: on a 1440x2560 portrait monitor it
+       makes a 2433px band around ~500px of content, which is the void this
+       already had to fix once. 1500px covers every mainstream display —
+       1080p and 1440p fill exactly, ultrawides at 1440 tall fill exactly —
+       and only a portrait monitor is held back, where it yields two dense
+       bands per screen instead of one empty one. Raise it to a bare
+       `100svh` if you want the literal behaviour everywhere. */
+    --screen-min: min(100svh, 1500px);
+
+    /* Motion */
+    --dur-1: 140ms;
+    --dur-2: 240ms;
+    --dur-3: 420ms;
+    --ease-out: cubic-bezier(0.2, 0.8, 0.25, 1);
+
+    color-scheme: dark;
+  }
+
+  @media (min-width: 900px) {
+    :root {
+      --nav-h: 68px;
+    }
+  }
+
+  /* A portrait viewport is intentionally read one full-screen section at a
+     time, including tall desktop monitors where the general 1500px cap would
+     otherwise leave the next section visible in the same screen. */
+  @media (orientation: portrait) {
+    :root {
+      --screen-min: 100svh;
+    }
+  }
+
+  /* On a tall portrait screen the band is the whole viewport, so the display
+     type has to answer to the height as well as the width — at 1440x2560 a
+     width-only ramp gives a 130px name floating in a 2560px band. */
+  @media (orientation: portrait) and (min-height: 900px) {
+    :root {
+      --step-5: clamp(2.875rem, max(9vw, 6.5vh), 20rem);
+    }
+  }
+}

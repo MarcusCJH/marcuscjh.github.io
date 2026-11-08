@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { DataService } from '../services/dataService';
-import type { TimelineItem } from '../types';
+import { DataService } from '../../services/dataService';
+import type { TimelineItem } from '../../types';
 
 // Mock DOM elements
 const mockTimelineContainer = {
@@ -20,7 +20,7 @@ const mockSearchInput = {
 } as unknown as HTMLInputElement;
 
 // Mock DOMUtils
-vi.mock('../lib/dom', () => ({
+vi.mock('../../lib/dom', () => ({
   DOMUtils: {
     getElement: vi.fn((id: string) => {
       if (id === 'timeline-items') {
@@ -76,19 +76,19 @@ describe('Timeline Filtering', () => {
     it('should filter work items correctly', () => {
       const workItems = mockTimelineData.filter(item => item.category === 'work');
       expect(workItems).toHaveLength(1);
-      expect(workItems[0].company).toBe('Accenture');
+      expect(workItems[0]!.company).toBe('Accenture');
     });
 
     it('should filter education items correctly', () => {
       const educationItems = mockTimelineData.filter(item => item.category === 'education');
       expect(educationItems).toHaveLength(1);
-      expect(educationItems[0].company).toBe('SMU');
+      expect(educationItems[0]!.company).toBe('SMU');
     });
 
     it('should filter certification items correctly', () => {
       const certItems = mockTimelineData.filter(item => item.category === 'certification');
       expect(certItems).toHaveLength(1);
-      expect(certItems[0].company).toBe('AWS');
+      expect(certItems[0]!.company).toBe('AWS');
     });
 
     it('should show all items when filter is "all"', () => {
@@ -117,7 +117,7 @@ describe('Timeline Filtering', () => {
           item.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
       expect(filteredItems).toHaveLength(1);
-      expect(filteredItems[0].title).toBe('Software Engineer');
+      expect(filteredItems[0]!.title).toBe('Software Engineer');
     });
 
     it('should be case insensitive', () => {
@@ -128,7 +128,7 @@ describe('Timeline Filtering', () => {
           item.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
       expect(filteredItems).toHaveLength(1);
-      expect(filteredItems[0].company).toBe('AWS');
+      expect(filteredItems[0]!.company).toBe('AWS');
     });
 
     it('should return empty array for no matches', () => {
@@ -157,8 +157,8 @@ describe('Timeline Filtering', () => {
       });
 
       expect(filteredItems).toHaveLength(1);
-      expect(filteredItems[0].category).toBe('work');
-      expect(filteredItems[0].company).toBe('Accenture');
+      expect(filteredItems[0]!.category).toBe('work');
+      expect(filteredItems[0]!.company).toBe('Accenture');
     });
 
     it("should return empty array when filter and search don't match", () => {
@@ -180,7 +180,7 @@ describe('Timeline Filtering', () => {
 
   describe('Timeline Item Generation', () => {
     it('should generate timeline items with visible class', () => {
-      const item = mockTimelineData[0];
+      const item = mockTimelineData[0]!;
       const expectedHTML = `
         <div class="timeline-item visible" data-category="${item.category}" data-index="0" data-timeline-item>
           <div class="timeline-dot ${item.category}">
@@ -202,13 +202,13 @@ describe('Timeline Filtering', () => {
     });
 
     it('should include endDate when present', () => {
-      const item = mockTimelineData[0]; // Has endDate
+      const item = mockTimelineData[0]!; // Has endDate
       const expectedDate = `${item.startDate} - ${item.endDate}`;
       expect(expectedDate).toBe('2021 - Present');
     });
 
     it('should not include endDate when not present', () => {
-      const item = mockTimelineData[2]; // No endDate
+      const item = mockTimelineData[2]!; // No endDate
       expect(item.startDate).toBe('2022');
     });
   });
@@ -216,9 +216,9 @@ describe('Timeline Filtering', () => {
   describe('Timeline Sorting', () => {
     it('should sort items by order in descending order', () => {
       const sortedItems = [...mockTimelineData].sort((a, b) => b.order - a.order);
-      expect(sortedItems[0].order).toBe(3);
-      expect(sortedItems[1].order).toBe(2);
-      expect(sortedItems[2].order).toBe(1);
+      expect(sortedItems[0]!.order).toBe(3);
+      expect(sortedItems[1]!.order).toBe(2);
+      expect(sortedItems[2]!.order).toBe(1);
     });
   });
 });

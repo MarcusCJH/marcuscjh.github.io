@@ -25,7 +25,7 @@ export class TypedText {
   }
 
   private init(): void {
-    this.element = DOMUtils.getElement('typed-text') as HTMLElement;
+    this.element = DOMUtils.getElement('typed-text');
     if (!this.element) {
       return;
     }
@@ -39,6 +39,9 @@ export class TypedText {
     }
 
     const currentMessage = this.state.messages[this.state.messageIndex];
+    if (currentMessage === undefined) {
+      return;
+    }
 
     if (this.state.isDeleting) {
       this.element.textContent = currentMessage.substring(0, this.state.charIndex - 1);

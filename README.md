@@ -13,8 +13,11 @@ npm install
 # Start development server
 npm run dev
 
-# Run tests
+# Run tests (watch mode)
 npm run test
+
+# Run tests once, as CI does
+npm run test:run
 
 # Build for production
 npm run build
@@ -26,15 +29,22 @@ Deployment to GitHub Pages happens automatically via GitHub Actions on push to `
 
 ```
 ├── src/
-│   ├── main.ts               # Main application entry
-│   ├── services/             # Data & loading services
-│   ├── components/           # UI components (TypedText)
-│   ├── lib/                  # Utilities, constants, inline SVG icon set
-│   ├── styles/               # CSS with modern features
-│   └── test/                 # Unit tests (76% coverage)
+│   ├── main.ts               # Composition root: boots each feature in order
+│   ├── features/             # One folder per feature (nav, timeline, showcase,
+│   │                         #   modal, hero, socials, footer, …)
+│   ├── components/           # Reusable widgets (TypedText, DragRail)
+│   ├── services/             # Data, loading and SEO services
+│   ├── lib/                  # DOM helpers, constants, inline SVG icons,
+│   │                         #   auto-escaping markup template tag
+│   ├── styles/               # Cascade-layered CSS: one entry file + partials
+│   └── test/setup.ts         # Shared Vitest setup
+├── plugins/                  # Build-time Vite plugins: sitemap, web manifest,
+│                             #   JSON-LD, prerendered per-project pages
 ├── public/data.json          # Site content & configuration
 └── .github/workflows/        # CI/CD automation
 ```
+
+Unit tests are co-located as `*.test.ts` next to the code they cover.
 
 ## 🎨 Customization
 

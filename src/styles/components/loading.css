@@ -1,0 +1,181 @@
+@layer components {
+  /* -- loading ------------------------------------------------------------- */
+  .loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-content: center;
+    padding: var(--s-5);
+    background: var(--ink-900);
+    transition:
+      opacity var(--dur-3) var(--ease-out),
+      visibility var(--dur-3) var(--ease-out);
+  }
+
+  .loading-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.7;
+    background-image:
+      linear-gradient(to bottom, transparent 49.95%, var(--line-faint) 50%, transparent 50.05%),
+      repeating-linear-gradient(to right, var(--line-faint) 0 1px, transparent 1px calc(100% / 12));
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  .loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .loading-content {
+    position: relative;
+    width: clamp(300px, 44vw, 760px);
+    display: grid;
+    gap: clamp(16px, 1.5vw, 28px);
+    padding-block: clamp(24px, 4vw, 64px);
+    border-block: 1px solid var(--line);
+  }
+
+  .loading-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: var(--s-5);
+  }
+
+  .loading-kicker,
+  .loading-index {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+  }
+
+  .loading-kicker {
+    margin-bottom: clamp(12px, 1.2vw, 20px);
+  }
+
+  .loading-logo {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1vw, 16px);
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.8vw, 6rem);
+    font-weight: 650;
+    font-stretch: 78%;
+    line-height: 0.9;
+    letter-spacing: -0.055em;
+  }
+
+  .loading-counter {
+    font-family: var(--font-display);
+    font-size: clamp(4.8rem, 11vw, 13rem);
+    font-weight: 300;
+    font-stretch: 72%;
+    line-height: 0.68;
+    letter-spacing: -0.08em;
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .loading-logo::before {
+    content: '';
+    width: clamp(10px, 0.8vw, 16px);
+    height: clamp(10px, 0.8vw, 16px);
+    flex: none;
+    background: var(--acid);
+  }
+
+  .loading-logo::after {
+    content: '_';
+    margin-left: -0.12em;
+    color: var(--acid);
+    font-family: var(--font-mono);
+    font-size: 0.34em;
+    font-weight: 600;
+    letter-spacing: 0;
+    align-self: flex-end;
+    animation: caret 1.05s steps(1, end) infinite;
+  }
+
+  .loading-bar {
+    position: relative;
+    height: clamp(3px, 0.3vw, 5px);
+    background: var(--line);
+    overflow: hidden;
+  }
+
+  .loading-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to right,
+      transparent 0 calc(10% - 1px),
+      var(--ink-900) calc(10% - 1px) 10%
+    );
+  }
+
+  .loading-progress {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 0;
+    background: var(--acid);
+    transition: width var(--dur-2) linear;
+  }
+
+  .loading-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+  }
+
+  .loading-text {
+    font-family: var(--font-mono);
+    font-size: clamp(var(--step--2), 0.75vw, var(--step--1));
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+  }
+
+  .loading-text::before {
+    content: '> ';
+    color: var(--acid);
+  }
+
+  @media (max-width: 480px) {
+    .loading-screen::before {
+      background-image:
+        linear-gradient(to bottom, transparent 49.95%, var(--line-faint) 50%, transparent 50.05%),
+        repeating-linear-gradient(to right, var(--line-faint) 0 1px, transparent 1px calc(100% / 4));
+    }
+
+    .loading-content {
+      width: 100%;
+    }
+
+    .loading-head {
+      grid-template-columns: 1fr;
+      gap: var(--s-6);
+    }
+
+    .loading-counter {
+      grid-row: 1;
+      justify-self: end;
+      font-size: clamp(5rem, 28vw, 7rem);
+    }
+
+    .loading-head > div {
+      grid-row: 2;
+    }
+  }
+}

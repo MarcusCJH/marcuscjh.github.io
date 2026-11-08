@@ -1,0 +1,109 @@
+/* ------------------------------------------------------------------ base -- */
+@layer base {
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: var(--ink-900);
+    color: var(--fg);
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 400;
+    line-height: 1.6;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    counter-reset: section;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-stretch: 88%;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--acid);
+    color: var(--on-acid);
+  }
+
+  /* Scrollbars are styled, never hidden site-wide — hiding them globally
+     removes a real affordance. Only the timeline drag rail opts out. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ink-700) transparent;
+  }
+
+  /* The page scrollbar is the last thing holding a strip of the right edge:
+     with it reserved, content reached x=0 on the left but stopped 10px
+     short on the right. Hidden on the root only — every inner scroller
+     (the dialog, the timeline rail's own rules) keeps its bar. The page
+     still scrolls by wheel, touch, keyboard and the section nav; what is
+     lost is the visual position indicator. Delete this block to get it
+     back, at the cost of 10px of right margin. */
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--ink-700);
+    border: 2px solid var(--ink-900);
+    border-radius: 99px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--line-strong);
+  }
+
+  /* One focus treatment, everywhere. Acid ring plus a dark halo so it stays
+     visible over images and over the accent itself. */
+  :focus-visible {
+    outline: 2px solid var(--acid);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--ink-900);
+    border-radius: var(--r-1);
+  }
+
+  .skip-link {
+    position: fixed;
+    top: var(--s-3);
+    left: var(--s-3);
+    z-index: 3000;
+    padding: var(--s-3) var(--s-4);
+    background: var(--acid);
+    color: var(--on-acid);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.04em;
+    transform: translateY(-250%);
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+}

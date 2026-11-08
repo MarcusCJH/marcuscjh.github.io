@@ -11,6 +11,11 @@
  * this hook redirects `require('typescript')` to it. Only the lint process
  * loads this file, so `tsc`, Vite and Vitest keep using TypeScript 7.
  *
+ * NOTE: this hook patches Node's CommonJS resolver, so the ESLint config must
+ * stay native ESM (`eslint.config.mjs`). A `.ts` config is loaded through jiti,
+ * whose own resolver bypasses this patch, and `typescript-eslint` then throws at
+ * import time. See the header comment in eslint.config.mjs.
+ *
  * Remove this file, the `typescript-6` devDependency and the `node -r ...`
  * prefix in the lint scripts once typescript-eslint supports TS >= 7.1.
  */

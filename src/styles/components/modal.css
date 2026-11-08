@@ -1,0 +1,336 @@
+@layer components {
+  /* -- modal --------------------------------------------------------------- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--overlay-pad);
+    background: color-mix(in oklab, var(--ink-900) 86%, transparent);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity var(--dur-2) var(--ease-out),
+      visibility 0s linear var(--dur-2);
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--dur-2) var(--ease-out);
+  }
+
+  .modal-container {
+    width: min(100%, 860px);
+    max-height: min(92svh, 1100px);
+    display: flex;
+    flex-direction: column;
+    background: var(--ink-850);
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 40px 120px -20px rgb(0 0 0 / 0.8);
+    translate: 0 10px;
+    transition: translate var(--dur-3) var(--ease-out);
+  }
+
+  /* A project with both a picture and a write-up gets the width to show
+     them side by side. */
+  .modal-container:has(.modal-body--split) {
+    width: min(100%, 1240px);
+  }
+
+  /* An embedded document wants height, not a second column. */
+  .modal-container:has(.modal-iframe) {
+    width: min(100%, 1100px);
+  }
+
+  /* Resume is a document workspace rather than a content card. Give the
+     embedded page nearly the full browser while retaining the shared modal
+     header, close control, focus trap, and responsive mobile sheet. */
+  .modal-container.resume-modal {
+    width: min(95vw, 1800px);
+    height: 92svh;
+    max-height: 92svh;
+  }
+
+  .resume-modal .modal-content {
+    flex: 1;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .resume-modal .modal-body,
+  .resume-modal .modal-figure {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .resume-modal .modal-iframe {
+    height: 100%;
+    border: 0;
+  }
+
+  .modal-overlay.active .modal-container {
+    translate: 0 0;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding: var(--s-4) var(--s-4) var(--s-4) var(--s-5);
+    border-bottom: 1px solid var(--line);
+    background: var(--ink-800);
+  }
+
+  .modal-title {
+    font-size: var(--step-2);
+    font-weight: 580;
+    font-stretch: 90%;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+
+  .modal-close {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    color: var(--fg-muted);
+    border: 1px solid var(--line);
+    transition:
+      color var(--dur-1) var(--ease-out),
+      border-color var(--dur-1) var(--ease-out);
+  }
+
+  .modal-close svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .modal-close:hover {
+    color: var(--acid);
+    border-color: var(--acid-dim);
+  }
+
+  .modal-content {
+    padding: var(--s-5) var(--s-5) var(--s-7);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+
+  .modal-body {
+    display: grid;
+    gap: var(--s-5);
+    align-items: start;
+  }
+
+  .modal-figure {
+    display: grid;
+    gap: var(--s-4);
+    min-width: 0;
+  }
+
+  .modal-text {
+    min-width: 0;
+  }
+
+  .modal-text > :last-child {
+    margin-bottom: 0;
+  }
+
+  /* Side by side once there is room for it. The figure stays put while the
+     write-up scrolls, so the picture never leaves the screen. */
+  @media (min-width: 900px) {
+    .modal-body--split {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: var(--s-6);
+    }
+
+    .modal-body--split .modal-figure {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  .modal-subtitle {
+    font-size: var(--step-1);
+    font-weight: 500;
+    font-stretch: 94%;
+    margin-bottom: var(--s-2);
+  }
+
+  .modal-location {
+    display: flex;
+    align-items: center;
+    gap: 0.6ch;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+    margin-bottom: var(--s-5);
+  }
+
+  .modal-location svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  /* `contain` rather than a bare width: a tall portrait screenshot scaled
+     to the column width used to run off the bottom of the dialog, so you
+     saw a slice of it. It now fits in full. */
+  .modal-media {
+    width: 100%;
+    max-height: 64svh;
+    object-fit: contain;
+    object-position: top;
+    background: var(--ink-900);
+    border: 1px solid var(--line);
+  }
+
+  .modal-iframe {
+    width: 100%;
+    height: min(74svh, 900px);
+    border: 1px solid var(--line);
+  }
+
+  .modal-description {
+    color: var(--fg-muted);
+    line-height: 1.68;
+    margin-bottom: var(--s-5);
+    max-width: 72ch;
+  }
+
+  .modal-details {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    line-height: 1.7;
+    margin-bottom: var(--s-5);
+    max-width: 80ch;
+  }
+
+  .modal-details .detail-heading {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 560;
+    font-stretch: 92%;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin: var(--s-6) 0 var(--s-2);
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--line);
+  }
+
+  .modal-details .detail-heading:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .modal-details .detail-subheading {
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--acid);
+    margin: var(--s-4) 0 var(--s-2);
+  }
+
+  .modal-details .detail-text,
+  .modal-details .detail-line {
+    color: var(--fg);
+  }
+
+  .modal-details .detail-bullet {
+    color: var(--fg-muted);
+  }
+
+  .modal-awards {
+    margin-bottom: var(--s-5);
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--line);
+  }
+
+  .modal-awards-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7ch;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--acid);
+    margin-bottom: var(--s-3);
+  }
+
+  .modal-awards-title svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .modal-awards-list {
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .modal-awards-list li {
+    padding-left: var(--s-4);
+    border-left: 1px solid var(--line-strong);
+    font-size: var(--step--1);
+  }
+
+  .award-description {
+    color: var(--fg-faint);
+  }
+
+  .modal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+
+  .modal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7ch;
+    min-height: 44px;
+    padding-inline: var(--s-4);
+    border: 1px solid var(--line-strong);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.03em;
+    transition:
+      color var(--dur-1) var(--ease-out),
+      background-color var(--dur-1) var(--ease-out),
+      border-color var(--dur-1) var(--ease-out);
+  }
+
+  .modal-link svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .modal-link:first-child {
+    background: var(--acid);
+    border-color: var(--acid);
+    color: var(--on-acid);
+  }
+
+  .modal-link:first-child:hover {
+    background: color-mix(in oklab, var(--acid) 86%, white);
+  }
+
+  .modal-link:not(:first-child):hover {
+    color: var(--acid);
+    border-color: var(--acid-dim);
+    background: var(--acid-wash);
+  }
+}

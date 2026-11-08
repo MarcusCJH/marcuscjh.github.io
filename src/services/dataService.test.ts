@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi, type MockedFunction } from 'vitest';
-import { DataService } from '../services/dataService';
+import { DataService } from './dataService';
 
-(global as typeof globalThis).fetch = vi.fn();
+global.fetch = vi.fn();
 
 const mockData = {
   config: {
@@ -41,7 +41,7 @@ describe('DataService', () => {
   it('should load data successfully', async () => {
     (fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
       ok: true,
-      json: async () => mockData,
+      json: () => Promise.resolve(mockData),
     } as unknown as Response);
 
     const result = await dataService.loadData();
@@ -71,7 +71,7 @@ describe('DataService', () => {
     beforeEach(async () => {
       (fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
         ok: true,
-        json: async () => mockData,
+        json: () => Promise.resolve(mockData),
       } as unknown as Response);
       await dataService.loadData();
     });
@@ -87,29 +87,29 @@ describe('DataService', () => {
     it('should return social links', () => {
       const links = dataService.getSocialLinks();
       expect(links).toHaveLength(1);
-      expect(links[0].name).toBe('GitHub');
-      expect(links[0].url).toBe('https://github.com/test');
+      expect(links[0]!.name).toBe('GitHub');
+      expect(links[0]!.url).toBe('https://github.com/test');
     });
 
     it('should return navigation items', () => {
       const nav = dataService.getNavigation();
       expect(nav).toHaveLength(1);
-      expect(nav[0].id).toBe('home');
-      expect(nav[0].enabled).toBe(true);
+      expect(nav[0]!.id).toBe('home');
+      expect(nav[0]!.enabled).toBe(true);
     });
 
     it('should return timeline items', () => {
       const timeline = dataService.getTimeline();
       expect(timeline).toHaveLength(1);
-      expect(timeline[0].company).toBe('Acme');
-      expect(timeline[0].category).toBe('work');
+      expect(timeline[0]!.company).toBe('Acme');
+      expect(timeline[0]!.category).toBe('work');
     });
 
     it('should return showcase projects', () => {
       const showcase = dataService.getShowcase();
       expect(showcase).toHaveLength(1);
-      expect(showcase[0].id).toBe('p1');
-      expect(showcase[0].title).toBe('Project One');
+      expect(showcase[0]!.id).toBe('p1');
+      expect(showcase[0]!.title).toBe('Project One');
     });
   });
 

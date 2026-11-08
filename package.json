@@ -3,26 +3,19 @@
   "version": "3.0.0",
   "description": "Modern portfolio website for Marcus Chan - Lead Full Stack Engineer & Cloud Architect. Built with Vite, featuring responsive design, interactive timeline, and project showcase.",
   "type": "module",
-  "main": "index.html",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rimraf dist",
-    "lint": "node -r ./scripts/eslint-ts6.cjs ./node_modules/eslint/bin/eslint.js src --fix",
-    "lint:check": "node -r ./scripts/eslint-ts6.cjs ./node_modules/eslint/bin/eslint.js src",
-    "format": "prettier --write src/**/*.{ts,tsx,css,json}",
-    "format:check": "prettier --check src/**/*.{ts,tsx,css,json}",
+    "lint": "node -r ./scripts/eslint-ts6.cjs ./node_modules/eslint/bin/eslint.js src plugins --fix",
+    "lint:check": "node -r ./scripts/eslint-ts6.cjs ./node_modules/eslint/bin/eslint.js src plugins",
+    "format": "prettier --write src plugins",
+    "format:check": "prettier --check src plugins",
     "test": "vitest",
-    "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest --watch",
-    "test:services": "vitest run src/services/*.test.ts",
-    "test:timeline": "vitest run src/test/timeline.test.ts",
-    "serve": "vite preview --port 4173",
-    "pre-commit": "npm run lint && npm run format && npx tsc --noEmit && npm run test:run",
-    "quality-check": "npm run pre-commit"
+    "pre-commit": "npm run lint && npm run format && npx tsc --noEmit && npm run test:run"
   },
   "repository": {
     "type": "git",
@@ -53,7 +46,7 @@
     "url": "https://github.com/MarcusCJH/marcuscjh.github.io/issues"
   },
   "homepage": "https://marcuscjh.com",
-  "packageManager": "npm@11.6.2",
+  "packageManager": "npm@12.2.2",
   "engines": {
     "node": "^22.22.2 || ^24.15.0 || >=26.0.0",
     "npm": ">=11.6.2"
@@ -66,17 +59,16 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.6",
-    "@typescript-eslint/eslint-plugin": "^8.72.1",
-    "@typescript-eslint/parser": "^8.72.1",
     "@vitest/coverage-v8": "^5.1.0",
     "eslint": "^10.14.0",
-    "jiti": "^2.7.0",
+    "globals": "^17.14.0",
     "jsdom": "^31.0.0",
     "prettier": "^3.9.10",
     "rimraf": "^6.1.4",
     "terser": "^5.51.2",
     "typescript": "~7.0.2",
     "typescript-6": "https://registry.npmjs.org/typescript/-/typescript-6.0.3.tgz",
+    "typescript-eslint": "^8.72.1",
     "vite": "^8.3.6",
     "vitest": "^5.1.0"
   },

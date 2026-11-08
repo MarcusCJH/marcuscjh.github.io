@@ -1,0 +1,133 @@
+/* ---------------------------------------------------------------- layout -- */
+@layer layout {
+  .main-container {
+    position: relative;
+    z-index: 1;
+    transition:
+      opacity var(--dur-3) var(--ease-out),
+      visibility var(--dur-3) var(--ease-out);
+  }
+
+  .shell {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* The hero takes index 01 so the section numbers and the nav numbers are
+     the same sequence. A section hidden via display:none generates no box and
+     so does not increment — the run stays contiguous. */
+  .hero-section {
+    counter-increment: section;
+  }
+
+  /* Each section is a full band: the header sits at the top and the body
+     takes the rest, so the section fills the screen with content instead of
+     padding. Sections whose content is already taller than a screen (the
+     project grid) simply ignore the floor. */
+  .content-section {
+    counter-increment: section;
+    padding-block: var(--section-pad);
+    position: relative;
+    min-height: var(--screen-min);
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  /* The body of a band. `min-height: 0` keeps a scrolling child (the
+     timeline rail) from blowing out the 1fr track. */
+  .content-section > :last-child {
+    min-height: 0;
+  }
+
+  /* The top edge of every band is a snap point, so the page comes to rest
+     on a section instead of showing two halves at once.
+
+     The resting place is a short range rather than a single offset. A band
+     is exactly one screen tall, which makes its snap area taller than the
+     snapport — the viewport less the scroll-padding above — and the spec
+     relaxes an oversized area to "any offset where it still covers the
+     snapport". So a band scrolled up into sits flush with the top and one
+     scrolled down into sits a scroll-padding lower. Both frame the whole
+     section; at worst a sliver of the previous one shows above, and the
+     bar covers most of that. Do not try to collapse the range with a
+     negative scroll-margin-block-end: it works, and it also stops
+     scrollIntoView moving the page at all, which kills every nav link. */
+  .hero-section,
+  .content-section {
+    scroll-snap-align: start;
+  }
+
+  /* The footer is a strip after the last band, not a band of its own, so it
+     gets no start snap point. Without an end one, though, the bottom of the
+     document is not a snap position and scrolling to it was pulled back to
+     the projects band, putting the footer permanently out of reach. */
+  .site-footer {
+    scroll-snap-align: end;
+  }
+
+  /* Section header: mono index, condensed title, rule to the right margin. */
+  .section-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: end;
+    column-gap: var(--s-5);
+    padding-bottom: var(--s-4);
+    border-bottom: 1px solid var(--line-strong);
+    margin-bottom: var(--s-7);
+  }
+
+  .section-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5ch;
+    font-size: var(--step-4);
+    margin: 0;
+  }
+
+  .section-title::before {
+    content: counter(section, decimal-leading-zero);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--acid);
+    align-self: start;
+    translate: 0 0.35em;
+    font-stretch: normal;
+  }
+
+  .section-note {
+    grid-column: 2;
+    justify-self: end;
+    align-self: end;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+    padding-bottom: 0.35em;
+  }
+
+  @media (max-width: 599px) {
+    .section-header {
+      grid-template-columns: 1fr;
+      row-gap: var(--s-2);
+    }
+
+    .section-note {
+      grid-column: 1;
+      justify-self: start;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+  }
+}

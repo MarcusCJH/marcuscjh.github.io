@@ -1,0 +1,125 @@
+@layer components {
+  /* -- navigation ---------------------------------------------------------- */
+  /* The bar is full-bleed (its rule has to reach both edges) but its
+     contents ride the same measure as the page. Without the inner box the
+     brand and the links were pinned to the viewport edges while the content
+     sat in a centred column — on a 3440px display they were a metre apart. */
+  .nav-container {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1000;
+    height: var(--nav-h);
+    display: flex;
+    background: color-mix(in oklab, var(--ink-900) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--line);
+    transition:
+      border-color var(--dur-2) var(--ease-out),
+      background-color var(--dur-2) var(--ease-out);
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+  }
+
+  .nav-container.scrolled {
+    border-bottom-color: var(--line-strong);
+    background: color-mix(in oklab, var(--ink-900) 94%, transparent);
+  }
+
+  .nav-brand {
+    display: inline-flex;
+    align-items: center;
+    /* It is a link home, so it needs a real target, not just its text box. */
+    min-height: 44px;
+    gap: var(--s-2);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--fg);
+    white-space: nowrap;
+  }
+
+  .brand-mark {
+    width: 9px;
+    height: 9px;
+    background: var(--acid);
+    flex: none;
+  }
+
+  .brand-cursor {
+    color: var(--acid);
+    margin-left: -0.15ch;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: var(--s-1);
+    counter-reset: nav;
+  }
+
+  .nav-item {
+    counter-increment: nav;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6ch;
+    min-height: 44px;
+    padding-inline: var(--s-3);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.02em;
+    color: var(--fg-muted);
+    transition: color var(--dur-1) var(--ease-out);
+  }
+
+  .nav-item::before {
+    content: counter(nav, decimal-leading-zero);
+    font-size: var(--step--2);
+    color: var(--fg-faint);
+    transition: color var(--dur-1) var(--ease-out);
+  }
+
+  .nav-item:hover,
+  .nav-item.active {
+    color: var(--fg);
+  }
+
+  .nav-item:hover::before,
+  .nav-item.active::before {
+    color: var(--acid);
+  }
+
+  .nav-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    margin-right: calc(var(--s-3) * -1);
+    place-content: center;
+    justify-items: end;
+    gap: 5px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--fg);
+    transition:
+      transform var(--dur-2) var(--ease-out),
+      opacity var(--dur-1) linear;
+  }
+
+  .nav-toggle span:nth-child(2) {
+    width: 13px;
+  }
+}

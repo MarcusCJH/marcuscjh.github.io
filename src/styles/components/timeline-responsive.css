@@ -1,0 +1,129 @@
+/* -------------------------------------------- timeline responsive layout -- */
+/* Desktop keeps the horizontal drag rail (the interaction the JS drives);
+   mobile becomes a vertical axis. */
+@layer components {
+  @media (min-width: 769px) {
+    .timeline-wrapper {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x proximity;
+      cursor: grab;
+      user-select: none;
+      /* The one place a scrollbar is intentionally hidden: this rail is
+         mouse-draggable, wheel/trackpad-scrollable while hovered, and
+         keyboard-reachable through its cards. Wheel input hands back to the
+         document at either edge. */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .timeline-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .timeline-wrapper:active {
+      cursor: grabbing;
+    }
+
+    .timeline-track {
+      display: flex;
+      align-items: flex-start;
+      width: fit-content;
+      min-width: 100%;
+      padding: var(--s-5) var(--gutter);
+    }
+
+    .timeline-line {
+      top: calc(var(--s-5) + 5px);
+      left: 0;
+      right: 0;
+      height: 1px;
+    }
+
+    .timeline-progress {
+      top: calc(var(--s-5) + 4px);
+      left: 0;
+      width: var(--timeline-progress, 0%);
+      height: 3px;
+    }
+
+    .timeline-items {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(32px, 4vw, 72px);
+      width: fit-content;
+      min-width: 100%;
+    }
+
+    .timeline-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 312px;
+      flex: none;
+      scroll-snap-align: center;
+    }
+
+    .timeline-dot {
+      margin-bottom: var(--s-5);
+      margin-left: 1px;
+    }
+
+    /* Cards take a share of the band's height so the rail has presence on a
+       tall screen, capped so they never become four lines of text in a
+       600px box. */
+    .timeline-content {
+      width: 100%;
+      min-height: clamp(176px, 26vh, 320px);
+      padding: var(--s-4);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .timeline-wrapper {
+      overflow: visible;
+      padding-block: var(--s-4);
+    }
+
+    .timeline-track {
+      display: block;
+      padding-inline: var(--gutter);
+    }
+
+    .timeline-line {
+      top: 0;
+      bottom: 0;
+      left: calc(var(--gutter) + 5px);
+      width: 1px;
+    }
+
+    .timeline-progress {
+      top: 0;
+      left: calc(var(--gutter) + 4px);
+      width: 3px;
+      height: var(--timeline-progress, 0%);
+    }
+
+    .timeline-items {
+      display: grid;
+      gap: var(--s-5);
+    }
+
+    .timeline-item {
+      display: block;
+      padding-left: var(--s-6);
+    }
+
+    /* Centre the 11px node on the 1px axis at (--gutter + 5.5px). */
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: var(--s-4);
+    }
+
+    .timeline-content {
+      padding: var(--s-4);
+      min-height: 0;
+    }
+  }
+}

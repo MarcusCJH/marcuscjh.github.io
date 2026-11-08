@@ -40,6 +40,19 @@ export class LoadingService {
   }
 
   /**
+   * Hold the page back until the data-driven sections have been filled in.
+   * `completeLoading()` is what reveals it again.
+   */
+  public hideMainContent(): void {
+    const mainContainer = document.querySelector<HTMLElement>(SELECTORS.MAIN_CONTAINER);
+    if (mainContainer) {
+      mainContainer.style.opacity = '0';
+      mainContainer.style.visibility = 'hidden';
+      mainContainer.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+    }
+  }
+
+  /**
    * Start loading animation
    */
   public startLoading(): void {
@@ -56,7 +69,7 @@ export class LoadingService {
 
     // Update initial loading text
     if (loadingText) {
-      loadingText.textContent = this.state.messages[0];
+      loadingText.textContent = this.state.messages[0] ?? '';
     }
     if (loadingCounter) {
       loadingCounter.textContent = '00%';
@@ -105,18 +118,21 @@ export class LoadingService {
 
     const { progress, currentMessageIndex, messages } = this.state;
 
-    if (progress > 20 && currentMessageIndex === 0) {
-      this.state.currentMessageIndex = 1;
-      loadingText.textContent = messages[1];
-    } else if (progress > 40 && currentMessageIndex === 1) {
-      this.state.currentMessageIndex = 2;
-      loadingText.textContent = messages[2];
-    } else if (progress > 60 && currentMessageIndex === 2) {
-      this.state.currentMessageIndex = 3;
-      loadingText.textContent = messages[3];
-    } else if (progress > 80 && currentMessageIndex === 3) {
-      this.state.currentMessageIndex = 4;
-      loadingText.textContent = messages[4];
+    if (messages.length === 0) {
+      return;
+    }
+
+    /* Messages are spread evenly over 0-100% rather than pinned to a
+       hardcoded 1/2/3/4 ladder, which silently assumed exactly five of them:
+       a shorter list indexed past the end, and since `textContent = undefined`
+       coerces to '' the message simply blanked out mid-load. For five
+       messages this is identical to the old thresholds (20/40/60/80). */
+    const step = 100 / messages.length;
+    const nextIndex = Math.min(messages.length - 1, Math.max(0, Math.ceil(progress / step) - 1));
+
+    if (nextIndex > currentMessageIndex) {
+      this.state.currentMessageIndex = nextIndex;
+      loadingText.textContent = messages[nextIndex] ?? '';
     }
   }
 
@@ -168,6 +184,8 @@ export class LoadingService {
    * Get current loading state
    */
   public getState(): LoadingState {
-    return { ...this.state };
+    // messages is copied too: a shallow spread would hand out a live
+    // reference to the service's own array.
+    return { ...this.state, messages: [...this.state.messages] };
   }
 }

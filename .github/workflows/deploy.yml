@@ -31,9 +31,6 @@ jobs:
         node-version-file: '.nvmrc'
         cache: 'npm'
 
-    - name: 🔧 Enable Corepack (pin npm via packageManager)
-      run: corepack enable
-
     - name: 📦 Install dependencies
       run: npm ci
       

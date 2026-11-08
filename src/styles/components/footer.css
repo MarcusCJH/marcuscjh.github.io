@@ -1,0 +1,31 @@
+@layer components {
+  /* -- footer -------------------------------------------------------------- */
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: var(--s-6);
+  }
+
+  .site-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-5);
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+  }
+
+  /* 11px mono gives a 14px-tall link box; the target has to be bigger. */
+  .site-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .site-footer a:hover {
+    color: var(--acid);
+  }
+}

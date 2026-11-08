@@ -4,6 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!--
+      Content-Security-Policy (meta only: GitHub Pages cannot send headers, so
+      frame-ancestors / report-uri / sandbox are unavailable and are omitted).
+        default-src 'self'      everything not listed below is same-origin only
+        script-src 'self'       Vite's external module bundle; no inline or eval
+                                (JSON-LD blocks are data, not executed)
+        style-src               own CSS, Google Fonts stylesheet, and
+                                'unsafe-inline' for the <noscript> <style> and
+                                inline style="" attributes rendered by main.ts
+        font-src                Google Fonts font files
+        img-src 'self' data:    images from public/ and the CSS noise data: URI
+        media-src               the hosted DataV demo video
+        frame-src               the resume page embedded in the modal
+        connect-src 'self'      fetch of ./data.json
+        manifest-src 'self'     /manifest.json
+        object-src 'none'       no plugins
+        base-uri 'self'         blocks injected <base> tags
+        form-action 'self'      no cross-site form posts
+      Do NOT add require-trusted-types-for: the app renders via innerHTML.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self' https://alicloud-common.oss-ap-southeast-1.aliyuncs.com; frame-src https://www.marcuscjh.com https://marcuscjh.com; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
+
     <!-- Favicon & App Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />

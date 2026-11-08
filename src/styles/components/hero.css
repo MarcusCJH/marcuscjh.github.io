@@ -1,0 +1,197 @@
+@layer components {
+  /* -- hero ---------------------------------------------------------------- */
+  /* `min-height: 100svh` alone is wrong on a tall display: on a 1440x2560
+     portrait monitor the hero became 2433px tall to hold 478px of content —
+     80% void, and a full screen of nothing to scroll past. Capping it means
+     a tall screen shows the hero *and* the start of the timeline, which is
+     what the extra height is good for. Short viewports still get 100svh. */
+  .hero-section {
+    position: relative;
+    min-height: var(--screen-min);
+    display: flex;
+    align-items: center;
+    padding-block: calc(var(--nav-h) + var(--s-8)) var(--s-9);
+  }
+
+  .hero-grid {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    display: grid;
+    gap: var(--s-6);
+  }
+
+  .hero-primary,
+  .hero-secondary {
+    display: grid;
+    gap: var(--s-5);
+    align-content: start;
+  }
+
+  /* The handle, set small and monospaced above the name. */
+  .hero-handle {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+  }
+
+  .hero-handle::after {
+    content: '';
+    height: 1px;
+    flex: 1;
+    max-width: 180px;
+    background: var(--line-strong);
+  }
+
+  /* Oversized condensed display type, left-aligned. A centred hero is the
+     single most templated layout on the web; this is deliberately not that. */
+  .hero-title {
+    font-size: var(--step-5);
+    font-weight: 620;
+    font-stretch: 84%;
+    letter-spacing: -0.045em;
+    line-height: 0.88;
+    margin-block: calc(var(--s-2) * -1) 0;
+  }
+
+  .hero-role {
+    display: grid;
+    gap: var(--s-1);
+    max-width: 46ch;
+  }
+
+  .hero-role-title {
+    font-size: var(--step-2);
+    font-weight: 500;
+    font-stretch: 92%;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .hero-role-sub {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--fg-muted);
+  }
+
+  /* Editorial lead. This is the `summary` field from data.json, which the
+     previous design never rendered anywhere on the page. */
+  .hero-lead {
+    max-width: 68ch;
+    color: var(--fg-muted);
+    font-size: var(--step-0);
+    line-height: 1.68;
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--line);
+  }
+
+  /* -- terminal strip ------------------------------------------------------ */
+  .terminal-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75ch;
+    max-width: 100%;
+    padding: var(--s-2) var(--s-4);
+    background: var(--ink-850);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--acid);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--fg-muted);
+    justify-self: start;
+    overflow: hidden;
+  }
+
+  .prompt {
+    color: var(--acid);
+    flex: none;
+  }
+
+  .typed-text {
+    color: var(--fg);
+    white-space: nowrap;
+  }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 0.55ch;
+    height: 1.05em;
+    background: var(--acid);
+    flex: none;
+    animation: caret 1.05s steps(1, end) infinite;
+  }
+
+  /* -- social: text links, not a row of brand circles ---------------------- */
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-1) var(--s-5);
+    padding-top: var(--s-2);
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5ch;
+    min-height: 44px;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.02em;
+    color: var(--fg-muted);
+    transition: color var(--dur-1) var(--ease-out);
+  }
+
+  .social-link svg {
+    width: 0.95em;
+    height: 0.95em;
+    transition: translate var(--dur-2) var(--ease-out);
+  }
+
+  .social-link:hover {
+    color: var(--acid);
+  }
+
+  .social-link:hover svg {
+    translate: 2px -2px;
+  }
+
+  /* -- scroll cue ---------------------------------------------------------- */
+  .scroll-arrow {
+    position: absolute;
+    bottom: var(--s-6);
+    /* Align to the content column, not the viewport edge, so it does not
+       drift into the margin on a wide display. */
+    left: max(var(--gutter), calc(50% - var(--content-max) / 2 + var(--gutter)));
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    min-height: 44px;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+    transition: color var(--dur-1) var(--ease-out);
+  }
+
+  .scroll-arrow::after {
+    content: '';
+    width: 56px;
+    height: 1px;
+    background: var(--line-strong);
+    transform-origin: left;
+    transition:
+      scale var(--dur-2) var(--ease-out),
+      background-color var(--dur-2) var(--ease-out);
+  }
+
+  .scroll-arrow:hover {
+    color: var(--fg);
+  }
+
+  .scroll-arrow:hover::after {
+    scale: 1.45 1;
+    background: var(--acid);
+  }
+}
