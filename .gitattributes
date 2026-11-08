@@ -1,0 +1,15 @@
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.PNG binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff2 binary
+
+# SVG is text, so it is normalised to LF like source files
+*.svg text
+
+package-lock.json -diff
