@@ -48,14 +48,14 @@ CERT_CFG = {
     },
 }
 
-# Display labels for data.json skill categories (order comes from data.json)
-SKILL_LABELS = {
-    "languages":  "Languages",
-    "fullstack":  "Full Stack",
-    "cloud":      "Cloud",
-    "platform":   "Platform & DevOps",
-    "ai":         "AI & Data",
-    "leadership": "Leadership",
+# Label and badge colour per data.json skill category (order comes from data.json)
+SKILL_CFG = {
+    "languages":  ("Languages", "3178C6"),
+    "fullstack":  ("Full Stack", "009485"),
+    "cloud":      ("Cloud", "FF9900"),
+    "platform":   ("Platform & DevOps", "844FBA"),
+    "ai":         ("AI & Data", "D62976"),
+    "leadership": ("Leadership", "4A5568"),
 }
 
 # ---------------------------------------------------------------------------
@@ -64,7 +64,7 @@ SKILL_LABELS = {
 
 def shield_enc(s: str) -> str:
     # Characters that need percent-encoding in a shields.io path segment
-    _ENCODE = set('#%?&=+')
+    _ENCODE = set('#%?&=+/')
     result = []
     for c in s:
         if c in ("-", "–", "—"):
@@ -80,14 +80,21 @@ def shield_enc(s: str) -> str:
     return "".join(result)
 
 
-def make_badge(label: str, message: str, color: str, logo: str | None = None) -> str:
-    url = (
-        f"https://img.shields.io/badge/{shield_enc(label)}-{shield_enc(message)}-{color}"
-        f"?style=flat-square&logoColor=white"
-    )
+def make_badge(label: str, message: str | None = None,
+               color: str = "555555", logo: str | None = None) -> str:
+    text = shield_enc(label)
+    if message is not None:
+        text += f"-{shield_enc(message)}"
+    url = f"https://img.shields.io/badge/{text}-{color}?style=flat-square&logoColor=white"
     if logo:
         url += f"&logo={logo}"
-    return f"![{label}: {message}]({url})"
+    alt = label if message is None else f"{label}: {message}"
+    return f"![{alt}]({url})"
+
+
+def strip_detail(item: str) -> str:
+    """Drop parenthetical detail; the portfolio site carries the long form."""
+    return re.sub(r"\s*\([^)]*\)", "", item).strip()
 
 
 def cert_message(title: str, cfg: dict) -> str:
@@ -167,10 +174,15 @@ def generate_readme(data: dict) -> str:
 
     # ── Focus areas from skills section ─────────────────────────────────────
     # Two trailing spaces = markdown line break, matching the cert rows below
-    focus_section = "  \n".join(
-        f"**{SKILL_LABELS.get(cat, cat.title())}** &nbsp; {' · '.join(items)}"
-        for cat, items in skills.items() if items
-    )
+    focus_rows = []
+    for cat, items in skills.items():
+        if not items:
+            continue
+        label, color = SKILL_CFG.get(cat, (cat.title(), "555555"))
+        badges = " ".join(make_badge(strip_detail(i), color=color) for i in items)
+        focus_rows.append(f"**{label}** &nbsp; {badges}")
+
+    focus_section = "  \n".join(focus_rows)
 
     # ── Certifications grouped by vendor ────────────────────────────────────
     certs = sorted(
