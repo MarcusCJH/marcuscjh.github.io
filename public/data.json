@@ -6,7 +6,7 @@
     "navigation": "Set 'enabled: false' to hide sections and navigation items",
     "social": "Add/remove social media links",
     "showcase": "Add/remove/modify project showcases",
-    "timeline": "Add/remove/modify timeline entries (work, education, certifications, awards)"
+    "timeline": "Add/remove/modify timeline entries (work, education, certifications, awards). Each modalContent.details line is rendered as a bullet; no need to type one. Indent by two spaces to nest a line under the one above, leave a line blank to start a new group, end a line with a parenthesised date range for a role heading or with a colon for a group label, and put prose in description instead"
   },
   "config": {
     "name": "marcus.cjh",
@@ -537,8 +537,8 @@
         "title": "Singapore Police Force",
         "subtitle": "Sep 2014 - Sep 2016",
         "location": "Singapore",
+        "description": "National Service: mandatory two-year military enlistment for Singapore male citizens.",
         "details": [
-          "National Service: mandatory two-year military enlistment for Singapore male citizens.",
           "Led patrol teams across public transportation networks to maintain security and public safety",
           "Maintained operational readiness and rapid response capabilities for security incidents"
         ],
@@ -567,9 +567,8 @@
         "title": "Singapore Management University",
         "subtitle": "2016 - 2017",
         "location": "Singapore",
-        "details": [
-          "Left after one year to pursue industry experience directly. Subsequently earned the EAIT International Scholarship to complete a degree at the University of Queensland."
-        ],
+        "description": "Left after one year to pursue industry experience directly. Subsequently earned the EAIT International Scholarship to complete a degree at the University of Queensland.",
+        "details": [],
         "awards": [
           {
             "title": "Penang International Dragon Boat Festival 2016 – 3rd & 4th",

@@ -74,35 +74,123 @@ export function renderModalContent(content: ModalContent): SafeHtml {
 
 /**
  * Detail lines are plain strings in data.json whose shape carries their
- * meaning: two spaces of leading indent nest a line, a trailing colon is a
- * subheading, and parentheses mark a role heading.
+ * meaning.
+ *
+ * Anything that is not a heading is an item, and the stylesheet draws its
+ * marker — a line is a bullet whether or not whoever wrote it remembered to
+ * type a glyph. Half the entries in data.json were written without one, so
+ * reading the glyph as the bullet left those modals as a wall of unmarked
+ * lines. A leading bullet character is now stripped rather than relied on.
+ *
+ * What the remaining shapes mean:
+ * - two spaces of leading indent nest an item under the one above it;
+ * - a blank line closes the open list and starts a new group;
+ * - a top-level line ending in a parenthesised date range is a role heading;
+ * - a top-level line ending in a colon, or one that has indented lines under
+ *   it, labels the group that follows rather than being an item in it.
  */
+
+/** A line that ends in `(...)` naming a year or `Present` — a role's dates. */
+const ROLE_DATES = /\([^()]*\b(?:\d{4}|present)\b[^()]*\)$/i;
+
+/** A hand-typed marker at the head of a line, with any space after it. */
+const BULLET = /^[•◦‣]\s*/;
+
+interface DetailItem {
+  depth: number;
+  text: string;
+}
+
 function renderDetails(details: string[]): SafeHtml {
-  const lines: SafeHtml[] = [];
+  const blocks: SafeHtml[] = [];
+  let items: DetailItem[] = [];
 
-  details.forEach(detail => {
-    const trimmedDetail = detail.trim();
-    const leadingSpaces = detail.length - detail.trimStart().length;
+  /** Closes the list being accumulated, if any, so a heading can follow it. */
+  const flush = (): void => {
+    if (items.length > 0) {
+      blocks.push(renderDetailList(items));
+      items = [];
+    }
+  };
 
-    if (trimmedDetail === '') {
-      lines.push(markup`<br>`);
-    } else if (leadingSpaces > 0) {
-      const indentLevel = Math.floor(leadingSpaces / 2);
-      const indentStyle = `margin-left: ${indentLevel * 1.5}rem;`;
-      const lineClass = trimmedDetail.startsWith('•') ? 'detail-bullet' : 'detail-line';
-      lines.push(markup`<div class="${lineClass}" style="${indentStyle}">${trimmedDetail}</div>`);
-    } else {
-      if (trimmedDetail.includes('(') && trimmedDetail.includes(')')) {
-        lines.push(markup`<h3 class="detail-heading">${trimmedDetail}</h3>`);
-      } else if (trimmedDetail.endsWith(':')) {
-        lines.push(markup`<h4 class="detail-subheading">${trimmedDetail}</h4>`);
-      } else {
-        lines.push(markup`<div class="detail-text">${trimmedDetail}</div>`);
+  details.forEach((detail, index) => {
+    const text = detail.trim();
+    const indent = detail.length - detail.trimStart().length;
+
+    if (text === '') {
+      flush();
+      return;
+    }
+
+    // A line someone did mark as a bullet is an item, whatever its shape:
+    // only an unmarked line is a candidate for a heading.
+    if (indent === 0 && !BULLET.test(text)) {
+      const nextIndent = nextIndentOf(details, index);
+
+      if (ROLE_DATES.test(text)) {
+        flush();
+        blocks.push(markup`<h3 class="detail-heading">${text}</h3>`);
+        return;
+      }
+
+      if (text.endsWith(':') || nextIndent > indent) {
+        flush();
+        blocks.push(markup`<h4 class="detail-subheading">${text}</h4>`);
+        return;
       }
     }
+
+    items.push({ depth: Math.floor(indent / 2), text: stripBullet(text) });
   });
 
-  return markup`<div class="modal-details">${lines}</div>`;
+  flush();
+
+  return markup`<div class="modal-details">${blocks}</div>`;
+}
+
+/** The indent of the next line with content, or -1 when there is none. */
+function nextIndentOf(details: string[], index: number): number {
+  for (let next = index + 1; next < details.length; next += 1) {
+    const line = details[next] ?? '';
+    if (line.trim() !== '') {
+      return line.length - line.trimStart().length;
+    }
+  }
+  return -1;
+}
+
+/** Drops a hand-typed marker, now that the stylesheet draws one. */
+function stripBullet(text: string): string {
+  return text.replace(BULLET, '');
+}
+
+/**
+ * Builds one `<ul>`, nesting any run of deeper items inside the item they
+ * follow. Depth is read relative to each run, so a group written entirely at
+ * one indent is a flat list however deep that indent is.
+ */
+function renderDetailList(items: DetailItem[]): SafeHtml {
+  const entries: SafeHtml[] = [];
+  let index = 0;
+
+  while (index < items.length) {
+    const item = items[index];
+    if (!item) {
+      break;
+    }
+
+    let end = index + 1;
+    while (end < items.length && (items[end]?.depth ?? 0) > item.depth) {
+      end += 1;
+    }
+
+    const children = items.slice(index + 1, end);
+    const nested = children.length > 0 ? renderDetailList(children) : '';
+    entries.push(markup`<li>${item.text}${nested}</li>`);
+    index = end;
+  }
+
+  return markup`<ul class="detail-list">${entries}</ul>`;
 }
 
 function renderAwards(awards: ModalContentAward[]): SafeHtml {

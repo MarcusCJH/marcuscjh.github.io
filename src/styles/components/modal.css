@@ -243,13 +243,34 @@
     margin: var(--s-4) 0 var(--s-2);
   }
 
-  .modal-details .detail-text,
-  .modal-details .detail-line {
-    color: var(--fg);
+  /* The marker is drawn here, not typed into data.json, so a detail line is
+     a bullet whether or not whoever wrote it remembered a glyph. */
+  .modal-details .detail-list {
+    display: grid;
+    gap: var(--s-2);
+    color: var(--fg-muted);
   }
 
-  .modal-details .detail-bullet {
-    color: var(--fg-muted);
+  .modal-details .detail-list li {
+    position: relative;
+    padding-left: 2ch;
+  }
+
+  .modal-details .detail-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--fg-faint);
+  }
+
+  /* A nested run sits under the item it belongs to, with a hollow marker. */
+  .modal-details .detail-list .detail-list {
+    margin-top: var(--s-2);
+    padding-left: 2ch;
+  }
+
+  .modal-details .detail-list .detail-list li::before {
+    content: '◦';
   }
 
   .modal-awards {

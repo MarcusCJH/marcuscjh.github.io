@@ -171,77 +171,122 @@ describe('renderModalContent', () => {
   });
 
   describe('detail lines, whose shape carries their meaning', () => {
-    it('reads a line with parentheses as a role heading', () => {
-      render({ details: ['Software Engineer (2021 — Present)'] });
+    function itemTexts(): (string | null)[] {
+      return Array.from(document.querySelectorAll('.modal-details .detail-list > li')).map(item => {
+        const nested = item.querySelector('.detail-list');
+        nested?.remove();
+        return item.textContent;
+      });
+    }
 
-      const heading = document.querySelector('.modal-details h3.detail-heading');
-      expect(heading?.textContent).toBe('Software Engineer (2021 — Present)');
+    it('renders a plain line as a bullet, with no glyph in the data', () => {
+      render({ details: ['Shipped a thing'] });
+
+      expect(itemTexts()).toEqual(['Shipped a thing']);
     });
 
-    it('reads a line ending in a colon as a subheading', () => {
-      render({ details: ['Responsibilities:'] });
+    it('strips a hand-typed bullet so the marker is not doubled', () => {
+      render({ details: ['• Shipped a thing', '  • And another'] });
+
+      expect(itemTexts()).toEqual(['Shipped a thing', 'And another']);
+    });
+
+    it('collects consecutive lines into one list', () => {
+      render({ details: ['One', 'Two', 'Three'] });
+
+      expect(document.querySelectorAll('.modal-details .detail-list')).toHaveLength(1);
+      expect(itemTexts()).toEqual(['One', 'Two', 'Three']);
+    });
+
+    it('keeps a group written entirely at one indent flat', () => {
+      render({ details: ['  • one', '  • two'] });
+
+      expect(itemTexts()).toEqual(['one', 'two']);
+      expect(document.querySelectorAll('.modal-details .detail-list')).toHaveLength(1);
+    });
+
+    it('nests a deeper line inside the item above it', () => {
+      render({ details: ['A role (2024)', '  • top', '    • nested'] });
+
+      const outer = document.querySelector('.modal-details > .detail-list');
+      const nested = outer?.querySelector('li > .detail-list');
+      expect(Array.from(nested?.children ?? []).map(child => child.textContent)).toEqual([
+        'nested',
+      ]);
+      expect(outer?.children).toHaveLength(1);
+    });
+
+    it('reads a line ending in a parenthesised date range as a role heading', () => {
+      render({ details: ['Software Engineer - Aviation (2021 - Present)'] });
+
+      expect(document.querySelector('.modal-details h3.detail-heading')?.textContent).toBe(
+        'Software Engineer - Aviation (2021 - Present)'
+      );
+    });
+
+    it('does not read parentheses in the middle of a line as a heading', () => {
+      render({ details: ['Used Adobe Creative Suite (Premiere Pro, After Effects) daily'] });
+
+      expect(document.querySelector('.modal-details h3')).toBeNull();
+      expect(itemTexts()).toEqual([
+        'Used Adobe Creative Suite (Premiere Pro, After Effects) daily',
+      ]);
+    });
+
+    it('reads a line ending in a colon as a group label', () => {
+      render({ details: ['Responsibilities:', 'Shipped a thing'] });
 
       expect(document.querySelector('.modal-details h4.detail-subheading')?.textContent).toBe(
         'Responsibilities:'
       );
+      expect(itemTexts()).toEqual(['Shipped a thing']);
     });
 
-    it('reads any other top-level line as plain text', () => {
-      render({ details: ['Shipped a thing'] });
+    it('reads a line with indented lines under it as a group label', () => {
+      render({ details: ['Yokohama Research Lab', '  • built a thing'] });
 
-      expect(document.querySelector('.modal-details .detail-text')?.textContent).toBe(
-        'Shipped a thing'
+      expect(document.querySelector('.modal-details h4.detail-subheading')?.textContent).toBe(
+        'Yokohama Research Lab'
       );
-    });
-
-    it('renders a blank line as a break', () => {
-      render({ details: ['   '] });
-
-      expect(document.querySelectorAll('.modal-details br')).toHaveLength(1);
-      expect(document.querySelectorAll('.modal-details .detail-text')).toHaveLength(0);
-    });
-
-    it('indents a nested line by two spaces per level', () => {
-      render({ details: ['  one level', '    two levels'] });
-
-      const lines = Array.from(
-        document.querySelectorAll<HTMLElement>('.modal-details .detail-line')
-      );
-      expect(lines.map(line => line.textContent)).toEqual(['one level', 'two levels']);
-      expect(lines[0]?.style.marginLeft).toBe('1.5rem');
-      expect(lines[1]?.style.marginLeft).toBe('3rem');
-    });
-
-    it('marks an indented bullet line as a bullet', () => {
-      render({ details: ['  • a bullet'] });
-
-      const bullet = document.querySelector<HTMLElement>('.modal-details .detail-bullet');
-      expect(bullet?.textContent).toBe('• a bullet');
-      expect(bullet?.style.marginLeft).toBe('1.5rem');
+      expect(itemTexts()).toEqual(['built a thing']);
     });
 
     it('does not read an indented line as a heading', () => {
       render({ details: ['  Lead Engineer (2024)'] });
 
       expect(document.querySelector('.modal-details h3')).toBeNull();
-      expect(document.querySelector('.modal-details .detail-line')?.textContent).toBe(
-        'Lead Engineer (2024)'
-      );
+      expect(itemTexts()).toEqual(['Lead Engineer (2024)']);
     });
 
-    it('keeps the detail lines in source order', () => {
-      render({ details: ['Role (2021)', 'Summary:', '  • did a thing', '', 'The end'] });
+    it('closes the open list on a blank line, without leaving a stray break', () => {
+      render({ details: ['one', '   ', 'two'] });
 
-      const classes = Array.from(document.querySelector('.modal-details')?.children ?? []).map(
+      expect(document.querySelectorAll('.modal-details br')).toHaveLength(0);
+      const lists = Array.from(document.querySelectorAll('.modal-details > .detail-list'));
+      expect(lists.map(list => list.textContent)).toEqual(['one', 'two']);
+    });
+
+    it('keeps the detail blocks in source order', () => {
+      render({
+        details: ['Role (2021)', '  • did a thing', '', 'Summary:', 'The end'],
+      });
+
+      const blocks = Array.from(document.querySelector('.modal-details')?.children ?? []).map(
         child => `${child.tagName}.${child.className}`
       );
-      expect(classes).toEqual([
+      expect(blocks).toEqual([
         'H3.detail-heading',
+        'UL.detail-list',
         'H4.detail-subheading',
-        'DIV.detail-bullet',
-        'BR.',
-        'DIV.detail-text',
+        'UL.detail-list',
       ]);
+    });
+
+    it('escapes a detail line that contains markup', () => {
+      render({ details: ['<img src=x onerror=alert(1)>'] });
+
+      expect(document.querySelectorAll('.modal-details img')).toHaveLength(0);
+      expect(itemTexts()).toEqual(['<img src=x onerror=alert(1)>']);
     });
   });
 
