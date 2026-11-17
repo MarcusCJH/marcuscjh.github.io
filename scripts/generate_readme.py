@@ -16,50 +16,39 @@ import urllib.request
 CERT_CFG = {
     "Amazon Web Services": {
         "label": "AWS", "color": "FF9900", "logo": "amazon-aws",
-        "strip": ["AWS Certified "], "group": "Amazon Web Services",
+        "strip": ["AWS Certified "],
     },
     "Google Cloud": {
         "label": "GCP", "color": "4285F4", "logo": "google-cloud",
-        "strip": [], "group": "Google Cloud",
+        "strip": [],
     },
     "HashiCorp": {
         "label": "HashiCorp", "color": "7B42BC", "logo": "terraform",
-        "strip": ["HashiCorp Certified: "], "group": "HashiCorp",
+        "strip": ["HashiCorp Certified: "],
     },
     "Databricks": {
         "label": "Databricks", "color": "FF3621", "logo": "databricks",
-        "strip": ["Databricks Certified "], "group": "Databricks",
+        "strip": ["Databricks Certified "],
     },
     "Scrum Alliance": {
         "label": "Scrum Alliance", "color": "009FDA", "logo": None,
-        "strip": [], "group": "Scrum Alliance",
+        "strip": [],
     },
     "Alibaba Cloud": {
         "label": "Alibaba Cloud", "color": "FF6A00", "logo": "alibabacloud",
-        "strip": ["Alibaba Cloud "], "group": "Alibaba Cloud",
+        "strip": ["Alibaba Cloud "],
     },
     "Axelos": {
         "label": "Axelos", "color": "6E1C7A", "logo": None,
-        "strip": [], "group": "Axelos",
+        "strip": [],
     },
     "Pegasystems": {
         "label": "Pega", "color": "FF0000", "logo": None,
-        "strip": [], "group": "Pegasystems",
+        "strip": [],
     },
 }
 
-VENDOR_ORDER = [
-    "Amazon Web Services",
-    "Google Cloud",
-    "HashiCorp",
-    "Databricks",
-    "Scrum Alliance",
-    "Alibaba Cloud",
-    "Axelos",
-    "Pegasystems",
-]
-
-# Skills categories to show as focus areas, in order, with display labels
+# Display labels for data.json skill categories (order comes from data.json)
 SKILL_LABELS = {
     "languages":  "Languages",
     "fullstack":  "Full Stack",
@@ -177,17 +166,11 @@ def generate_readme(data: dict) -> str:
         about_block += f"\n>\n> **Currently:** {current_role}"
 
     # ── Focus areas from skills section ─────────────────────────────────────
-    focus_rows = []
-    for cat, label in SKILL_LABELS.items():
-        items = skills.get(cat, [])
-        if items:
-            focus_rows.append(f"| **{label}** | {' · '.join(items)} |")
-    for cat, items in skills.items():
-        if cat not in SKILL_LABELS and items:
-            label = cat.replace("_", " ").title()
-            focus_rows.append(f"| **{label}** | {' · '.join(items)} |")
-
-    focus_section = "\n".join(focus_rows)
+    # Two trailing spaces = markdown line break, matching the cert rows below
+    focus_section = "  \n".join(
+        f"**{SKILL_LABELS.get(cat, cat.title())}** &nbsp; {' · '.join(items)}"
+        for cat, items in skills.items() if items
+    )
 
     # ── Certifications grouped by vendor ────────────────────────────────────
     certs = sorted(
@@ -208,12 +191,11 @@ def generate_readme(data: dict) -> str:
             make_badge(cfg["label"], msg, cfg["color"], cfg.get("logo"))
         )
 
-    cert_rows = []
-    for company in VENDOR_ORDER:
-        if company not in groups:
-            continue
-        badges_str = " ".join(groups[company])
-        cert_rows.append(f"**{company}** &nbsp; {badges_str}")
+    # CERT_CFG order drives display order; any unlisted vendor goes last
+    ordered = list(CERT_CFG) + [c for c in groups if c not in CERT_CFG]
+    cert_rows = [
+        f"**{c}** &nbsp; {' '.join(groups[c])}" for c in ordered if c in groups
+    ]
 
     cert_section = "  \n".join(cert_rows)
 
@@ -260,8 +242,6 @@ def generate_readme(data: dict) -> str:
 
 ## Focus Areas
 
-| | |
-|---|---|
 {focus_section}
 
 <sub>What I'm working with right now, not a ceiling. Picking up new stacks is the part of the job I enjoy most.</sub>
