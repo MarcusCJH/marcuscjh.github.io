@@ -48,38 +48,6 @@ CERT_CFG = {
     },
 }
 
-TECH_CFG = {
-    # Languages — colors/logos from md-badges (github.com/inttter/md-badges)
-    "Python":      {"color": "3776AB",   "logo": "python"},
-    "JavaScript":  {"color": "323330",   "logo": "javascript",       "logo_color": "%23F7DF1E"},
-    "TypeScript":  {"color": "3178C6",   "logo": "typescript"},
-    "Java":        {"color": "ED8B00",   "logo": "openjdk"},
-    "C#":          {"color": "239120",   "logo": "cshrp",             "domain": "custom-icon-badges.demolab.com"},
-    "SQL":         {"color": "4479A1",   "logo": "postgresql"},
-    # AWS
-    "AWS":         {"color": "FF9900",   "logo": "aws",               "domain": "custom-icon-badges.demolab.com"},
-    "DynamoDB":    {"color": "4053D6",   "logo": None},
-    # Backend / frameworks
-    "Node.js":     {"color": "6DA55F",   "logo": "node.js"},
-    "Next.js":     {"color": "000000",   "logo": "next.js"},
-    "FastAPI":     {"color": "009485",   "logo": "fastapi"},
-    "GraphQL":     {"color": "E10098",   "logo": "graphql"},
-    "Django":      {"color": "092E20",   "logo": "django"},
-    # DevOps / infra
-    "Terraform":   {"color": "844FBA",   "logo": "terraform"},
-    "Docker":      {"color": "2496ED",   "logo": "docker"},
-    "Git":         {"color": "F05033",   "logo": "git"},
-    "Linux":       {"color": "FCC624",   "logo": "linux",             "logo_color": "black"},
-    # Data
-    "Databricks":  {"color": "FF3621",   "logo": "databricks"},
-    # Other
-    "Vite":        {"color": "646CFF",   "logo": "vite"},
-    "PWA":         {"color": "5A0FC8",   "logo": "pwa"},
-    "Alibaba Cloud": {"color": "FF6701", "logo": "alibabacloud"},
-    "Amazon Q":    {"color": "FF9900",   "logo": "amazon-aws"},
-    "Ollama":      {"color": "000000",   "logo": None},
-}
-
 VENDOR_ORDER = [
     "Amazon Web Services",
     "Google Cloud",
@@ -91,8 +59,15 @@ VENDOR_ORDER = [
     "Pegasystems",
 ]
 
-# Skills categories to show as tech badges, in order
-SKILL_CATEGORIES = ["languages", "platform"]
+# Skills categories to show as focus areas, in order, with display labels
+SKILL_LABELS = {
+    "languages":  "Languages",
+    "fullstack":  "Full Stack",
+    "cloud":      "Cloud",
+    "platform":   "Platform & DevOps",
+    "ai":         "AI & Data",
+    "leadership": "Leadership",
+}
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -124,19 +99,6 @@ def make_badge(label: str, message: str, color: str, logo: str | None = None) ->
     if logo:
         url += f"&logo={logo}"
     return f"![{label}: {message}]({url})"
-
-
-def tech_badge(name: str) -> str:
-    cfg = TECH_CFG.get(name, {"color": "444444", "logo": None})
-    domain = cfg.get("domain", "img.shields.io")
-    logo_color = cfg.get("logo_color", "white")
-    url = (
-        f"https://{domain}/badge/{shield_enc(name)}-{cfg['color']}"
-        f"?style=flat-square&logoColor={logo_color}"
-    )
-    if cfg.get("logo"):
-        url += f"&logo={cfg['logo']}"
-    return f"![{name}]({url})"
 
 
 def cert_message(title: str, cfg: dict) -> str:
@@ -214,16 +176,18 @@ def generate_readme(data: dict) -> str:
     if current_role:
         about_block += f"\n>\n> **Currently:** {current_role}"
 
-    # ── Tech Stack from skills section ───────────────────────────────────────
-    seen, tech_list = set(), []
-    for cat in SKILL_CATEGORIES:
-        for tech in skills.get(cat, []):
-            # Skip meta-terms that aren't badgeable technologies
-            if tech not in seen and "/" not in tech and "CI" not in tech:
-                seen.add(tech)
-                tech_list.append(tech)
+    # ── Focus areas from skills section ─────────────────────────────────────
+    focus_rows = []
+    for cat, label in SKILL_LABELS.items():
+        items = skills.get(cat, [])
+        if items:
+            focus_rows.append(f"| **{label}** | {' · '.join(items)} |")
+    for cat, items in skills.items():
+        if cat not in SKILL_LABELS and items:
+            label = cat.replace("_", " ").title()
+            focus_rows.append(f"| **{label}** | {' · '.join(items)} |")
 
-    tech_section = " ".join(tech_badge(t) for t in tech_list)
+    focus_section = "\n".join(focus_rows)
 
     # ── Certifications grouped by vendor ────────────────────────────────────
     certs = sorted(
@@ -294,9 +258,13 @@ def generate_readme(data: dict) -> str:
 
 ---
 
-## Tech Stack
+## Focus Areas
 
-{tech_section}
+| | |
+|---|---|
+{focus_section}
+
+<sub>What I'm working with right now, not a ceiling. Picking up new stacks is the part of the job I enjoy most.</sub>
 
 ---
 
